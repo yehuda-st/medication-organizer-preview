@@ -22467,7 +22467,7 @@ h1{font-size:19px;margin:2px 0 5px}
         formatter: (cell) => {
           const row = cell.getRow().getData();
           if (state.defaultSort && ["room", "patientName", "patientId", "system", "family"].includes(field)) {
-            const prev = cell.getRow().getPrevRow()?.getData();
+            const prev = cell.getRow().getPrevRow()?.getData?.() ?? null;
             if (prev && prev.patientId === row.patientId) {
               if (["room", "patientName", "patientId"].includes(field)) return "";
               if (field === "system" && prev.system === row.system) return "";
@@ -22478,6 +22478,7 @@ h1{font-size:19px;margin:2px 0 5px}
         },
         ...field === "comment" ? { cellDblClick: (e, cell) => editComment(cell.getRow().getData()) } : {}
       });
+      root.replaceChildren(title, sources, toolbar, message, grid);
       table = new TabulatorFull$1(grid, {
         data: currentRows(),
         layout: "fitDataStretch",
@@ -22491,7 +22492,7 @@ h1{font-size:19px;margin:2px 0 5px}
         columns: cols.map(makeColumn),
         rowFormatter: (row) => {
           const data = row.getData();
-          const prev = row.getPrevRow()?.getData();
+          const prev = row.getPrevRow()?.getData?.() ?? null;
           row.getElement().classList.toggle("patient-start", !prev || prev.patientId !== data.patientId);
           row.getElement().classList.toggle("note-row", data.rowType === "NOTE");
         }
@@ -22526,7 +22527,6 @@ h1{font-size:19px;margin:2px 0 5px}
       button("\u05D9\u05D9\u05E6\u05D5\u05D0 Snapshot", () => saveJson(serializeSnapshot(cardState), "medication-snapshot.json"));
       button("\u05D0\u05D1\u05D7\u05D5\u05DF", () => renderShell(root, bundle));
       message.textContent = "\u05D2\u05E8\u05E1\u05EA \u05DE\u05DE\u05E9\u05E7 \u05E8\u05D0\u05E9\u05D5\u05E0\u05D4 \u2014 \u05D4\u05E9\u05D5\u05D5\u05D0\u05D4 \u05D4\u05D9\u05E1\u05D8\u05D5\u05E8\u05D9\u05EA, \u05DE\u05E1\u05DA \u05E1\u05D9\u05D5\u05D5\u05D2 \u05DE\u05DC\u05D0, \u05E0\u05E2\u05D9\u05DC\u05D4 \u05D5\u05D4\u05D3\u05E4\u05E1\u05D4 \u05D8\u05E8\u05DD \u05DE\u05D5\u05DE\u05E9\u05D5.";
-      root.replaceChildren(title, sources, toolbar, message, grid);
     } catch (error) {
       const p = document.createElement("p");
       p.className = "error";

@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>סדרן תרופות</title>
+  <style>* { box-sizing: border-box; }
+body { margin: 0; font: 14px Arial, sans-serif; background: #f7f8fa; color: #17202b; }
+main { max-width: 960px; margin: 32px auto; padding: 24px; background: white; border: 1px solid #dce2e8; border-radius: 8px; }
+h1 { margin-top: 0; font-size: 22px; }
+.meta { color: #52606d; }
+.error { color: #a12222; }
+</style>
+</head>
+<body>
+  <main id="app" aria-live="polite"></main>
+  <script id="organizer-data" type="application/json">{"profile":"engine-test","mode":"new","patients":[{"שם":"מטופל הדגמה        TEST-001 נ,80","חדר/מיטה":"1","patient_id":"TEST-001","patient_name":"מטופל הדגמה"}],"medications":[{"ת.ז.":"TEST-001","שם מסחרי":"BRAND-A","שם גנרי":"GENERIC-A","full_generic_name":"GENERIC-A FULL","generic_name_fixed":"CANONICAL A","resolution_status":"MATCH"},{"ת.ז.":"TEST-001","שם מסחרי":"BRAND-B","שם גנרי":"GENERIC-B","full_generic_name":"GENERIC-B FULL","generic_name_fixed":"CANONICAL B","resolution_status":"MATCH"}],"dictionary":{"sourceMappings":[],"classifications":[{"generic_name_fixed":"CANONICAL A","generic_name_nice":"Drug A","system":"Cardio","family":"Alpha"},{"generic_name_fixed":"CANONICAL B","generic_name_nice":"Drug B","system":"Cardio","family":"Alpha"}],"displayOrder":[{"level":"SYSTEM","system":"Cardio","family":"","order_system":10,"order_family":null},{"level":"FAMILY","system":"Cardio","family":"Alpha","order_system":null,"order_family":10}]},"snapshot":null,"issues":[]}</script>
+  <script>(() => {
+  // src/data/input.js
+  function readEmbeddedInput(documentRef = document) {
+    const element = documentRef.getElementById("organizer-data");
+    if (!element) throw new Error("Missing organizer-data element");
+    const raw = element.textContent.trim();
+    if (!raw || raw[0] === "_") return null;
+    const data = JSON.parse(raw);
+    if (!data || typeof data !== "object" || Array.isArray(data)) {
+      throw new Error("Invalid organizer input bundle");
+    }
+    return data;
+  }
+
+  // src/ui/render.js
+  function renderShell(root, data) {
+    if (!root) throw new Error("Missing app root");
+    const heading = document.createElement("h1");
+    heading.textContent = "\u05E1\u05D3\u05E8\u05DF \u05EA\u05E8\u05D5\u05E4\u05D5\u05EA";
+    const detail = document.createElement("p");
+    detail.className = "meta";
+    detail.textContent = data ? "\u05EA\u05D1\u05E0\u05D9\u05EA \u05E0\u05D8\u05E2\u05E0\u05D4. \u05DE\u05D8\u05D5\u05E4\u05DC\u05D9\u05DD: " + (Array.isArray(data.patients) ? data.patients.length : 0) + " | \u05E9\u05D5\u05E8\u05D5\u05EA \u05EA\u05E8\u05D5\u05E4\u05D5\u05EA: " + (Array.isArray(data.medications) ? data.medications.length : 0) : "\u05EA\u05D1\u05E0\u05D9\u05EA \u05E8\u05D6\u05D4 \u2014 \u05E0\u05EA\u05D5\u05E0\u05D9 \u05D4\u05DE\u05D8\u05D5\u05E4\u05DC\u05D9\u05DD \u05D9\u05D5\u05D8\u05DE\u05E2\u05D5 \u05E2\u05DC \u05D9\u05D3\u05D9 \u05D4\u05BELoader.";
+    root.replaceChildren(heading, detail);
+  }
+
+  // src/main.js
+  function start() {
+    const root = document.getElementById("app");
+    try {
+      renderShell(root, readEmbeddedInput());
+    } catch (error) {
+      const message = document.createElement("p");
+      message.className = "error";
+      message.textContent = "\u05E9\u05D2\u05D9\u05D0\u05D4 \u05D1\u05D8\u05E2\u05D9\u05E0\u05EA \u05E0\u05EA\u05D5\u05E0\u05D9\u05DD: " + error.message;
+      root.replaceChildren(message);
+    }
+  }
+  start();
+})();
+</script>
+</body>
+</html>

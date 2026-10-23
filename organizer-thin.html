@@ -34,8 +34,8 @@ h1{font-size:19px;margin:2px 0 5px}
   <script id="organizer-data" type="application/json">__ORGANIZER_JSON__</script>
   <script>(() => {
   var __defProp = Object.defineProperty;
-  var __defNormalProp = (obj, key, value) => key in obj ? __defProp(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
-  var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "symbol" ? key + "" : key, value);
+  var __defNormalProp = (obj, key2, value) => key2 in obj ? __defProp(obj, key2, { enumerable: true, configurable: true, writable: true, value }) : obj[key2] = value;
+  var __publicField = (obj, key2, value) => __defNormalProp(obj, typeof key2 !== "symbol" ? key2 + "" : key2, value);
 
   // node_modules/tabulator-tables/dist/js/tabulator_esm.mjs
   var CoreFeature = class {
@@ -87,8 +87,8 @@ h1{font-size:19px;margin:2px 0 5px}
     unsubscribe() {
       return this.table.eventBus.unsubscribe(...arguments);
     }
-    subscribed(key) {
-      return this.table.eventBus.subscribed(key);
+    subscribed(key2) {
+      return this.table.eventBus.subscribed(key2);
     }
     subscriptionChange() {
       return this.table.eventBus.subscriptionChange(...arguments);
@@ -105,8 +105,8 @@ h1{font-size:19px;margin:2px 0 5px}
     dispatchExternal() {
       return this.table.externalEvents.dispatch(...arguments);
     }
-    subscribedExternal(key) {
-      return this.table.externalEvents.subscribed(key);
+    subscribedExternal(key2) {
+      return this.table.externalEvents.subscribed(key2);
     }
     subscriptionChangeExternal() {
       return this.table.externalEvents.subscriptionChange(...arguments);
@@ -114,14 +114,14 @@ h1{font-size:19px;margin:2px 0 5px}
     //////////////////////////////////////////
     //////////////// Options /////////////////
     //////////////////////////////////////////
-    options(key) {
-      return this.table.options[key];
+    options(key2) {
+      return this.table.options[key2];
     }
-    setOption(key, value) {
+    setOption(key2, value) {
       if (typeof value !== "undefined") {
-        this.table.options[key] = value;
+        this.table.options[key2] = value;
       }
-      return this.table.options[key];
+      return this.table.options[key2];
     }
     //////////////////////////////////////////
     /////////// Deprecation Checks ///////////
@@ -138,8 +138,8 @@ h1{font-size:19px;margin:2px 0 5px}
     //////////////////////////////////////////
     //////////////// Modules /////////////////
     //////////////////////////////////////////
-    module(key) {
-      return this.table.module(key);
+    module(key2) {
+      return this.table.module(key2);
     }
   };
   var Helpers = class {
@@ -164,10 +164,10 @@ h1{font-size:19px;margin:2px 0 5px}
       }
       return output;
     }
-    static deepClone(obj, clone, list2 = []) {
+    static deepClone(obj, clone2, list2 = []) {
       var objectProto = {}.__proto__, arrayProto = [].__proto__;
-      if (!clone) {
-        clone = Object.assign(Array.isArray(obj) ? [] : {}, obj);
+      if (!clone2) {
+        clone2 = Object.assign(Array.isArray(obj) ? [] : {}, obj);
       }
       for (var i in obj) {
         let subject = obj[i], match, copy;
@@ -176,15 +176,15 @@ h1{font-size:19px;margin:2px 0 5px}
             return item.subject === subject;
           });
           if (match > -1) {
-            clone[i] = list2[match].copy;
+            clone2[i] = list2[match].copy;
           } else {
             copy = Object.assign(Array.isArray(subject) ? [] : {}, subject);
             list2.unshift({ subject, copy });
-            clone[i] = this.deepClone(subject, copy, list2);
+            clone2[i] = this.deepClone(subject, copy, list2);
           }
         }
       }
-      return clone;
+      return clone2;
     }
   };
   var Popup$1 = class Popup extends CoreFeature {
@@ -423,11 +423,11 @@ h1{font-size:19px;margin:2px 0 5px}
     ///////////////////////////////////
     ////// Options Registration ///////
     ///////////////////////////////////
-    registerTableOption(key, value) {
-      this.table.optionsList.register(key, value);
+    registerTableOption(key2, value) {
+      this.table.optionsList.register(key2, value);
     }
-    registerColumnOption(key, value) {
-      this.table.columnManager.optionsList.register(key, value);
+    registerColumnOption(key2, value) {
+      this.table.columnManager.optionsList.register(key2, value);
     }
     ///////////////////////////////////
     /// Public Function Registration ///
@@ -546,14 +546,14 @@ h1{font-size:19px;margin:2px 0 5px}
     initializeColumn(column) {
       var match = false, config = {};
       this.allowedTypes.forEach((type) => {
-        var key = "accessor" + (type.charAt(0).toUpperCase() + type.slice(1)), accessor;
-        if (column.definition[key]) {
-          accessor = this.lookupAccessor(column.definition[key]);
+        var key2 = "accessor" + (type.charAt(0).toUpperCase() + type.slice(1)), accessor;
+        if (column.definition[key2]) {
+          accessor = this.lookupAccessor(column.definition[key2]);
           if (accessor) {
             match = true;
-            config[key] = {
+            config[key2] = {
               accessor,
-              params: column.definition[key + "Params"] || {}
+              params: column.definition[key2 + "Params"] || {}
             };
           }
         }
@@ -580,12 +580,12 @@ h1{font-size:19px;margin:2px 0 5px}
     }
     //apply accessor to row
     transformRow(row, type) {
-      var key = "accessor" + (type.charAt(0).toUpperCase() + type.slice(1)), rowComponent = row.getComponent();
+      var key2 = "accessor" + (type.charAt(0).toUpperCase() + type.slice(1)), rowComponent = row.getComponent();
       var data = Helpers.deepClone(row.data || {});
       this.table.columnManager.traverse(function(column) {
         var value, accessor, params, colComponent;
         if (column.modules.accessor) {
-          accessor = column.modules.accessor[key] || column.modules.accessor.accessor || false;
+          accessor = column.modules.accessor[key2] || column.modules.accessor.accessor || false;
           if (accessor) {
             value = column.getFieldValue(data);
             if (value != "undefined") {
@@ -614,8 +614,8 @@ h1{font-size:19px;margin:2px 0 5px}
         output = output.concat(generateParamsList$1(item, prefix ? prefix + "[" + i + "]" : i));
       });
     } else if (typeof data === "object") {
-      for (var key in data) {
-        output = output.concat(generateParamsList$1(data[key], prefix ? prefix + "[" + key + "]" : key));
+      for (var key2 in data) {
+        output = output.concat(generateParamsList$1(data[key2], prefix ? prefix + "[" + key2 + "]" : key2));
       }
     } else {
       output.push({ key: prefix, value: data });
@@ -647,12 +647,12 @@ h1{font-size:19px;margin:2px 0 5px}
       if (config.method.toUpperCase() != "GET") {
         contentType = typeof this.table.options.ajaxContentType === "object" ? this.table.options.ajaxContentType : this.contentTypeFormatters[this.table.options.ajaxContentType];
         if (contentType) {
-          for (var key in contentType.headers) {
+          for (var key2 in contentType.headers) {
             if (!config.headers) {
               config.headers = {};
             }
-            if (typeof config.headers[key] === "undefined") {
-              config.headers[key] = contentType.headers[key];
+            if (typeof config.headers[key2] === "undefined") {
+              config.headers[key2] = contentType.headers[key2];
             }
           }
           config.body = contentType.body.call(this, url, config, params);
@@ -689,17 +689,17 @@ h1{font-size:19px;margin:2px 0 5px}
           if (response.ok) {
             response.json().then((data) => {
               resolve(data);
-            }).catch((error) => {
-              reject(error);
-              console.warn("Ajax Load Error - Invalid JSON returned", error);
+            }).catch((error2) => {
+              reject(error2);
+              console.warn("Ajax Load Error - Invalid JSON returned", error2);
             });
           } else {
             console.error("Ajax Load Error - Connection Error: " + response.status, response.statusText);
             reject(response);
           }
-        }).catch((error) => {
-          console.error("Ajax Load Error - Connection Error: ", error);
-          reject(error);
+        }).catch((error2) => {
+          console.error("Ajax Load Error - Connection Error: ", error2);
+          reject(error2);
         });
       } else {
         console.warn("Ajax Load Error - No URL Set");
@@ -715,8 +715,8 @@ h1{font-size:19px;margin:2px 0 5px}
         output = output.concat(generateParamsList(item, prefix ? prefix + "[" + i + "]" : i));
       });
     } else if (typeof data === "object") {
-      for (var key in data) {
-        output = output.concat(generateParamsList(data[key], prefix ? prefix + "[" + key + "]" : key));
+      for (var key2 in data) {
+        output = output.concat(generateParamsList(data[key2], prefix ? prefix + "[" + key2 + "]" : key2));
       }
     } else {
       output.push({ key: prefix, value: data });
@@ -1666,18 +1666,18 @@ h1{font-size:19px;margin:2px 0 5px}
     mapDefinitions() {
       var defaults = this.table.options.columnDefaults;
       if (defaults) {
-        for (let key in defaults) {
-          if (typeof this.definition[key] === "undefined") {
-            this.definition[key] = defaults[key];
+        for (let key2 in defaults) {
+          if (typeof this.definition[key2] === "undefined") {
+            this.definition[key2] = defaults[key2];
           }
         }
       }
       this.definition = this.table.columnManager.optionsList.generate(_Column.defaultOptionList, this.definition);
     }
     checkDefinition() {
-      Object.keys(this.definition).forEach((key) => {
-        if (_Column.defaultOptionList.indexOf(key) === -1) {
-          console.warn("Invalid column definition option in '" + (this.field || this.definition.title) + "' column:", key);
+      Object.keys(this.definition).forEach((key2) => {
+        if (_Column.defaultOptionList.indexOf(key2) === -1) {
+          console.warn("Invalid column definition option in '" + (this.field || this.definition.title) + "' column:", key2);
         }
       });
     }
@@ -1790,16 +1790,16 @@ h1{font-size:19px;margin:2px 0 5px}
         });
         titleHolderElement.appendChild(titleElement);
         if (def.field) {
-          this.langBind("columns|" + def.field, (text2) => {
-            titleElement.value = text2 || (def.title || "&nbsp;");
+          this.langBind("columns|" + def.field, (text3) => {
+            titleElement.value = text3 || (def.title || "&nbsp;");
           });
         } else {
           titleElement.value = def.title || "&nbsp;";
         }
       } else {
         if (def.field) {
-          this.langBind("columns|" + def.field, (text2) => {
-            this._formatColumnHeaderTitle(titleHolderElement, text2 || (def.title || "&nbsp;"));
+          this.langBind("columns|" + def.field, (text3) => {
+            this._formatColumnHeaderTitle(titleHolderElement, text3 || (def.title || "&nbsp;"));
           });
         } else {
           this._formatColumnHeaderTitle(titleHolderElement, def.title || "&nbsp;");
@@ -4145,12 +4145,12 @@ h1{font-size:19px;margin:2px 0 5px}
     input2.style.width = "100%";
     input2.style.boxSizing = "border-box";
     if (editorParams.elementAttributes && typeof editorParams.elementAttributes == "object") {
-      for (let key in editorParams.elementAttributes) {
-        if (key.charAt(0) == "+") {
-          key = key.slice(1);
-          input2.setAttribute(key, input2.getAttribute(key) + editorParams.elementAttributes["+" + key]);
+      for (let key2 in editorParams.elementAttributes) {
+        if (key2.charAt(0) == "+") {
+          key2 = key2.slice(1);
+          input2.setAttribute(key2, input2.getAttribute(key2) + editorParams.elementAttributes["+" + key2]);
         } else {
-          input2.setAttribute(key, editorParams.elementAttributes[key]);
+          input2.setAttribute(key2, editorParams.elementAttributes[key2]);
         }
       }
     }
@@ -4205,12 +4205,12 @@ h1{font-size:19px;margin:2px 0 5px}
     input2.style.whiteSpace = "pre-wrap";
     input2.style.resize = "none";
     if (editorParams.elementAttributes && typeof editorParams.elementAttributes == "object") {
-      for (let key in editorParams.elementAttributes) {
-        if (key.charAt(0) == "+") {
-          key = key.slice(1);
-          input2.setAttribute(key, input2.getAttribute(key) + editorParams.elementAttributes["+" + key]);
+      for (let key2 in editorParams.elementAttributes) {
+        if (key2.charAt(0) == "+") {
+          key2 = key2.slice(1);
+          input2.setAttribute(key2, input2.getAttribute(key2) + editorParams.elementAttributes["+" + key2]);
         } else {
-          input2.setAttribute(key, editorParams.elementAttributes[key]);
+          input2.setAttribute(key2, editorParams.elementAttributes[key2]);
         }
       }
     }
@@ -4299,12 +4299,12 @@ h1{font-size:19px;margin:2px 0 5px}
     input2.style.width = "100%";
     input2.style.boxSizing = "border-box";
     if (editorParams.elementAttributes && typeof editorParams.elementAttributes == "object") {
-      for (let key in editorParams.elementAttributes) {
-        if (key.charAt(0) == "+") {
-          key = key.slice(1);
-          input2.setAttribute(key, input2.getAttribute(key) + editorParams.elementAttributes["+" + key]);
+      for (let key2 in editorParams.elementAttributes) {
+        if (key2.charAt(0) == "+") {
+          key2 = key2.slice(1);
+          input2.setAttribute(key2, input2.getAttribute(key2) + editorParams.elementAttributes["+" + key2]);
         } else {
-          input2.setAttribute(key, editorParams.elementAttributes[key]);
+          input2.setAttribute(key2, editorParams.elementAttributes[key2]);
         }
       }
     }
@@ -4379,12 +4379,12 @@ h1{font-size:19px;margin:2px 0 5px}
     input2.style.width = "100%";
     input2.style.boxSizing = "border-box";
     if (editorParams.elementAttributes && typeof editorParams.elementAttributes == "object") {
-      for (let key in editorParams.elementAttributes) {
-        if (key.charAt(0) == "+") {
-          key = key.slice(1);
-          input2.setAttribute(key, input2.getAttribute(key) + editorParams.elementAttributes["+" + key]);
+      for (let key2 in editorParams.elementAttributes) {
+        if (key2.charAt(0) == "+") {
+          key2 = key2.slice(1);
+          input2.setAttribute(key2, input2.getAttribute(key2) + editorParams.elementAttributes["+" + key2]);
         } else {
-          input2.setAttribute(key, editorParams.elementAttributes[key]);
+          input2.setAttribute(key2, editorParams.elementAttributes[key2]);
         }
       }
     }
@@ -4448,12 +4448,12 @@ h1{font-size:19px;margin:2px 0 5px}
       input2.setAttribute("min", inputFormat ? convertDate(editorParams.min) : editorParams.min);
     }
     if (editorParams.elementAttributes && typeof editorParams.elementAttributes == "object") {
-      for (let key in editorParams.elementAttributes) {
-        if (key.charAt(0) == "+") {
-          key = key.slice(1);
-          input2.setAttribute(key, input2.getAttribute(key) + editorParams.elementAttributes["+" + key]);
+      for (let key2 in editorParams.elementAttributes) {
+        if (key2.charAt(0) == "+") {
+          key2 = key2.slice(1);
+          input2.setAttribute(key2, input2.getAttribute(key2) + editorParams.elementAttributes["+" + key2]);
         } else {
-          input2.setAttribute(key, editorParams.elementAttributes[key]);
+          input2.setAttribute(key2, editorParams.elementAttributes[key2]);
         }
       }
     }
@@ -4536,12 +4536,12 @@ h1{font-size:19px;margin:2px 0 5px}
     input2.style.width = "100%";
     input2.style.boxSizing = "border-box";
     if (editorParams.elementAttributes && typeof editorParams.elementAttributes == "object") {
-      for (let key in editorParams.elementAttributes) {
-        if (key.charAt(0) == "+") {
-          key = key.slice(1);
-          input2.setAttribute(key, input2.getAttribute(key) + editorParams.elementAttributes["+" + key]);
+      for (let key2 in editorParams.elementAttributes) {
+        if (key2.charAt(0) == "+") {
+          key2 = key2.slice(1);
+          input2.setAttribute(key2, input2.getAttribute(key2) + editorParams.elementAttributes["+" + key2]);
         } else {
-          input2.setAttribute(key, editorParams.elementAttributes[key]);
+          input2.setAttribute(key2, editorParams.elementAttributes[key2]);
         }
       }
     }
@@ -4631,12 +4631,12 @@ h1{font-size:19px;margin:2px 0 5px}
     input2.style.width = "100%";
     input2.style.boxSizing = "border-box";
     if (editorParams.elementAttributes && typeof editorParams.elementAttributes == "object") {
-      for (let key in editorParams.elementAttributes) {
-        if (key.charAt(0) == "+") {
-          key = key.slice(1);
-          input2.setAttribute(key, input2.getAttribute(key) + editorParams.elementAttributes["+" + key]);
+      for (let key2 in editorParams.elementAttributes) {
+        if (key2.charAt(0) == "+") {
+          key2 = key2.slice(1);
+          input2.setAttribute(key2, input2.getAttribute(key2) + editorParams.elementAttributes["+" + key2]);
         } else {
-          input2.setAttribute(key, editorParams.elementAttributes[key]);
+          input2.setAttribute(key2, editorParams.elementAttributes[key2]);
         }
       }
     }
@@ -4809,12 +4809,12 @@ h1{font-size:19px;margin:2px 0 5px}
         input2.style.caretColor = "transparent";
       }
       if (attribs && typeof attribs == "object") {
-        for (let key in attribs) {
-          if (key.charAt(0) == "+") {
-            key = key.slice(1);
-            input2.setAttribute(key, input2.getAttribute(key) + attribs["+" + key]);
+        for (let key2 in attribs) {
+          if (key2.charAt(0) == "+") {
+            key2 = key2.slice(1);
+            input2.setAttribute(key2, input2.getAttribute(key2) + attribs["+" + key2]);
           } else {
-            input2.setAttribute(key, attribs[key]);
+            input2.setAttribute(key2, attribs[key2]);
           }
         }
       }
@@ -4832,7 +4832,7 @@ h1{font-size:19px;margin:2px 0 5px}
       params.placeholderEmpty = typeof params.placeholderEmpty === "undefined" ? "No Results Found" : params.placeholderEmpty;
       params.filterDelay = typeof params.filterDelay === "undefined" ? 300 : params.filterDelay;
       params.emptyValue = Object.keys(params).includes("emptyValue") ? params.emptyValue : "";
-      valueCheck = Object.keys(params).filter((key) => valueKeys.includes(key)).length;
+      valueCheck = Object.keys(params).filter((key2) => valueKeys.includes(key2)).length;
       if (!valueCheck) {
         console.warn("list editor config error - either the values, valuesURL, or valuesLookup option must be set");
       } else if (valueCheck > 1) {
@@ -5150,17 +5150,17 @@ h1{font-size:19px;margin:2px 0 5px}
       url = urlBuilder(url, {}, params);
       return fetch(url).then((response) => {
         if (response.ok) {
-          return response.json().catch((error) => {
-            console.warn("List Ajax Load Error - Invalid JSON returned", error);
-            return Promise.reject(error);
+          return response.json().catch((error2) => {
+            console.warn("List Ajax Load Error - Invalid JSON returned", error2);
+            return Promise.reject(error2);
           });
         } else {
           console.error("List Ajax Load Error - Connection Error: " + response.status, response.statusText);
           return Promise.reject(response);
         }
-      }).catch((error) => {
-        console.error("List Ajax Load Error - Connection Error: ", error);
-        return Promise.reject(error);
+      }).catch((error2) => {
+        console.error("List Ajax Load Error - Connection Error: ", error2);
+        return Promise.reject(error2);
       });
     }
     _uniqueColumnValues(field) {
@@ -5197,10 +5197,10 @@ h1{font-size:19px;margin:2px 0 5px}
     _parseList(inputValues) {
       var data = [];
       if (!Array.isArray(inputValues)) {
-        inputValues = Object.entries(inputValues).map(([key, value]) => {
+        inputValues = Object.entries(inputValues).map(([key2, value]) => {
           return {
             label: value,
-            value: key
+            value: key2
           };
         });
       }
@@ -5338,10 +5338,10 @@ h1{font-size:19px;margin:2px 0 5px}
       }
       return item.visible;
     }
-    _defaultFilterFunc(term, label, value, item) {
+    _defaultFilterFunc(term, label2, value, item) {
       term = String(term).toLowerCase();
-      if (label !== null && typeof label !== "undefined") {
-        if (String(label).toLowerCase().indexOf(term) > -1 || String(value).toLowerCase().indexOf(term) > -1) {
+      if (label2 !== null && typeof label2 !== "undefined") {
+        if (String(label2).toLowerCase().indexOf(term) > -1 || String(value).toLowerCase().indexOf(term) > -1) {
           return true;
         }
       }
@@ -5382,12 +5382,12 @@ h1{font-size:19px;margin:2px 0 5px}
           }
           el.classList.add("tabulator-edit-list-group-level-" + item.level);
           if (item.elementAttributes && typeof item.elementAttributes == "object") {
-            for (let key in item.elementAttributes) {
-              if (key.charAt(0) == "+") {
-                key = key.slice(1);
-                el.setAttribute(key, this.input.getAttribute(key) + item.elementAttributes["+" + key]);
+            for (let key2 in item.elementAttributes) {
+              if (key2.charAt(0) == "+") {
+                key2 = key2.slice(1);
+                el.setAttribute(key2, this.input.getAttribute(key2) + item.elementAttributes["+" + key2]);
               } else {
-                el.setAttribute(key, item.elementAttributes[key]);
+                el.setAttribute(key2, item.elementAttributes[key2]);
               }
             }
           }
@@ -5592,12 +5592,12 @@ h1{font-size:19px;margin:2px 0 5px}
     star2.setAttribute("xml:space", "preserve");
     star2.style.padding = "0 1px";
     if (editorParams.elementAttributes && typeof editorParams.elementAttributes == "object") {
-      for (let key in editorParams.elementAttributes) {
-        if (key.charAt(0) == "+") {
-          key = key.slice(1);
-          starsHolder.setAttribute(key, starsHolder.getAttribute(key) + editorParams.elementAttributes["+" + key]);
+      for (let key2 in editorParams.elementAttributes) {
+        if (key2.charAt(0) == "+") {
+          key2 = key2.slice(1);
+          starsHolder.setAttribute(key2, starsHolder.getAttribute(key2) + editorParams.elementAttributes["+" + key2]);
         } else {
-          starsHolder.setAttribute(key, editorParams.elementAttributes[key]);
+          starsHolder.setAttribute(key2, editorParams.elementAttributes[key2]);
         }
       }
     }
@@ -5655,12 +5655,12 @@ h1{font-size:19px;margin:2px 0 5px}
     bar.style.maxWidth = "100%";
     bar.style.minWidth = "0%";
     if (editorParams.elementAttributes && typeof editorParams.elementAttributes == "object") {
-      for (let key in editorParams.elementAttributes) {
-        if (key.charAt(0) == "+") {
-          key = key.slice(1);
-          bar.setAttribute(key, bar.getAttribute(key) + editorParams.elementAttributes["+" + key]);
+      for (let key2 in editorParams.elementAttributes) {
+        if (key2.charAt(0) == "+") {
+          key2 = key2.slice(1);
+          bar.setAttribute(key2, bar.getAttribute(key2) + editorParams.elementAttributes["+" + key2]);
         } else {
-          bar.setAttribute(key, editorParams.elementAttributes[key]);
+          bar.setAttribute(key2, editorParams.elementAttributes[key2]);
         }
       }
     }
@@ -5724,12 +5724,12 @@ h1{font-size:19px;margin:2px 0 5px}
     input2.style.marginTop = "5px";
     input2.style.boxSizing = "border-box";
     if (editorParams.elementAttributes && typeof editorParams.elementAttributes == "object") {
-      for (let key in editorParams.elementAttributes) {
-        if (key.charAt(0) == "+") {
-          key = key.slice(1);
-          input2.setAttribute(key, input2.getAttribute(key) + editorParams.elementAttributes["+" + key]);
+      for (let key2 in editorParams.elementAttributes) {
+        if (key2.charAt(0) == "+") {
+          key2 = key2.slice(1);
+          input2.setAttribute(key2, input2.getAttribute(key2) + editorParams.elementAttributes["+" + key2]);
         } else {
-          input2.setAttribute(key, editorParams.elementAttributes[key]);
+          input2.setAttribute(key2, editorParams.elementAttributes[key2]);
         }
       }
     }
@@ -7113,7 +7113,7 @@ h1{font-size:19px;margin:2px 0 5px}
       params.filter = this.getFilters(true, true);
       return params;
     }
-    generatePlaceholder(text2) {
+    generatePlaceholder(text3) {
       if (this.table.options.placeholderHeaderFilter && Object.keys(this.headerFilters).length) {
         return this.table.options.placeholderHeaderFilter;
       }
@@ -7589,8 +7589,8 @@ h1{font-size:19px;margin:2px 0 5px}
     //get all filters
     getHeaderFilters() {
       var output = [];
-      for (var key in this.headerFilters) {
-        output.push({ field: key, type: this.headerFilters[key].type, value: this.headerFilters[key].value });
+      for (var key2 in this.headerFilters) {
+        output.push({ field: key2, type: this.headerFilters[key2].type, value: this.headerFilters[key2].value });
       }
       return output;
     }
@@ -7764,7 +7764,7 @@ h1{font-size:19px;margin:2px 0 5px}
     }
   }
   function link(cell, formatterParams, onRendered) {
-    var value = cell.getValue(), urlPrefix = formatterParams.urlPrefix || "", download = formatterParams.download, label = value, el = document.createElement("a"), data;
+    var value = cell.getValue(), urlPrefix = formatterParams.urlPrefix || "", download = formatterParams.download, label2 = value, el = document.createElement("a"), data;
     function labelTraverse(path, data2) {
       var item = path.shift(), value2 = data2[item];
       if (path.length && typeof value2 === "object") {
@@ -7774,19 +7774,19 @@ h1{font-size:19px;margin:2px 0 5px}
     }
     if (formatterParams.labelField) {
       data = cell.getData();
-      label = labelTraverse(formatterParams.labelField.split(this.table.options.nestedFieldSeparator), data);
+      label2 = labelTraverse(formatterParams.labelField.split(this.table.options.nestedFieldSeparator), data);
     }
     if (formatterParams.label) {
       switch (typeof formatterParams.label) {
         case "string":
-          label = formatterParams.label;
+          label2 = formatterParams.label;
           break;
         case "function":
-          label = formatterParams.label(cell);
+          label2 = formatterParams.label(cell);
           break;
       }
     }
-    if (label) {
+    if (label2) {
       if (formatterParams.urlField) {
         data = cell.getData();
         value = Helpers.retrieveNestedData(this.table.options.nestedFieldSeparator, formatterParams.urlField, data);
@@ -7813,7 +7813,7 @@ h1{font-size:19px;margin:2px 0 5px}
         }
         el.setAttribute("download", download);
       }
-      el.innerHTML = this.emptyToSpace(this.sanitizeHTML(label));
+      el.innerHTML = this.emptyToSpace(this.sanitizeHTML(label2));
       return el;
     } else {
       return "&nbsp;";
@@ -8789,10 +8789,10 @@ h1{font-size:19px;margin:2px 0 5px}
     }
   };
   var Group = class _Group {
-    constructor(groupManager, parent, level, key, field, generator, oldGroup) {
+    constructor(groupManager, parent, level, key2, field, generator, oldGroup) {
       this.groupManager = groupManager;
       this.parent = parent;
-      this.key = key;
+      this.key = key2;
       this.level = level;
       this.field = field;
       this.hasSubGroups = level < groupManager.groupIDLookups.length - 1;
@@ -10280,8 +10280,8 @@ h1{font-size:19px;margin:2px 0 5px}
       var data = parsedData.map((values) => {
         var row = {};
         values = this.transformData(values);
-        columns.forEach((key, i) => {
-          row[key] = values[i];
+        columns.forEach((key2, i) => {
+          row[key2] = values[i];
         });
         return row;
       });
@@ -10459,8 +10459,8 @@ h1{font-size:19px;margin:2px 0 5px}
     clearTouchWatchers() {
       var types = Object.values(this.touchWatchers);
       types.forEach((type) => {
-        for (let key in type) {
-          type[key] = null;
+        for (let key2 in type) {
+          type[key2] = null;
         }
       });
     }
@@ -10487,45 +10487,45 @@ h1{font-size:19px;margin:2px 0 5px}
       }
     }
     initializeExternalEvents() {
-      for (let key in this.eventMap) {
-        this.subscriptionChangeExternal(key, this.subscriptionChanged.bind(this, key));
+      for (let key2 in this.eventMap) {
+        this.subscriptionChangeExternal(key2, this.subscriptionChanged.bind(this, key2));
       }
     }
-    subscriptionChanged(key, added) {
+    subscriptionChanged(key2, added) {
       if (added) {
-        if (!this.subscribers[key]) {
-          if (this.eventMap[key].includes("-")) {
-            this.subscribers[key] = this.handle.bind(this, key);
-            this.subscribe(this.eventMap[key], this.subscribers[key]);
+        if (!this.subscribers[key2]) {
+          if (this.eventMap[key2].includes("-")) {
+            this.subscribers[key2] = this.handle.bind(this, key2);
+            this.subscribe(this.eventMap[key2], this.subscribers[key2]);
           } else {
-            this.subscribeTouchEvents(key);
+            this.subscribeTouchEvents(key2);
           }
         }
       } else {
-        if (this.eventMap[key].includes("-")) {
-          if (this.subscribers[key] && !this.columnSubscribers[key] && !this.subscribedExternal(key)) {
-            this.unsubscribe(this.eventMap[key], this.subscribers[key]);
-            delete this.subscribers[key];
+        if (this.eventMap[key2].includes("-")) {
+          if (this.subscribers[key2] && !this.columnSubscribers[key2] && !this.subscribedExternal(key2)) {
+            this.unsubscribe(this.eventMap[key2], this.subscribers[key2]);
+            delete this.subscribers[key2];
           }
         } else {
-          this.unsubscribeTouchEvents(key);
+          this.unsubscribeTouchEvents(key2);
         }
       }
     }
-    subscribeTouchEvents(key) {
-      var type = this.eventMap[key];
+    subscribeTouchEvents(key2) {
+      var type = this.eventMap[key2];
       if (!this.touchSubscribers[type + "-touchstart"]) {
         this.touchSubscribers[type + "-touchstart"] = this.handleTouch.bind(this, type, "start");
         this.touchSubscribers[type + "-touchend"] = this.handleTouch.bind(this, type, "end");
         this.subscribe(type + "-touchstart", this.touchSubscribers[type + "-touchstart"]);
         this.subscribe(type + "-touchend", this.touchSubscribers[type + "-touchend"]);
       }
-      this.subscribers[key] = true;
+      this.subscribers[key2] = true;
     }
-    unsubscribeTouchEvents(key) {
-      var noTouch = true, type = this.eventMap[key];
-      if (this.subscribers[key] && !this.subscribedExternal(key)) {
-        delete this.subscribers[key];
+    unsubscribeTouchEvents(key2) {
+      var noTouch = true, type = this.eventMap[key2];
+      if (this.subscribers[key2] && !this.subscribedExternal(key2)) {
+        delete this.subscribers[key2];
         for (let i in this.eventMap) {
           if (this.eventMap[i] === type) {
             if (this.subscribers[i]) {
@@ -10543,13 +10543,13 @@ h1{font-size:19px;margin:2px 0 5px}
     }
     initializeColumn(column) {
       var def = column.definition;
-      for (let key in this.eventMap) {
-        if (def[key]) {
-          this.subscriptionChanged(key, true);
-          if (!this.columnSubscribers[key]) {
-            this.columnSubscribers[key] = [];
+      for (let key2 in this.eventMap) {
+        if (def[key2]) {
+          this.subscriptionChanged(key2, true);
+          if (!this.columnSubscribers[key2]) {
+            this.columnSubscribers[key2] = [];
           }
-          this.columnSubscribers[key].push(column);
+          this.columnSubscribers[key2].push(column);
         }
       }
     }
@@ -10709,21 +10709,21 @@ h1{font-size:19px;margin:2px 0 5px}
       this.subscribe("table-destroy", this.clearBindings.bind(this));
     }
     mapBindings(bindings2) {
-      for (let key in bindings2) {
-        if (_Keybindings.actions[key]) {
-          if (bindings2[key]) {
-            if (typeof bindings2[key] !== "object") {
-              bindings2[key] = [bindings2[key]];
+      for (let key2 in bindings2) {
+        if (_Keybindings.actions[key2]) {
+          if (bindings2[key2]) {
+            if (typeof bindings2[key2] !== "object") {
+              bindings2[key2] = [bindings2[key2]];
             }
-            bindings2[key].forEach((binding) => {
+            bindings2[key2].forEach((binding) => {
               var bindingList = Array.isArray(binding) ? binding : [binding];
               bindingList.forEach((item) => {
-                this.mapBinding(key, item);
+                this.mapBinding(key2, item);
               });
             });
           }
         } else {
-          console.warn("Key Binding Error - no such action:", key);
+          console.warn("Key Binding Error - no such action:", key2);
         }
       }
     }
@@ -10793,8 +10793,8 @@ h1{font-size:19px;margin:2px 0 5px}
     checkBinding(e, binding) {
       var match = true;
       if (e.ctrlKey == binding.ctrl && e.shiftKey == binding.shift && e.metaKey == binding.meta) {
-        binding.keys.forEach((key) => {
-          var index = this.pressedKeys.indexOf(key);
+        binding.keys.forEach((key2) => {
+          var index = this.pressedKeys.indexOf(key2);
           if (index == -1) {
             match = false;
           }
@@ -10974,18 +10974,18 @@ h1{font-size:19px;margin:2px 0 5px}
         popup = parentPopup.child(menuEl);
       }
       menu.forEach((item) => {
-        var itemEl = document.createElement("div"), label = item.label, disabled = item.disabled;
+        var itemEl = document.createElement("div"), label2 = item.label, disabled = item.disabled;
         if (item.separator) {
           itemEl.classList.add("tabulator-menu-separator");
         } else {
           itemEl.classList.add("tabulator-menu-item");
-          if (typeof label == "function") {
-            label = label.call(this.table, component.getComponent());
+          if (typeof label2 == "function") {
+            label2 = label2.call(this.table, component.getComponent());
           }
-          if (label instanceof Node) {
-            itemEl.appendChild(label);
+          if (label2 instanceof Node) {
+            itemEl.appendChild(label2);
           } else {
-            itemEl.innerHTML = label;
+            itemEl.innerHTML = label2;
           }
           if (typeof disabled == "function") {
             disabled = disabled.call(this.table, component.getComponent());
@@ -11792,14 +11792,14 @@ h1{font-size:19px;margin:2px 0 5px}
     initializeColumn(column) {
       var match = false, config = {};
       this.allowedTypes.forEach((type) => {
-        var key = "mutator" + (type.charAt(0).toUpperCase() + type.slice(1)), mutator;
-        if (column.definition[key]) {
-          mutator = this.lookupMutator(column.definition[key]);
+        var key2 = "mutator" + (type.charAt(0).toUpperCase() + type.slice(1)), mutator;
+        if (column.definition[key2]) {
+          mutator = this.lookupMutator(column.definition[key2]);
           if (mutator) {
             match = true;
-            config[key] = {
+            config[key2] = {
               mutator,
-              params: column.definition[key + "Params"] || {}
+              params: column.definition[key2 + "Params"] || {}
             };
           }
         }
@@ -11826,12 +11826,12 @@ h1{font-size:19px;margin:2px 0 5px}
     }
     //apply mutator to row
     transformRow(data, type, updatedData) {
-      var key = "mutator" + (type.charAt(0).toUpperCase() + type.slice(1)), value;
+      var key2 = "mutator" + (type.charAt(0).toUpperCase() + type.slice(1)), value;
       if (this.enabled) {
         this.table.columnManager.traverse((column) => {
           var mutator, params, component;
           if (column.modules.mutate) {
-            mutator = column.modules.mutate[key] || column.modules.mutate.mutator || false;
+            mutator = column.modules.mutate[key2] || column.modules.mutate.mutator || false;
             if (mutator) {
               value = column.getFieldValue(typeof updatedData !== "undefined" ? updatedData : data);
               if (type == "data" && !updatedData || typeof value !== "undefined") {
@@ -12604,14 +12604,14 @@ h1{font-size:19px;margin:2px 0 5px}
       return data ? JSON.parse(data) : false;
     },
     cookie: function(id, type) {
-      var cookie = document.cookie, key = id + "-" + type, cookiePos = cookie.indexOf(key + "="), end, data;
+      var cookie = document.cookie, key2 = id + "-" + type, cookiePos = cookie.indexOf(key2 + "="), end, data;
       if (cookiePos > -1) {
         cookie = cookie.slice(cookiePos);
         end = cookie.indexOf(";");
         if (end > -1) {
           cookie = cookie.slice(0, end);
         }
-        data = cookie.replace(key + "=", "");
+        data = cookie.replace(key2 + "=", "");
       }
       return data ? JSON.parse(data) : false;
     }
@@ -12796,11 +12796,11 @@ h1{font-size:19px;margin:2px 0 5px}
         this.defWatcherBlock = true;
         def = column.getDefinition();
         keys = this.config.columns === true ? Object.keys(def) : this.config.columns;
-        keys.forEach((key) => {
-          var props = Object.getOwnPropertyDescriptor(def, key);
-          var value = def[key];
+        keys.forEach((key2) => {
+          var props = Object.getOwnPropertyDescriptor(def, key2);
+          var value = def[key2];
           if (props) {
-            Object.defineProperty(def, key, {
+            Object.defineProperty(def, key2, {
               set: (newValue) => {
                 value = newValue;
                 if (!this.defWatcherBlock) {
@@ -12849,9 +12849,9 @@ h1{font-size:19px;margin:2px 0 5px}
           } else {
             keys = this.config.columns;
           }
-          keys.forEach((key) => {
-            if (key !== "columns" && typeof column[key] !== "undefined") {
-              from[key] = column[key];
+          keys.forEach((key2) => {
+            if (key2 !== "columns" && typeof column[key2] !== "undefined") {
+              from[key2] = column[key2];
             }
           });
           if (from.columns) {
@@ -12965,8 +12965,8 @@ h1{font-size:19px;margin:2px 0 5px}
           } else {
             keys = this.config.columns;
           }
-          keys.forEach((key) => {
-            switch (key) {
+          keys.forEach((key2) => {
+            switch (key2) {
               case "width":
                 defStore.width = column.getWidth();
                 break;
@@ -12974,8 +12974,8 @@ h1{font-size:19px;margin:2px 0 5px}
                 defStore.visible = column.visible;
                 break;
               default:
-                if (typeof colDef[key] !== "function" && excludedKeys.indexOf(key) === -1) {
-                  defStore[key] = colDef[key];
+                if (typeof colDef[key2] !== "function" && excludedKeys.indexOf(key2) === -1) {
+                  defStore[key2] = colDef[key2];
                 }
             }
           });
@@ -13396,8 +13396,8 @@ h1{font-size:19px;margin:2px 0 5px}
     }
     unwatchData() {
       if (this.data !== false) {
-        for (var key in this.origFuncs) {
-          Object.defineProperty(this.data, key, {
+        for (var key2 in this.origFuncs) {
+          Object.defineProperty(this.data, key2, {
             enumerable: true,
             configurable: true,
             writable: true,
@@ -13408,8 +13408,8 @@ h1{font-size:19px;margin:2px 0 5px}
     }
     watchRow(row) {
       var data = row.getData();
-      for (var key in data) {
-        this.watchKey(row, data, key);
+      for (var key2 in data) {
+        this.watchKey(row, data, key2);
       }
       if (this.table.options.dataTree) {
         this.watchTreeChildren(row);
@@ -13495,15 +13495,15 @@ h1{font-size:19px;margin:2px 0 5px}
       this.table.modules.dataTree.layoutRow(row);
       this.table.rowManager.refreshActiveData("tree", false, true);
     }
-    watchKey(row, data, key) {
-      var self = this, props = Object.getOwnPropertyDescriptor(data, key), value = data[key], version = this.currentVersion;
-      Object.defineProperty(data, key, {
+    watchKey(row, data, key2) {
+      var self = this, props = Object.getOwnPropertyDescriptor(data, key2), value = data[key2], version = this.currentVersion;
+      Object.defineProperty(data, key2, {
         set: (newValue) => {
           value = newValue;
           if (!self.blocked && version === self.currentVersion) {
             self.block("key");
             var update = {};
-            update[key] = newValue;
+            update[key2] = newValue;
             row.updateData(update);
             self.unblock("key");
           }
@@ -13521,19 +13521,19 @@ h1{font-size:19px;margin:2px 0 5px}
     }
     unwatchRow(row) {
       var data = row.getData();
-      for (var key in data) {
-        Object.defineProperty(data, key, {
-          value: data[key]
+      for (var key2 in data) {
+        Object.defineProperty(data, key2, {
+          value: data[key2]
         });
       }
     }
-    block(key) {
+    block(key2) {
       if (!this.blocked) {
-        this.blocked = key;
+        this.blocked = key2;
       }
     }
-    unblock(key) {
-      if (this.blocked === key) {
+    unblock(key2) {
+      if (this.blocked === key2) {
         this.blocked = false;
       }
     }
@@ -14294,8 +14294,8 @@ h1{font-size:19px;margin:2px 0 5px}
         var node_content;
         var titleHighlight = document.createElement("strong");
         titleData.appendChild(titleHighlight);
-        this.modules.localize.bind("columns|" + item.field, function(text2) {
-          titleHighlight.innerHTML = text2 || item.title;
+        this.modules.localize.bind("columns|" + item.field, function(text3) {
+          titleHighlight.innerHTML = text3 || item.title;
         });
         if (item.value instanceof Node) {
           node_content = document.createElement("div");
@@ -16959,15 +16959,15 @@ h1{font-size:19px;margin:2px 0 5px}
         console.warn("Unable to remove sheet, at least one sheet must be active");
       }
     }
-    lookupSheet(key) {
-      if (!key) {
+    lookupSheet(key2) {
+      if (!key2) {
         return this.activeSheet;
-      } else if (key instanceof Sheet) {
-        return key;
-      } else if (key instanceof SheetComponent) {
-        return key._sheet;
+      } else if (key2 instanceof Sheet) {
+        return key2;
+      } else if (key2 instanceof SheetComponent) {
+        return key2._sheet;
       } else {
-        return this.sheets.find((sheet) => sheet.key === key) || false;
+        return this.sheets.find((sheet) => sheet.key === key2) || false;
       }
     }
     ///////////////////////////////////
@@ -16986,34 +16986,34 @@ h1{font-size:19px;margin:2px 0 5px}
     getSheets() {
       return this.sheets.map((sheet) => sheet.getComponent());
     }
-    getSheet(key) {
-      var sheet = this.lookupSheet(key);
+    getSheet(key2) {
+      var sheet = this.lookupSheet(key2);
       return sheet ? sheet.getComponent() : false;
     }
-    setSheetData(key, data) {
-      if (key && !data) {
-        data = key;
-        key = false;
+    setSheetData(key2, data) {
+      if (key2 && !data) {
+        data = key2;
+        key2 = false;
       }
-      var sheet = this.lookupSheet(key);
+      var sheet = this.lookupSheet(key2);
       return sheet ? sheet.setData(data) : false;
     }
-    getSheetData(key) {
-      var sheet = this.lookupSheet(key);
+    getSheetData(key2) {
+      var sheet = this.lookupSheet(key2);
       return sheet ? sheet.getData() : false;
     }
-    clearSheet(key) {
-      var sheet = this.lookupSheet(key);
+    clearSheet(key2) {
+      var sheet = this.lookupSheet(key2);
       return sheet ? sheet.clear() : false;
     }
-    removeSheetFunc(key) {
-      var sheet = this.lookupSheet(key);
+    removeSheetFunc(key2) {
+      var sheet = this.lookupSheet(key2);
       if (sheet) {
         this.removeSheet(sheet);
       }
     }
-    activeSheetFunc(key) {
-      var sheet = this.lookupSheet(key);
+    activeSheetFunc(key2) {
+      var sheet = this.lookupSheet(key2);
       return sheet ? this.loadSheet(sheet) : false;
     }
   };
@@ -17567,24 +17567,24 @@ h1{font-size:19px;margin:2px 0 5px}
     generate(defaultOptions2, userOptions = {}) {
       var output = Object.assign({}, this.registeredDefaults), warn = this.table.options.debugInvalidOptions || userOptions.debugInvalidOptions === true;
       Object.assign(output, defaultOptions2);
-      for (let key in userOptions) {
-        if (!output.hasOwnProperty(key)) {
+      for (let key2 in userOptions) {
+        if (!output.hasOwnProperty(key2)) {
           if (warn) {
-            console.warn("Invalid " + this.msgType + " option:", key);
+            console.warn("Invalid " + this.msgType + " option:", key2);
           }
-          output[key] = userOptions.key;
+          output[key2] = userOptions.key;
         }
       }
-      for (let key in output) {
-        if (key in userOptions) {
-          output[key] = userOptions[key];
+      for (let key2 in output) {
+        if (key2 in userOptions) {
+          output[key2] = userOptions[key2];
         } else {
-          if (Array.isArray(output[key])) {
-            output[key] = Object.assign([], output[key]);
-          } else if (typeof output[key] === "object" && output[key] !== null) {
-            output[key] = Object.assign({}, output[key]);
-          } else if (typeof output[key] === "undefined") {
-            delete output[key];
+          if (Array.isArray(output[key2])) {
+            output[key2] = Object.assign([], output[key2]);
+          } else if (typeof output[key2] === "object" && output[key2] !== null) {
+            output[key2] = Object.assign({}, output[key2]);
+          } else if (typeof output[key2] === "undefined") {
+            delete output[key2];
           }
         }
       }
@@ -18293,20 +18293,20 @@ h1{font-size:19px;margin:2px 0 5px}
       var cols = [], collProgress = {}, rowSample = this.table.options.autoColumns === "full" ? data : [data[0]], definitions = this.table.options.autoColumnsDefinitions;
       if (data && data.length) {
         rowSample.forEach((row) => {
-          Object.keys(row).forEach((key, index) => {
-            let value = row[key], col;
-            if (!collProgress[key]) {
+          Object.keys(row).forEach((key2, index) => {
+            let value = row[key2], col;
+            if (!collProgress[key2]) {
               col = {
-                field: key,
-                title: key,
+                field: key2,
+                title: key2,
                 sorter: this.calculateSorterFromValue(value)
               };
               cols.splice(index, 0, col);
-              collProgress[key] = typeof value === "undefined" ? col : true;
-            } else if (collProgress[key] !== true) {
+              collProgress[key2] = typeof value === "undefined" ? col : true;
+            } else if (collProgress[key2] !== true) {
               if (typeof value !== "undefined") {
-                collProgress[key].sorter = this.calculateSorterFromValue(value);
-                collProgress[key] = true;
+                collProgress[key2].sorter = this.calculateSorterFromValue(value);
+                collProgress[key2] = true;
               }
             }
           });
@@ -20221,36 +20221,36 @@ h1{font-size:19px;margin:2px 0 5px}
       this.listeners = listenerMap;
     }
     bindPseudoEvents() {
-      Object.keys(this.pseudoTrackers).forEach((key) => {
-        this.pseudoTrackers[key].subscriber = this.pseudoMouseEnter.bind(this, key);
-        this.subscribe(key + "-mouseover", this.pseudoTrackers[key].subscriber);
+      Object.keys(this.pseudoTrackers).forEach((key2) => {
+        this.pseudoTrackers[key2].subscriber = this.pseudoMouseEnter.bind(this, key2);
+        this.subscribe(key2 + "-mouseover", this.pseudoTrackers[key2].subscriber);
       });
       this.pseudoTracking = true;
     }
-    pseudoMouseEnter(key, e, target) {
-      if (this.pseudoTrackers[key].target !== target) {
-        if (this.pseudoTrackers[key].target) {
-          this.dispatch(key + "-mouseleave", e, this.pseudoTrackers[key].target);
+    pseudoMouseEnter(key2, e, target) {
+      if (this.pseudoTrackers[key2].target !== target) {
+        if (this.pseudoTrackers[key2].target) {
+          this.dispatch(key2 + "-mouseleave", e, this.pseudoTrackers[key2].target);
         }
-        this.pseudoMouseLeave(key, e);
-        this.pseudoTrackers[key].target = target;
-        this.dispatch(key + "-mouseenter", e, target);
+        this.pseudoMouseLeave(key2, e);
+        this.pseudoTrackers[key2].target = target;
+        this.dispatch(key2 + "-mouseenter", e, target);
       }
     }
-    pseudoMouseLeave(key, e) {
+    pseudoMouseLeave(key2, e) {
       var leaveList = Object.keys(this.pseudoTrackers), linkedKeys = {
         "row": ["cell"],
         "cell": ["row"]
       };
       leaveList = leaveList.filter((item) => {
-        var links = linkedKeys[key];
-        return item !== key && (!links || links && !links.includes(item));
+        var links = linkedKeys[key2];
+        return item !== key2 && (!links || links && !links.includes(item));
       });
-      leaveList.forEach((key2) => {
-        var target = this.pseudoTrackers[key2].target;
-        if (this.pseudoTrackers[key2].target) {
-          this.dispatch(key2 + "-mouseleave", e, target);
-          this.pseudoTrackers[key2].target = null;
+      leaveList.forEach((key3) => {
+        var target = this.pseudoTrackers[key3].target;
+        if (this.pseudoTrackers[key3].target) {
+          this.dispatch(key3 + "-mouseleave", e, target);
+          this.pseudoTrackers[key3].target = null;
         }
       });
     }
@@ -20258,28 +20258,28 @@ h1{font-size:19px;margin:2px 0 5px}
       var listeners = Object.keys(this.listeners), components = Object.values(this.componentMap);
       for (let comp of components) {
         for (let listener of listeners) {
-          let key = comp + "-" + listener;
-          this.subscriptionChange(key, this.subscriptionChanged.bind(this, comp, listener));
+          let key2 = comp + "-" + listener;
+          this.subscriptionChange(key2, this.subscriptionChanged.bind(this, comp, listener));
         }
       }
       this.subscribe("table-destroy", this.clearWatchers.bind(this));
     }
-    subscriptionChanged(component, key, added) {
-      var listener = this.listeners[key].components, index = listener.indexOf(component), changed = false;
+    subscriptionChanged(component, key2, added) {
+      var listener = this.listeners[key2].components, index = listener.indexOf(component), changed = false;
       if (added) {
         if (index === -1) {
           listener.push(component);
           changed = true;
         }
       } else {
-        if (!this.subscribed(component + "-" + key)) {
+        if (!this.subscribed(component + "-" + key2)) {
           if (index > -1) {
             listener.splice(index, 1);
             changed = true;
           }
         }
       }
-      if ((key === "mouseenter" || key === "mouseleave") && !this.pseudoTracking) {
+      if ((key2 === "mouseenter" || key2 === "mouseleave") && !this.pseudoTracking) {
         this.bindPseudoEvents();
       }
       if (changed) {
@@ -20287,16 +20287,16 @@ h1{font-size:19px;margin:2px 0 5px}
       }
     }
     updateEventListeners() {
-      for (let key in this.listeners) {
-        let listener = this.listeners[key];
+      for (let key2 in this.listeners) {
+        let listener = this.listeners[key2];
         if (listener.components.length) {
           if (!listener.handler) {
-            listener.handler = this.track.bind(this, key);
-            this.el.addEventListener(key, listener.handler);
+            listener.handler = this.track.bind(this, key2);
+            this.el.addEventListener(key2, listener.handler);
           }
         } else {
           if (listener.handler) {
-            this.el.removeEventListener(key, listener.handler);
+            this.el.removeEventListener(key2, listener.handler);
             listener.handler = null;
           }
         }
@@ -20338,12 +20338,12 @@ h1{font-size:19px;margin:2px 0 5px}
     }
     bindComponents(type, targets) {
       var keys = Object.keys(targets).reverse(), listener = this.listeners[type], matches = {}, output = {}, targetMatches = {};
-      for (let key of keys) {
-        let component, target = targets[key], previousTarget = this.previousTargets[key];
+      for (let key2 of keys) {
+        let component, target = targets[key2], previousTarget = this.previousTargets[key2];
         if (previousTarget && previousTarget.target === target) {
           component = previousTarget.component;
         } else {
-          switch (key) {
+          switch (key2) {
             case "row":
             case "group":
               if (listener.components.includes("row") || listener.components.includes("cell") || listener.components.includes("group")) {
@@ -20352,7 +20352,7 @@ h1{font-size:19px;margin:2px 0 5px}
                   return row.getElement() === target;
                 });
                 if (targets["row"] && targets["row"].parentNode && targets["row"].parentNode.closest(".tabulator-row")) {
-                  targets[key] = false;
+                  targets[key2] = false;
                 }
               }
               break;
@@ -20375,33 +20375,33 @@ h1{font-size:19px;margin:2px 0 5px}
           }
         }
         if (component) {
-          matches[key] = component;
-          targetMatches[key] = {
+          matches[key2] = component;
+          targetMatches[key2] = {
             target,
             component
           };
         }
       }
       this.previousTargets = targetMatches;
-      Object.keys(targets).forEach((key) => {
-        let value = matches[key];
-        output[key] = value;
+      Object.keys(targets).forEach((key2) => {
+        let value = matches[key2];
+        output[key2] = value;
       });
       return output;
     }
     triggerEvents(type, e, targets) {
       var listener = this.listeners[type];
-      for (let key in targets) {
-        if (targets[key] && listener.components.includes(key)) {
-          this.dispatch(key + "-" + type, e, targets[key]);
+      for (let key2 in targets) {
+        if (targets[key2] && listener.components.includes(key2)) {
+          this.dispatch(key2 + "-" + type, e, targets[key2]);
         }
       }
     }
     clearWatchers() {
-      for (let key in this.listeners) {
-        let listener = this.listeners[key];
+      for (let key2 in this.listeners) {
+        let listener = this.listeners[key2];
         if (listener.handler) {
-          this.el.removeEventListener(key, listener.handler);
+          this.el.removeEventListener(key2, listener.handler);
           listener.handler = null;
         }
       }
@@ -20477,9 +20477,9 @@ h1{font-size:19px;margin:2px 0 5px}
           } else {
             console.warn("Data Load Response Blocked - Table has been destroyed");
           }
-        }).catch((error) => {
-          console.error("Data Load Error: ", error);
-          this.dispatchExternal("dataLoadError", error);
+        }).catch((error2) => {
+          console.error("Data Load Error: ", error2);
+          this.dispatchExternal("dataLoadError", error2);
           if (!silent) {
             this.alertError();
           }
@@ -20500,15 +20500,15 @@ h1{font-size:19px;margin:2px 0 5px}
     }
     mapParams(params, map) {
       var output = {};
-      for (let key in params) {
-        output[map.hasOwnProperty(key) ? map[key] : key] = params[key];
+      for (let key2 in params) {
+        output[map.hasOwnProperty(key2) ? map[key2] : key2] = params[key2];
       }
       return output;
     }
     objectInvert(obj) {
       var output = {};
-      for (let key in obj) {
-        output[obj[key]] = key;
+      for (let key2 in obj) {
+        output[obj[key2]] = key2;
       }
       return output;
     }
@@ -20537,49 +20537,49 @@ h1{font-size:19px;margin:2px 0 5px}
       this.dispatch = debug ? this._debugDispatch.bind(this) : this._dispatch.bind(this);
       this.debug = debug;
     }
-    subscriptionChange(key, callback) {
-      if (!this.subscriptionNotifiers[key]) {
-        this.subscriptionNotifiers[key] = [];
+    subscriptionChange(key2, callback) {
+      if (!this.subscriptionNotifiers[key2]) {
+        this.subscriptionNotifiers[key2] = [];
       }
-      this.subscriptionNotifiers[key].push(callback);
-      if (this.subscribed(key)) {
-        this._notifySubscriptionChange(key, true);
+      this.subscriptionNotifiers[key2].push(callback);
+      if (this.subscribed(key2)) {
+        this._notifySubscriptionChange(key2, true);
       }
     }
-    subscribe(key, callback) {
-      if (!this.events[key]) {
-        this.events[key] = [];
+    subscribe(key2, callback) {
+      if (!this.events[key2]) {
+        this.events[key2] = [];
       }
-      this.events[key].push(callback);
-      this._notifySubscriptionChange(key, true);
+      this.events[key2].push(callback);
+      this._notifySubscriptionChange(key2, true);
     }
-    unsubscribe(key, callback) {
+    unsubscribe(key2, callback) {
       var index;
-      if (this.events[key]) {
+      if (this.events[key2]) {
         if (callback) {
-          index = this.events[key].findIndex((item) => {
+          index = this.events[key2].findIndex((item) => {
             return item === callback;
           });
           if (index > -1) {
-            this.events[key].splice(index, 1);
+            this.events[key2].splice(index, 1);
           } else {
-            console.warn("Cannot remove event, no matching event found:", key, callback);
+            console.warn("Cannot remove event, no matching event found:", key2, callback);
             return;
           }
         } else {
-          delete this.events[key];
+          delete this.events[key2];
         }
       } else {
-        console.warn("Cannot remove event, no events set on:", key);
+        console.warn("Cannot remove event, no events set on:", key2);
         return;
       }
-      this._notifySubscriptionChange(key, false);
+      this._notifySubscriptionChange(key2, false);
     }
-    subscribed(key) {
-      return this.events[key] && this.events[key].length;
+    subscribed(key2) {
+      return this.events[key2] && this.events[key2].length;
     }
-    _notifySubscriptionChange(key, subscribed) {
-      var notifiers = this.subscriptionNotifiers[key];
+    _notifySubscriptionChange(key2, subscribed) {
+      var notifiers = this.subscriptionNotifiers[key2];
       if (notifiers) {
         notifiers.forEach((callback) => {
           callback(subscribed);
@@ -20587,9 +20587,9 @@ h1{font-size:19px;margin:2px 0 5px}
       }
     }
     _dispatch() {
-      var args = Array.from(arguments), key = args.shift(), result;
-      if (this.events[key]) {
-        this.events[key].forEach((callback, i) => {
+      var args = Array.from(arguments), key2 = args.shift(), result;
+      if (this.events[key2]) {
+        this.events[key2].forEach((callback, i) => {
           let callResult = callback.apply(this.table, args);
           if (!i) {
             result = callResult;
@@ -20599,9 +20599,9 @@ h1{font-size:19px;margin:2px 0 5px}
       return result;
     }
     _debugDispatch() {
-      var args = Array.from(arguments), key = args[0];
+      var args = Array.from(arguments), key2 = args[0];
       args[0] = "ExternalEvent:" + args[0];
-      if (this.debug === true || this.debug.includes(key)) {
+      if (this.debug === true || this.debug.includes(key2)) {
         console.log(...args);
       }
       return this._dispatch(...arguments);
@@ -20616,55 +20616,55 @@ h1{font-size:19px;margin:2px 0 5px}
       this.confirm = debug ? this._debugConfirm.bind(this) : this._confirm.bind(this);
       this.debug = debug;
     }
-    subscriptionChange(key, callback) {
-      if (!this.subscriptionNotifiers[key]) {
-        this.subscriptionNotifiers[key] = [];
+    subscriptionChange(key2, callback) {
+      if (!this.subscriptionNotifiers[key2]) {
+        this.subscriptionNotifiers[key2] = [];
       }
-      this.subscriptionNotifiers[key].push(callback);
-      if (this.subscribed(key)) {
-        this._notifySubscriptionChange(key, true);
+      this.subscriptionNotifiers[key2].push(callback);
+      if (this.subscribed(key2)) {
+        this._notifySubscriptionChange(key2, true);
       }
     }
-    subscribe(key, callback, priority = 1e4) {
-      if (!this.events[key]) {
-        this.events[key] = [];
+    subscribe(key2, callback, priority = 1e4) {
+      if (!this.events[key2]) {
+        this.events[key2] = [];
       }
-      this.events[key].push({ callback, priority });
-      this.events[key].sort((a, b) => {
+      this.events[key2].push({ callback, priority });
+      this.events[key2].sort((a, b) => {
         return a.priority - b.priority;
       });
-      this._notifySubscriptionChange(key, true);
+      this._notifySubscriptionChange(key2, true);
     }
-    unsubscribe(key, callback) {
+    unsubscribe(key2, callback) {
       var index;
-      if (this.events[key]) {
+      if (this.events[key2]) {
         if (callback) {
-          index = this.events[key].findIndex((item) => {
+          index = this.events[key2].findIndex((item) => {
             return item.callback === callback;
           });
           if (index > -1) {
-            this.events[key].splice(index, 1);
+            this.events[key2].splice(index, 1);
           } else {
-            console.warn("Cannot remove event, no matching event found:", key, callback);
+            console.warn("Cannot remove event, no matching event found:", key2, callback);
             return;
           }
         }
       } else {
-        console.warn("Cannot remove event, no events set on:", key);
+        console.warn("Cannot remove event, no events set on:", key2);
         return;
       }
-      this._notifySubscriptionChange(key, false);
+      this._notifySubscriptionChange(key2, false);
     }
-    subscribed(key) {
-      return this.events[key] && this.events[key].length;
+    subscribed(key2) {
+      return this.events[key2] && this.events[key2].length;
     }
-    _chain(key, args, initialValue, fallback) {
+    _chain(key2, args, initialValue, fallback) {
       var value = initialValue;
       if (!Array.isArray(args)) {
         args = [args];
       }
-      if (this.subscribed(key)) {
-        this.events[key].forEach((subscriber, i) => {
+      if (this.subscribed(key2)) {
+        this.events[key2].forEach((subscriber, i) => {
           value = subscriber.callback.apply(this, args.concat([value]));
         });
         return value;
@@ -20672,13 +20672,13 @@ h1{font-size:19px;margin:2px 0 5px}
         return typeof fallback === "function" ? fallback() : fallback;
       }
     }
-    _confirm(key, args) {
+    _confirm(key2, args) {
       var confirmed = false;
       if (!Array.isArray(args)) {
         args = [args];
       }
-      if (this.subscribed(key)) {
-        this.events[key].forEach((subscriber, i) => {
+      if (this.subscribed(key2)) {
+        this.events[key2].forEach((subscriber, i) => {
           if (subscriber.callback.apply(this, args)) {
             confirmed = true;
           }
@@ -20686,8 +20686,8 @@ h1{font-size:19px;margin:2px 0 5px}
       }
       return confirmed;
     }
-    _notifySubscriptionChange(key, subscribed) {
-      var notifiers = this.subscriptionNotifiers[key];
+    _notifySubscriptionChange(key2, subscribed) {
+      var notifiers = this.subscriptionNotifiers[key2];
       if (notifiers) {
         notifiers.forEach((callback) => {
           callback(subscribed);
@@ -20695,33 +20695,33 @@ h1{font-size:19px;margin:2px 0 5px}
       }
     }
     _dispatch() {
-      var args = Array.from(arguments), key = args.shift();
-      if (this.events[key]) {
-        this.events[key].forEach((subscriber) => {
+      var args = Array.from(arguments), key2 = args.shift();
+      if (this.events[key2]) {
+        this.events[key2].forEach((subscriber) => {
           subscriber.callback.apply(this, args);
         });
       }
     }
     _debugDispatch() {
-      var args = Array.from(arguments), key = args[0];
-      args[0] = "InternalEvent:" + key;
-      if (this.debug === true || this.debug.includes(key)) {
+      var args = Array.from(arguments), key2 = args[0];
+      args[0] = "InternalEvent:" + key2;
+      if (this.debug === true || this.debug.includes(key2)) {
         console.log(...args);
       }
       return this._dispatch(...arguments);
     }
     _debugChain() {
-      var args = Array.from(arguments), key = args[0];
-      args[0] = "InternalEvent:" + key;
-      if (this.debug === true || this.debug.includes(key)) {
+      var args = Array.from(arguments), key2 = args[0];
+      args[0] = "InternalEvent:" + key2;
+      if (this.debug === true || this.debug.includes(key2)) {
         console.log(...args);
       }
       return this._chain(...arguments);
     }
     _debugConfirm() {
-      var args = Array.from(arguments), key = args[0];
-      args[0] = "InternalEvent:" + key;
-      if (this.debug === true || this.debug.includes(key)) {
+      var args = Array.from(arguments), key2 = args[0];
+      args[0] = "InternalEvent:" + key2;
+      if (this.debug === true || this.debug.includes(key2)) {
         console.log(...args);
       }
       return this._confirm(...arguments);
@@ -20775,9 +20775,9 @@ h1{font-size:19px;margin:2px 0 5px}
     initialize() {
       this.deps = Object.assign({}, this.options("dependencies"));
     }
-    lookup(key, prop, silent) {
-      if (Array.isArray(key)) {
-        for (const item of key) {
+    lookup(key2, prop, silent) {
+      if (Array.isArray(key2)) {
+        for (const item of key2) {
           var match = this.lookup(item, prop, true);
           if (match) {
             break;
@@ -20786,47 +20786,47 @@ h1{font-size:19px;margin:2px 0 5px}
         if (match) {
           return match;
         } else {
-          this.error(key);
+          this.error(key2);
         }
       } else {
         if (prop) {
-          return this.lookupProp(key, prop, silent);
+          return this.lookupProp(key2, prop, silent);
         } else {
-          return this.lookupKey(key, silent);
+          return this.lookupKey(key2, silent);
         }
       }
     }
-    lookupProp(key, prop, silent) {
+    lookupProp(key2, prop, silent) {
       var dependency;
-      if (this.props[key] && this.props[key][prop]) {
-        return this.props[key][prop];
+      if (this.props[key2] && this.props[key2][prop]) {
+        return this.props[key2][prop];
       } else {
-        dependency = this.lookupKey(key, silent);
+        dependency = this.lookupKey(key2, silent);
         if (dependency) {
-          if (!this.props[key]) {
-            this.props[key] = {};
+          if (!this.props[key2]) {
+            this.props[key2] = {};
           }
-          this.props[key][prop] = dependency[prop] || dependency;
-          return this.props[key][prop];
+          this.props[key2][prop] = dependency[prop] || dependency;
+          return this.props[key2][prop];
         }
       }
     }
-    lookupKey(key, silent) {
+    lookupKey(key2, silent) {
       var dependency;
-      if (this.deps[key]) {
-        dependency = this.deps[key];
-      } else if (window[key]) {
-        this.deps[key] = window[key];
-        dependency = this.deps[key];
+      if (this.deps[key2]) {
+        dependency = this.deps[key2];
+      } else if (window[key2]) {
+        this.deps[key2] = window[key2];
+        dependency = this.deps[key2];
       } else {
         if (!silent) {
-          this.error(key);
+          this.error(key2);
         }
       }
       return dependency;
     }
-    error(key) {
-      console.error("Unable to find dependency", key, "Please check documentation and ensure you have imported the required library into your project");
+    error(key2) {
+      console.error("Unable to find dependency", key2, "Please check documentation and ensure you have imported the required library into your project");
     }
   };
   function fitData(columns, forced) {
@@ -21121,11 +21121,11 @@ h1{font-size:19px;margin:2px 0 5px}
       }
     }
     _setLangProp(lang, values) {
-      for (let key in values) {
-        if (lang[key] && typeof lang[key] == "object") {
-          this._setLangProp(lang[key], values[key]);
+      for (let key2 in values) {
+        if (lang[key2] && typeof lang[key2] == "object") {
+          this._setLangProp(lang[key2], values[key2]);
         } else {
-          lang[key] = values[key];
+          lang[key2] = values[key2];
         }
       }
     }
@@ -21177,8 +21177,8 @@ h1{font-size:19px;margin:2px 0 5px}
     }
     //get text for current locale
     getText(path, value) {
-      var fillPath = value ? path + "|" + value : path, pathArray = fillPath.split("|"), text2 = this._getLangElement(pathArray, this.locale);
-      return text2 || "";
+      var fillPath = value ? path + "|" + value : path, pathArray = fillPath.split("|"), text3 = this._getLangElement(pathArray, this.locale);
+      return text3 || "";
     }
     //traverse langs object and find localized copy
     _getLangElement(path, locale) {
@@ -21328,8 +21328,8 @@ h1{font-size:19px;margin:2px 0 5px}
         var source = _ModuleBinder.moduleBindings[name][property];
         if (source) {
           if (typeof values == "object") {
-            for (let key in values) {
-              source[key] = values[key];
+            for (let key2 in values) {
+              source[key2] = values[key2];
             }
           } else {
             console.warn("Module Error - Invalid value type, it must be an object");
@@ -22087,11 +22087,11 @@ h1{font-size:19px;margin:2px 0 5px}
       this.rowManager.redraw(true);
     }
     //////////////////// Event Bus ///////////////////
-    on(key, callback) {
-      this.externalEvents.subscribe(key, callback);
+    on(key2, callback) {
+      this.externalEvents.subscribe(key2, callback);
     }
-    off(key, callback) {
-      this.externalEvents.unsubscribe(key, callback);
+    off(key2, callback) {
+      this.externalEvents.unsubscribe(key2, callback);
     }
     dispatchEvent() {
       var args = Array.from(arguments);
@@ -22118,10 +22118,10 @@ h1{font-size:19px;margin:2px 0 5px}
         return false;
       }
     }
-    module(key) {
-      var mod = this.modules[key];
+    module(key2) {
+      var mod = this.modules[key2];
       if (!mod) {
-        console.error("Tabulator module not installed: " + key);
+        console.error("Tabulator module not installed: " + key2);
       }
       return mod;
     }
@@ -22158,6 +22158,13 @@ h1{font-size:19px;margin:2px 0 5px}
     return data;
   }
 
+  // src/data/open-loader-bundle.js
+  function openLoaderBundle(bundle, createNew, openHistory) {
+    if (bundle?.mode === "new") return createNew(bundle);
+    if (bundle?.mode === "history") return openHistory(bundle.snapshot, bundle.dictionary);
+    throw new Error("Unsupported Loader mode: " + String(bundle?.mode));
+  }
+
   // src/engine/card.js
   var fields = [
     ["GEN", "generic_name_fixed"],
@@ -22180,8 +22187,42 @@ h1{font-size:19px;margin:2px 0 5px}
     const previous = bundle.snapshot;
     if (!previous || !Array.isArray(previous.patients) || !Array.isArray(previous.notes))
       throw new Error("Missing valid previous snapshot");
-    if (previous.patients.some((p) => p.instructions?.length) || previous.notes.length)
-      throw new Error("Historical comparison is not implemented: previous snapshot is not empty");
+    const previousByPatient = /* @__PURE__ */ new Map();
+    for (const patient of previous.patients) {
+      const id = text(patient.patientId);
+      if (!id || previousByPatient.has(id) || !Array.isArray(patient.instructions))
+        throw new Error("Invalid previous snapshot patient or instructions");
+      previousByPatient.set(id, patient.instructions);
+    }
+    const previousRowIds = /* @__PURE__ */ new Set();
+    for (const [patientId, rows2] of previousByPatient) {
+      const activeKeys = /* @__PURE__ */ new Set();
+      for (const row of rows2) {
+        if (!row || !text(row.rowId) || !text(row.instructionKey) || !["NEW", "CONTINUE", "STOP", "HISTORY"].includes(row.status) || previousRowIds.has(row.rowId))
+          throw new Error("Invalid or duplicate previous instruction instance");
+        previousRowIds.add(row.rowId);
+        if (row.status === "NEW" || row.status === "CONTINUE") {
+          if (activeKeys.has(row.instructionKey)) throw new Error("Duplicate active instruction key in previous snapshot");
+          activeKeys.add(row.instructionKey);
+        }
+      }
+    }
+    const previousNotes = previous.notes;
+    const noteIds = /* @__PURE__ */ new Set();
+    const instructionNoteRows = /* @__PURE__ */ new Set();
+    for (const note of previousNotes) {
+      if (!note || !text(note.noteId) || noteIds.has(note.noteId) || !["PATIENT", "SYSTEM", "FAMILY", "INSTRUCTION"].includes(note.scope) || !text(note.patientId))
+        throw new Error("Invalid or duplicate previous note");
+      noteIds.add(note.noteId);
+      if (note.scope === "INSTRUCTION") {
+        const rowId = text(note.rowId);
+        if (!rowId || !previousRowIds.has(rowId) || instructionNoteRows.has(rowId) || !(previousByPatient.get(note.patientId) || []).some((row) => row.rowId === rowId))
+          throw new Error("Invalid instruction note reference");
+        instructionNoteRows.add(rowId);
+      } else if ((note.scope === "SYSTEM" || note.scope === "FAMILY") && !text(note.representativeDrug)) {
+        throw new Error("Missing representative drug for group note");
+      }
+    }
     const patients = bundle.patients.map((p) => ({
       patientId: text(p.patient_id),
       patientName: text(p.patient_name),
@@ -22208,11 +22249,11 @@ h1{font-size:19px;margin:2px 0 5px}
       }
       const enriched = { ...med, generic_name_fixed: fixed };
       const base = fields.map(([, field]) => normalize(enriched[field]));
-      const key = JSON.stringify([patientId, base]);
-      if (!groups.has(key)) groups.set(key, { patientId, base, med: enriched, count: 0 });
-      groups.get(key).count++;
+      const key2 = JSON.stringify([patientId, base]);
+      if (!groups.has(key2)) groups.set(key2, { patientId, base, med: enriched, count: 0 });
+      groups.get(key2).count++;
     }
-    const instructions = [...groups.values()].map(({ patientId, base, med, count }) => ({
+    const currentInstructions = [...groups.values()].map(({ patientId, base, med, count }) => ({
       patientId,
       rowId: newId(),
       instructionKey: JSON.stringify([...base, String(count)]),
@@ -22229,8 +22270,36 @@ h1{font-size:19px;margin:2px 0 5px}
       ...Object.fromEntries(fields.slice(1).map(([, field]) => [field, text(med[field])])),
       commercial_name: text(med["\u05E9\u05DD \u05DE\u05E1\u05D7\u05E8\u05D9"])
     }));
+    const instructions = [];
+    for (const patient of patients) {
+      const priorRows = previousByPatient.get(patient.patientId) || [];
+      const active = new Map(priorRows.filter((row) => row.status === "NEW" || row.status === "CONTINUE").map((row) => [row.instructionKey, row]));
+      const matched = /* @__PURE__ */ new Set();
+      for (const current of currentInstructions.filter((row) => row.patientId === patient.patientId)) {
+        const old = active.get(current.instructionKey);
+        if (old) {
+          current.rowId = old.rowId;
+          current.status = "CONTINUE";
+          matched.add(old.rowId);
+        } else {
+          while (previousRowIds.has(current.rowId)) current.rowId = newId();
+          previousRowIds.add(current.rowId);
+        }
+        instructions.push(current);
+      }
+      for (const old of priorRows) {
+        if (matched.has(old.rowId)) continue;
+        instructions.push({
+          ...old,
+          patientId: patient.patientId,
+          status: old.status === "NEW" || old.status === "CONTINUE" ? "STOP" : "HISTORY"
+        });
+      }
+    }
+    const currentPatientIds = new Set(patients.map((p) => p.patientId));
+    const notes = previousNotes.filter((note) => currentPatientIds.has(note.patientId)).map((note) => ({ ...note }));
     return {
-      cardState: { patients, instructions, notes: [], metadata: {
+      cardState: { patients, instructions, notes, metadata: {
         schemaVersion: "1.0",
         cardId: newId(),
         cardName: "\u05DB\u05E8\u05D8\u05E1\u05EA \u05EA\u05E8\u05D5\u05E4\u05D5\u05EA",
@@ -22325,11 +22394,11 @@ h1{font-size:19px;margin:2px 0 5px}
       ["\u05D7\u05E8\u05D9\u05D2\u05D5\u05EA \u05D8\u05E2\u05D9\u05E0\u05D4", data.issues?.length]
     ];
     const table = document.createElement("table");
-    for (const [label, value] of counts) {
+    for (const [label2, value] of counts) {
       const row = document.createElement("tr");
-      for (const text2 of [label, value == null ? "\u05DC\u05D0 \u05E0\u05D8\u05E2\u05DF" : String(value)]) {
+      for (const text3 of [label2, value == null ? "\u05DC\u05D0 \u05E0\u05D8\u05E2\u05DF" : String(value)]) {
         const cell = document.createElement("td");
-        cell.textContent = text2;
+        cell.textContent = text3;
         row.append(cell);
       }
       table.append(row);
@@ -22340,9 +22409,517 @@ h1{font-size:19px;margin:2px 0 5px}
     root.replaceChildren(heading, status, table);
   }
 
+  // src/engine/snapshot-lifecycle.js
+  function snapshotFilename(name) {
+    const safe = String(name || "medication-snapshot").replace(/[\\/:*?"<>|\x00-\x1f]/g, "-").trim().replace(/[. ]+$/, "");
+    return (safe || "medication-snapshot") + ".json";
+  }
+  function prepareSnapshot(cardState, now = /* @__PURE__ */ new Date()) {
+    if (cardState.locked) throw new Error("Card is already locked");
+    const createdAt = now.toISOString();
+    return {
+      ...serializeSnapshot(cardState),
+      metadata: { ...cardState.metadata, createdAt }
+    };
+  }
+  function finishSnapshotSave(cardState, snapshot) {
+    cardState.metadata = { ...snapshot.metadata };
+    cardState.locked = true;
+    cardState.dirty = false;
+  }
+  function unlockCard(cardState) {
+    if (!cardState.locked) return;
+    cardState.locked = false;
+    cardState.metadata = { ...cardState.metadata, createdAt: "", cardName: (cardState.metadata.cardName || "\u05DB\u05E8\u05D8\u05E1\u05EA \u05EA\u05E8\u05D5\u05E4\u05D5\u05EA") + "-\u05E2\u05E8\u05D5\u05DA" };
+  }
+  function openSavedSnapshot(snapshot, dictionary = {}) {
+    if (!snapshot || !Array.isArray(snapshot.patients) || !Array.isArray(snapshot.notes) || !snapshot.metadata)
+      throw new Error("Invalid saved snapshot");
+    const patients = snapshot.patients.map(({ instructions: instructions2, ...patient }) => ({ ...patient }));
+    const instructions = snapshot.patients.flatMap((p) => {
+      if (!Array.isArray(p.instructions)) throw new Error("Invalid saved patient instructions");
+      return p.instructions.map((i) => ({ ...i, patientId: p.patientId }));
+    });
+    return {
+      cardState: {
+        patients,
+        instructions,
+        notes: snapshot.notes.map((n) => ({ ...n })),
+        metadata: { ...snapshot.metadata },
+        locked: true,
+        dirty: false
+      },
+      dictionaryState: { ...dictionary, dirty: false },
+      issues: []
+    };
+  }
+
+  // src/data/save-snapshot.js
+  async function saveSnapshotWithConfirmation(snapshot, filename, {
+    picker = globalThis.showSaveFilePicker,
+    download,
+    confirmDownload
+  } = {}) {
+    const json2 = JSON.stringify(snapshot, null, 2);
+    if (typeof picker === "function") {
+      try {
+        const handle2 = await picker({
+          suggestedName: filename,
+          types: [{ description: "JSON snapshot", accept: { "application/json": [".json"] } }]
+        });
+        const writable = await handle2.createWritable();
+        try {
+          await writable.write(json2);
+          await writable.close();
+        } catch (error2) {
+          try {
+            await writable.abort();
+          } catch {
+          }
+          throw error2;
+        }
+        return { saved: true, method: "picker" };
+      } catch (error2) {
+        if (error2?.name === "AbortError") return { saved: false, reason: "cancelled" };
+        throw error2;
+      }
+    }
+    if (typeof download !== "function" || typeof confirmDownload !== "function")
+      throw new Error("Fallback download requires explicit confirmation");
+    download(json2, filename);
+    const acknowledged = await confirmDownload();
+    return { saved: Boolean(acknowledged), method: "download" };
+  }
+
+  // ../src/dictionary-engine.js
+  var UNCLASSIFIED = "\u05DC\u05D0 \u05DE\u05E1\u05D5\u05D5\u05D2";
+  var own = (object, key2) => Object.prototype.hasOwnProperty.call(object, key2);
+  var clone = (value) => JSON.parse(JSON.stringify(value));
+  var text2 = (value) => typeof value === "string" && value.trim().length > 0;
+  var key = (...parts) => JSON.stringify(parts);
+  var titleCase = (value) => value.toLowerCase().replace(/\b[a-z]/g, (letter) => letter.toUpperCase());
+  function createDraft(dictionary) {
+    return clone(dictionary);
+  }
+  function error(errors, table, index, field, code, message) {
+    errors.push({ table, index, field, code, message });
+  }
+  function validateShape(dictionary, errors) {
+    if (!dictionary || typeof dictionary !== "object" || Array.isArray(dictionary)) {
+      error(errors, "dictionary", -1, "", "INVALID_DICTIONARY", "Dictionary must be an object");
+      return false;
+    }
+    for (const field of ["sourceMappings", "displayOrder"]) {
+      if (!Array.isArray(dictionary[field])) {
+        error(errors, field, -1, field, "INVALID_TABLE", field + " must be an array");
+      }
+    }
+    if (!dictionary.classifications || typeof dictionary.classifications !== "object" || Array.isArray(dictionary.classifications)) {
+      error(errors, "classifications", -1, "classifications", "INVALID_TABLE", "classifications must be an object");
+    }
+    return errors.length === 0;
+  }
+  function validateMappings(dictionary, errors) {
+    const seen = /* @__PURE__ */ new Set();
+    dictionary.sourceMappings.forEach((row, i) => {
+      if (!row || typeof row !== "object" || Array.isArray(row)) {
+        error(errors, "sourceMappings", i, "", "INVALID_ROW", "Expected object");
+        return;
+      }
+      for (const field of ["commercial_name", "full_generic_name", "generic_name_fixed"]) {
+        if (!text2(row[field])) error(errors, "sourceMappings", i, field, "REQUIRED", field + " is required");
+      }
+      if (!["DEFAULT", "REVIEWED"].includes(row.review_status)) {
+        error(errors, "sourceMappings", i, "review_status", "INVALID_STATUS", "Expected DEFAULT or REVIEWED");
+      }
+      if (text2(row.commercial_name) && text2(row.full_generic_name)) {
+        const k = key(row.commercial_name, row.full_generic_name);
+        if (seen.has(k)) error(errors, "sourceMappings", i, "commercial_name", "DUPLICATE_KEY", "Duplicate source mapping");
+        seen.add(k);
+      }
+    });
+  }
+  function validateClassifications(dictionary, errors) {
+    for (const [name, row] of Object.entries(dictionary.classifications)) {
+      if (!text2(name)) {
+        error(errors, "classifications", name, "generic_name_fixed", "REQUIRED", "Empty classification key");
+      }
+      if (!row || typeof row !== "object" || Array.isArray(row)) {
+        error(errors, "classifications", name, "", "INVALID_ROW", "Expected object");
+        continue;
+      }
+      for (const field of ["generic_name_nice", "system", "family"]) {
+        if (!text2(row[field])) error(errors, "classifications", name, field, "REQUIRED", field + " is required");
+      }
+    }
+  }
+  function validateOrderRows(dictionary, errors) {
+    const seen = /* @__PURE__ */ new Set();
+    const systems = /* @__PURE__ */ new Map();
+    const families = [];
+    dictionary.displayOrder.forEach((row, i) => {
+      if (!row || typeof row !== "object" || Array.isArray(row)) {
+        error(errors, "displayOrder", i, "", "INVALID_ROW", "Expected object");
+        return;
+      }
+      if (!["SYSTEM", "FAMILY"].includes(row.level)) {
+        error(errors, "displayOrder", i, "level", "INVALID_LEVEL", "Expected SYSTEM or FAMILY");
+        return;
+      }
+      if (!text2(row.system)) error(errors, "displayOrder", i, "system", "REQUIRED", "System required");
+      if (!Number.isFinite(row.order_system)) {
+        error(errors, "displayOrder", i, "order_system", "INVALID_ORDER", "Finite numeric order required");
+      }
+      if (row.level === "SYSTEM") {
+        if (row.family !== "") error(errors, "displayOrder", i, "family", "INVALID_FAMILY", "SYSTEM family must be empty");
+        if (row.order_family !== null) error(errors, "displayOrder", i, "order_family", "INVALID_ORDER", "SYSTEM order_family must be null");
+        systems.set(row.system, row.order_system);
+      } else {
+        if (!text2(row.family)) error(errors, "displayOrder", i, "family", "REQUIRED", "Family required");
+        if (!Number.isFinite(row.order_family)) error(errors, "displayOrder", i, "order_family", "INVALID_ORDER", "Finite numeric family order required");
+        families.push({ row, index: i });
+      }
+      const k = key(row.level, row.system, row.level === "FAMILY" ? row.family : "");
+      if (seen.has(k)) error(errors, "displayOrder", i, "level", "DUPLICATE_KEY", "Duplicate display order key");
+      seen.add(k);
+    });
+    for (const { row, index } of families) {
+      if (!systems.has(row.system)) {
+        error(errors, "displayOrder", index, "system", "MISSING_SYSTEM", "Family references missing system");
+      } else if (row.order_system !== systems.get(row.system)) {
+        error(errors, "displayOrder", index, "order_system", "INCONSISTENT_ORDER", "Family order_system differs from system");
+      }
+    }
+    const unclassifiedSystem = systems.get(UNCLASSIFIED);
+    if (unclassifiedSystem !== void 0) {
+      for (const [system, value] of systems) {
+        if (system !== UNCLASSIFIED && Number.isFinite(value) && value >= unclassifiedSystem) {
+          error(errors, "displayOrder", -1, "order_system", "UNCLASSIFIED_NOT_LAST", "Unclassified system must sort last");
+          break;
+        }
+      }
+    }
+    for (const [system, value] of systems) {
+      const rows2 = families.filter((item) => item.row.system === system);
+      const unclassified = rows2.find((item) => item.row.family === UNCLASSIFIED);
+      if (unclassified) {
+        for (const item of rows2) {
+          if (item.row.family !== UNCLASSIFIED && Number.isFinite(item.row.order_family) && item.row.order_family >= unclassified.row.order_family) {
+            error(errors, "displayOrder", item.index, "order_family", "UNCLASSIFIED_NOT_LAST", "Unclassified family must sort last");
+          }
+        }
+      }
+    }
+  }
+  function completeClassifications(dictionary) {
+    for (const row of dictionary.sourceMappings) {
+      if (!own(dictionary.classifications, row.generic_name_fixed)) {
+        dictionary.classifications[row.generic_name_fixed] = {
+          generic_name_nice: titleCase(row.generic_name_fixed),
+          system: UNCLASSIFIED,
+          family: UNCLASSIFIED
+        };
+      }
+    }
+  }
+  function nextOrder(rows2, field, predicate) {
+    const values = rows2.filter(predicate).map((row) => row[field]).filter(Number.isFinite);
+    const normal = values.filter((value) => value < 9999);
+    return normal.length ? Math.max(...normal) + 10 : 10;
+  }
+  function completeOrder(dictionary) {
+    const rows2 = dictionary.displayOrder;
+    const systems = new Set(rows2.filter((row) => row.level === "SYSTEM").map((row) => row.system));
+    const requiredSystems = /* @__PURE__ */ new Set([UNCLASSIFIED]);
+    const requiredFamilies = /* @__PURE__ */ new Map([[UNCLASSIFIED, /* @__PURE__ */ new Set([UNCLASSIFIED])]]);
+    for (const classification of Object.values(dictionary.classifications)) {
+      requiredSystems.add(classification.system);
+      if (!requiredFamilies.has(classification.system)) requiredFamilies.set(classification.system, /* @__PURE__ */ new Set());
+      requiredFamilies.get(classification.system).add(classification.family);
+    }
+    for (const system of requiredSystems) {
+      if (system === UNCLASSIFIED || systems.has(system)) continue;
+      const sentinel = rows2.find((row) => row.level === "SYSTEM" && row.system === UNCLASSIFIED);
+      const order = nextOrder(rows2, "order_system", (row) => row.level === "SYSTEM");
+      if (sentinel && order >= sentinel.order_system) {
+        rows2.push({ level: "SYSTEM", system, family: "", order_system: sentinel.order_system - 0.5, order_family: null });
+      } else {
+        rows2.push({ level: "SYSTEM", system, family: "", order_system: order, order_family: null });
+      }
+      systems.add(system);
+    }
+    if (!systems.has(UNCLASSIFIED)) {
+      rows2.push({ level: "SYSTEM", system: UNCLASSIFIED, family: "", order_system: 9999, order_family: null });
+    }
+    for (const [system, families] of requiredFamilies) {
+      const systemRow = rows2.find((row) => row.level === "SYSTEM" && row.system === system);
+      for (const family of families) {
+        if (rows2.some((row) => row.level === "FAMILY" && row.system === system && row.family === family)) continue;
+        const sentinel = rows2.find((row) => row.level === "FAMILY" && row.system === system && row.family === UNCLASSIFIED);
+        let order = family === UNCLASSIFIED ? 9999 : nextOrder(rows2, "order_family", (row) => row.level === "FAMILY" && row.system === system);
+        if (family !== UNCLASSIFIED && sentinel && order >= sentinel.order_family) order = sentinel.order_family - 0.5;
+        rows2.push({ level: "FAMILY", system, family, order_system: systemRow.order_system, order_family: order });
+      }
+    }
+  }
+  function prepareApproval(draft) {
+    const errors = [];
+    if (!validateShape(draft, errors)) return { ok: false, errors };
+    const candidate = clone(draft);
+    validateMappings(candidate, errors);
+    validateClassifications(candidate, errors);
+    if (errors.length) return { ok: false, errors };
+    completeClassifications(candidate);
+    completeOrder(candidate);
+    validateOrderRows(candidate, errors);
+    if (errors.length) return { ok: false, errors };
+    return { ok: true, dictionary: candidate, errors: [] };
+  }
+  function createDictionaryStore(initialDictionary) {
+    const initial = prepareApproval(initialDictionary);
+    if (!initial.ok) throw new Error("Invalid initial dictionary: " + JSON.stringify(initial.errors));
+    let active = clone(initial.dictionary);
+    let dirty = false;
+    return Object.freeze({
+      get: () => clone(active),
+      isDirty: () => dirty,
+      approve(draft) {
+        const result = prepareApproval(draft);
+        if (!result.ok) return result;
+        active = clone(result.dictionary);
+        dirty = true;
+        return { ok: true, dictionary: clone(active), errors: [] };
+      },
+      markExported() {
+        dirty = false;
+      }
+    });
+  }
+
+  // ../src/dictionary-editor.js
+  var TABLE_FIELDS = Object.freeze({
+    sourceMappings: ["commercial_name", "full_generic_name", "generic_name_fixed", "review_status"],
+    classifications: ["generic_name_fixed", "generic_name_nice", "system", "family"],
+    displayOrder: ["level", "system", "family", "order_system", "order_family"]
+  });
+  var PROTECTED = Object.freeze({
+    sourceMappings: ["commercial_name", "full_generic_name"],
+    classifications: ["generic_name_fixed"],
+    displayOrder: ["level", "system", "family"]
+  });
+  var label = {
+    commercial_name: "\u05E9\u05DD \u05DE\u05E1\u05D7\u05E8\u05D9",
+    full_generic_name: "\u05E9\u05DD \u05D2\u05E0\u05E8\u05D9 \u05DE\u05DC\u05D0",
+    generic_name_fixed: "\u05E9\u05DD \u05D2\u05E0\u05E8\u05D9 \u05DE\u05EA\u05D5\u05E7\u05DF",
+    review_status: "\u05DE\u05E6\u05D1 \u05D1\u05D3\u05D9\u05E7\u05D4",
+    generic_name_nice: "\u05E9\u05DD \u05D9\u05E4\u05D4",
+    system: "\u05DE\u05E2\u05E8\u05DB\u05EA",
+    family: "\u05DE\u05E9\u05E4\u05D7\u05D4",
+    level: "\u05E8\u05DE\u05D4",
+    order_system: "\u05E1\u05D3\u05E8 \u05DE\u05E2\u05E8\u05DB\u05EA",
+    order_family: "\u05E1\u05D3\u05E8 \u05DE\u05E9\u05E4\u05D7\u05D4"
+  };
+  function rowsFromDictionary(dictionary, table) {
+    if (table === "classifications") return Object.entries(dictionary.classifications).map(([generic_name_fixed, row]) => ({ generic_name_fixed, ...row }));
+    return dictionary[table].map((row) => ({ ...row }));
+  }
+  function dictionaryFromRows(dictionary, table, rows2) {
+    const copy = createDraft(dictionary);
+    if (table === "classifications") {
+      copy.classifications = Object.fromEntries(rows2.map(({ generic_name_fixed, ...rest }) => [generic_name_fixed, rest]));
+    } else copy[table] = rows2.map((row) => ({ ...row }));
+    return copy;
+  }
+  function parseCells(tsv) {
+    return String(tsv).replace(/\r\n/g, "\n").replace(/\n$/, "").split("\n").map((line) => line.split("	"));
+  }
+  function pasteVisibleCells(rows2, visibleIndices, table, startVisibleRow, startColumn, tsv) {
+    const fields2 = TABLE_FIELDS[table], protectedFields = PROTECTED[table];
+    if (!fields2) throw new Error("Unknown table");
+    const matrix = parseCells(tsv), result = rows2.map((row) => ({ ...row }));
+    let applied = 0, skipped = 0;
+    for (let y = 0; y < matrix.length; y++) {
+      const index = visibleIndices[startVisibleRow + y];
+      if (index === void 0) break;
+      for (let x = 0; x < matrix[y].length; x++) {
+        const field = fields2[startColumn + x];
+        if (!field) break;
+        if (protectedFields.includes(field)) {
+          skipped++;
+          continue;
+        }
+        let value = matrix[y][x];
+        if (table === "displayOrder" && field.startsWith("order_")) {
+          if (value.trim() === "" && field === "order_family") value = null;
+          else if (value.trim() !== "" && Number.isFinite(Number(value))) value = Number(value);
+        }
+        result[index][field] = value;
+        applied++;
+      }
+    }
+    return { rows: result, applied, skipped };
+  }
+  function mountDictionaryEditor(container, activeDictionary, { Tabulator: Tabulator2, onDraftChange = () => {
+  } } = {}) {
+    if (typeof Tabulator2 !== "function") throw new Error("Tabulator constructor required");
+    const root = typeof container === "string" ? document.querySelector(container) : container;
+    if (!root) throw new Error("Editor container missing");
+    let draft = createDraft(activeDictionary), current = "sourceMappings", table = null, focus = { row: 0, col: 0 };
+    root.replaceChildren();
+    root.dir = "rtl";
+    const controls = document.createElement("div");
+    const tabs = document.createElement("div");
+    const grid = document.createElement("div");
+    const message = document.createElement("div");
+    const search = document.createElement("input");
+    search.type = "search";
+    search.placeholder = "\u05E1\u05D9\u05E0\u05D5\u05DF \u05E8\u05E9\u05D5\u05DE\u05D5\u05EA";
+    const copy = document.createElement("button");
+    copy.textContent = "\u05D4\u05E2\u05EA\u05E7 \u05E9\u05D5\u05E8\u05D5\u05EA \u05D2\u05DC\u05D5\u05D9\u05D5\u05EA";
+    const paste = document.createElement("button");
+    paste.textContent = "\u05D4\u05D3\u05D1\u05E7 \u05DE\u05D4\u05DC\u05D5\u05D7";
+    const pasteInput = document.createElement("textarea");
+    pasteInput.placeholder = "\u05D0\u05E4\u05E9\u05E8 \u05D2\u05DD \u05DC\u05D4\u05D3\u05D1\u05D9\u05E7 \u05DB\u05D0\u05DF \u05D8\u05E7\u05E1\u05D8 \u05DE\u05D5\u05E4\u05E8\u05D3 \u05D1\u05D8\u05D0\u05D1\u05D9\u05DD";
+    pasteInput.setAttribute("aria-label", "\u05EA\u05D5\u05DB\u05DF \u05DC\u05D4\u05D3\u05D1\u05E7\u05D4");
+    const applyPaste = document.createElement("button");
+    applyPaste.textContent = "\u05D4\u05D7\u05DC \u05D4\u05D3\u05D1\u05E7\u05D4 \u05D1\u05D8\u05D9\u05D5\u05D8\u05D4";
+    const updateCell = (cell) => {
+      const field = cell.getField();
+      if (PROTECTED[current].includes(field)) return;
+      const rows2 = rowsFromDictionary(draft, current);
+      const index = cell.getRow().getData().__draftIndex;
+      if (!Number.isInteger(index) || !rows2[index]) return;
+      rows2[index][field] = cell.getValue();
+      draft = dictionaryFromRows(draft, current, rows2);
+      onDraftChange(createDraft(draft));
+    };
+    const visible = () => table.getRows("active").map((row) => row.getData());
+    const columns = () => TABLE_FIELDS[current].map((field, index) => ({
+      title: label[field] || field,
+      field,
+      headerSort: true,
+      editor: PROTECTED[current].includes(field) ? false : field === "review_status" ? "list" : field === "level" ? false : "input",
+      ...field === "review_status" ? { editorParams: { values: ["DEFAULT", "REVIEWED"] } } : {},
+      cellClick: (e, cell) => {
+        const active = table.getRows("active");
+        focus = { row: active.indexOf(cell.getRow()), col: index };
+      },
+      cellDblClick: (e, cell) => {
+        if (!PROTECTED[current].includes(field)) cell.edit();
+      }
+    }));
+    function render() {
+      if (table) {
+        table.destroy();
+        table = null;
+      }
+      focus = { row: 0, col: 0 };
+      search.value = "";
+      message.textContent = "";
+      table = new Tabulator2(grid, {
+        data: rowsFromDictionary(draft, current).map((row, __draftIndex) => ({ ...row, __draftIndex })),
+        columns: columns(),
+        layout: "fitDataStretch",
+        height: "min(65vh, 600px)",
+        clipboard: true,
+        selectableRange: 1,
+        selectableRangeColumns: true,
+        selectableRangeRows: true,
+        clipboardCopyConfig: { rowHeaders: false, columnHeaders: false }
+      });
+      table.on("cellEdited", updateCell);
+    }
+    for (const name of Object.keys(TABLE_FIELDS)) {
+      const button = document.createElement("button");
+      button.textContent = name;
+      button.type = "button";
+      button.onclick = () => {
+        if (name === current) return;
+        current = name;
+        render();
+      };
+      tabs.append(button);
+    }
+    search.oninput = () => {
+      if (!table) return;
+      const term = search.value.toLocaleLowerCase();
+      if (!term) table.clearFilter();
+      else table.setFilter((row) => TABLE_FIELDS[current].some((f) => String(row[f] ?? "").toLocaleLowerCase().includes(term)));
+    };
+    copy.onclick = async () => {
+      const tsv = visible().map((row) => TABLE_FIELDS[current].map((f) => String(row[f] ?? "")).join("	")).join("\n");
+      try {
+        await navigator.clipboard.writeText(tsv);
+        message.textContent = "\u05D4\u05E9\u05D5\u05E8\u05D5\u05EA \u05D4\u05D2\u05DC\u05D5\u05D9\u05D5\u05EA \u05D4\u05D5\u05E2\u05EA\u05E7\u05D5";
+      } catch {
+        pasteInput.value = tsv;
+        pasteInput.select();
+        message.textContent = "\u05D4\u05E2\u05EA\u05E7 \u05D9\u05D3\u05E0\u05D9\u05EA \u05DE\u05E9\u05D3\u05D4 \u05D4\u05D8\u05E7\u05E1\u05D8";
+      }
+    };
+    function pasteText(tsv) {
+      const all = rowsFromDictionary(draft, current);
+      const visibleIndices = table.getRows("active").map((row) => row.getData().__draftIndex);
+      const result = pasteVisibleCells(all, visibleIndices, current, Math.max(0, focus.row), focus.col, tsv);
+      draft = dictionaryFromRows(draft, current, result.rows);
+      onDraftChange(createDraft(draft));
+      render();
+      message.textContent = `\u05E2\u05D5\u05D3\u05DB\u05E0\u05D5 ${result.applied} \u05EA\u05D0\u05D9\u05DD; \u05D3\u05D5\u05DC\u05D2\u05D5 ${result.skipped} \u05EA\u05D0\u05D9 \u05DE\u05E4\u05EA\u05D7 \u05DE\u05D5\u05D2\u05E0\u05D9\u05DD`;
+    }
+    paste.onclick = async () => {
+      try {
+        pasteText(await navigator.clipboard.readText());
+      } catch {
+        pasteInput.focus();
+        message.textContent = "\u05D4\u05D3\u05D1\u05E7 \u05D1\u05E9\u05D3\u05D4 \u05D4\u05D8\u05E7\u05E1\u05D8 \u05D5\u05DC\u05D7\u05E5 \u05D4\u05D7\u05DC \u05D4\u05D3\u05D1\u05E7\u05D4";
+      }
+    };
+    applyPaste.onclick = () => pasteText(pasteInput.value);
+    controls.append(search, copy, paste, pasteInput, applyPaste);
+    root.append(tabs, controls, message, grid);
+    render();
+    return {
+      getDraft: () => createDraft(draft),
+      hasChanges: () => JSON.stringify(draft) !== JSON.stringify(activeDictionary),
+      destroy: () => {
+        if (table) table.destroy();
+        root.replaceChildren();
+      }
+    };
+  }
+
+  // src/dictionary-integration.js
+  function toEditorDictionary(dictionary) {
+    const classifications = Array.isArray(dictionary.classifications) ? dictionary.classifications : Object.entries(dictionary.classifications || {}).map(([generic_name_fixed, row]) => ({ generic_name_fixed, ...row }));
+    const displayOrder = (dictionary.displayOrder || []).map((row) => ({ ...row }));
+    const systems = new Map(displayOrder.filter((row) => row.level === "SYSTEM").map((row) => [row.system, row.order_system]));
+    return {
+      sourceMappings: (dictionary.sourceMappings || []).map((row) => ({ ...row })),
+      classifications: Object.fromEntries(classifications.map(({ generic_name_fixed, ...row }) => [generic_name_fixed, row])),
+      displayOrder: displayOrder.map((row) => row.level === "FAMILY" && row.order_system == null ? { ...row, order_system: systems.get(row.system) ?? null } : row)
+    };
+  }
+  function toCardDictionary(dictionary) {
+    return {
+      sourceMappings: dictionary.sourceMappings.map((row) => ({ ...row })),
+      classifications: Object.entries(dictionary.classifications).map(([generic_name_fixed, row]) => ({ generic_name_fixed, ...row })),
+      displayOrder: dictionary.displayOrder.map((row) => ({ ...row }))
+    };
+  }
+  function createCardDictionaryController(dictionary) {
+    const store = createDictionaryStore(toEditorDictionary(dictionary));
+    return {
+      getDraft: () => store.get(),
+      approve: (draft) => store.approve(draft),
+      getCardDictionary: () => toCardDictionary(store.get()),
+      isDirty: () => store.isDirty(),
+      markExported: () => store.markExported()
+    };
+  }
+
   // src/main.js
-  function saveJson(value, name) {
-    const url = URL.createObjectURL(new Blob([JSON.stringify(value, null, 2)], { type: "application/json" }));
+  function downloadJson(json2, name) {
+    const url = URL.createObjectURL(new Blob([json2], { type: "application/json" }));
     const a = document.createElement("a");
     a.href = url;
     a.download = name;
@@ -22371,13 +22948,20 @@ h1{font-size:19px;margin:2px 0 5px}
             matching.push({ patientId: p.patientId, patientName: p.patientName, room: p.room, rowType: "EMPTY", full_instruction: "\u05D0\u05D9\u05DF \u05D4\u05D5\u05E8\u05D0\u05D5\u05EA \u05D1\u05E1\u05D9\u05E0\u05D5\u05DF" });
         }
         table.replaceData(matching);
-      }, refresh = function() {
-        applyFilters();
-        message.textContent = cardState.dirty ? "\u05D9\u05E9 \u05E9\u05D9\u05E0\u05D5\u05D9\u05D9\u05DD \u05D1\u05DB\u05E8\u05D8\u05E1\u05EA \u05E9\u05D8\u05E8\u05DD \u05E0\u05E9\u05DE\u05E8\u05D5" : "";
+      }, refresh = function({ updateRows = true } = {}) {
+        if (updateRows) applyFilters();
+        message.textContent = (cardState.locked ? "\u05DB\u05E8\u05D8\u05E1\u05EA \u05E0\u05E2\u05D5\u05DC\u05D4 \xB7 " : "\u05DB\u05E8\u05D8\u05E1\u05EA \u05E4\u05EA\u05D5\u05D7\u05D4 \u05DC\u05E2\u05E8\u05D9\u05DB\u05D4 \xB7 ") + (cardState.dirty ? "\u05D9\u05E9 \u05E9\u05D9\u05E0\u05D5\u05D9\u05D9\u05DD \u05E9\u05D8\u05E8\u05DD \u05E0\u05E9\u05DE\u05E8\u05D5" : "\u05D0\u05D9\u05DF \u05E9\u05D9\u05E0\u05D5\u05D9\u05D9\u05DD \u05DC\u05D0 \u05E9\u05DE\u05D5\u05E8\u05D9\u05DD");
+      }, closeDictionary = function() {
+        if (editor?.hasChanges() && !confirm("\u05D9\u05E9 \u05E9\u05D9\u05E0\u05D5\u05D9\u05D9\u05DD \u05D1\u05D8\u05D9\u05D5\u05D8\u05D4 \u05E9\u05DC\u05D0 \u05D0\u05D5\u05E9\u05E8\u05D5. \u05DC\u05E1\u05D2\u05D5\u05E8 \u05D5\u05DC\u05D1\u05D8\u05DC \u05D0\u05D5\u05EA\u05DD?")) return;
+        editor?.destroy();
+        editor = null;
+        dictionaryPanel.hidden = true;
       };
       const bundle = readEmbeddedInput();
-      if (!bundle || bundle.mode !== "new") return renderShell(root, bundle);
-      const { cardState, dictionaryState, issues } = createInitialCardState(bundle);
+      if (!bundle) return renderShell(root, bundle);
+      const { cardState, dictionaryState, issues } = openLoaderBundle(bundle, createInitialCardState, openSavedSnapshot);
+      const dictionaryController = createCardDictionaryController(dictionaryState);
+      const currentDictionary = () => dictionaryController.getCardDictionary();
       const title = document.createElement("h1");
       title.textContent = "\u05E1\u05D3\u05E8\u05DF \u05EA\u05E8\u05D5\u05E4\u05D5\u05EA \u2014 " + (cardState.metadata.cardName || "\u05DB\u05E8\u05D8\u05E1\u05EA \u05D7\u05D3\u05E9\u05D4");
       const sources = document.createElement("div");
@@ -22389,10 +22973,10 @@ h1{font-size:19px;margin:2px 0 5px}
       grid.id = "medication-grid";
       const message = document.createElement("div");
       message.className = "meta";
-      const button = (label, action) => {
+      const button = (label2, action) => {
         const b = document.createElement("button");
-        b.textContent = label;
-        b.title = label;
+        b.textContent = label2;
+        b.title = label2;
         b.onclick = action;
         toolbar.append(b);
         return b;
@@ -22400,7 +22984,7 @@ h1{font-size:19px;margin:2px 0 5px}
       const noteFor = (id) => cardState.notes.find((n) => n.scope === "INSTRUCTION" && n.rowId === id);
       const state = { defaultSort: true, filters: {}, showAll: false };
       let table;
-      const currentRows = () => createViewRows(cardState, dictionaryState);
+      const currentRows = () => createViewRows(cardState, currentDictionary());
       const fieldValues = (field) => [...new Set(currentRows().map((r) => String(r[field] ?? "")).filter(Boolean))].sort((a, b) => a.localeCompare(b, "he", { numeric: true }));
       const columnFilter = (field) => {
         const holder = document.createElement("div");
@@ -22467,7 +23051,7 @@ h1{font-size:19px;margin:2px 0 5px}
         formatter: (cell) => {
           const row = cell.getRow().getData();
           if (state.defaultSort && ["room", "patientName", "patientId", "system", "family"].includes(field)) {
-            const prev = cell.getRow().getPrevRow()?.getData();
+            const prev = cell.getRow().getPrevRow()?.getData?.() ?? null;
             if (prev && prev.patientId === row.patientId) {
               if (["room", "patientName", "patientId"].includes(field)) return "";
               if (field === "system" && prev.system === row.system) return "";
@@ -22478,6 +23062,7 @@ h1{font-size:19px;margin:2px 0 5px}
         },
         ...field === "comment" ? { cellDblClick: (e, cell) => editComment(cell.getRow().getData()) } : {}
       });
+      root.replaceChildren(title, sources, toolbar, message, grid);
       table = new TabulatorFull$1(grid, {
         data: currentRows(),
         layout: "fitDataStretch",
@@ -22491,7 +23076,7 @@ h1{font-size:19px;margin:2px 0 5px}
         columns: cols.map(makeColumn),
         rowFormatter: (row) => {
           const data = row.getData();
-          const prev = row.getPrevRow()?.getData();
+          const prev = row.getPrevRow()?.getData?.() ?? null;
           row.getElement().classList.toggle("patient-start", !prev || prev.patientId !== data.patientId);
           row.getElement().classList.toggle("note-row", data.rowType === "NOTE");
         }
@@ -22517,20 +23102,99 @@ h1{font-size:19px;margin:2px 0 5px}
         const selected = table.getSelectedRows()[0]?.getData();
         if (!selected || cardState.locked) return;
         if (selected.rowType === "INSTRUCTION") return editComment(selected);
-        const text2 = prompt("\u05D4\u05E2\u05E8\u05EA \u05DE\u05D8\u05D5\u05E4\u05DC \u05D7\u05D3\u05E9\u05D4");
-        if (!text2) return;
-        cardState.notes.push({ noteId: crypto.randomUUID(), patientId: selected.patientId, scope: "PATIENT", text: text2, order: Date.now() });
+        const text3 = prompt("\u05D4\u05E2\u05E8\u05EA \u05DE\u05D8\u05D5\u05E4\u05DC \u05D7\u05D3\u05E9\u05D4");
+        if (!text3) return;
+        cardState.notes.push({ noteId: crypto.randomUUID(), patientId: selected.patientId, scope: "PATIENT", text: text3, order: Date.now() });
         cardState.dirty = true;
         refresh();
       });
-      button("\u05D9\u05D9\u05E6\u05D5\u05D0 Snapshot", () => saveJson(serializeSnapshot(cardState), "medication-snapshot.json"));
+      const saveButton = button("\u05E0\u05E2\u05D9\u05DC\u05D4 \u05D5\u05E9\u05DE\u05D9\u05E8\u05D4", async () => {
+        if (cardState.locked) return;
+        saveButton.disabled = true;
+        try {
+          const snapshot = prepareSnapshot(cardState);
+          const result = await saveSnapshotWithConfirmation(snapshot, snapshotFilename(snapshot.metadata.cardName), {
+            download: downloadJson,
+            confirmDownload: () => confirm("\u05D4\u05D0\u05DD \u05E7\u05D5\u05D1\u05E5 \u05D4-Snapshot \u05E0\u05E9\u05DE\u05E8 \u05D1\u05D4\u05E6\u05DC\u05D7\u05D4? \u05D0\u05D9\u05E9\u05D5\u05E8 \u05D9\u05E0\u05E2\u05DC \u05D0\u05EA \u05D4\u05DB\u05E8\u05D8\u05E1\u05EA; \u05D1\u05D9\u05D8\u05D5\u05DC \u05D9\u05E9\u05D0\u05D9\u05E8 \u05D0\u05D5\u05EA\u05D4 \u05E4\u05EA\u05D5\u05D7\u05D4.")
+          });
+          if (result.saved) {
+            finishSnapshotSave(cardState, snapshot);
+            refresh();
+          } else message.textContent = "\u05D4\u05E9\u05DE\u05D9\u05E8\u05D4 \u05D1\u05D5\u05D8\u05DC\u05D4 \u05D0\u05D5 \u05DC\u05D0 \u05D0\u05D5\u05E9\u05E8\u05D4; \u05D4\u05DB\u05E8\u05D8\u05E1\u05EA \u05E0\u05E9\u05D0\u05E8\u05D4 \u05E4\u05EA\u05D5\u05D7\u05D4 \u05DC\u05E2\u05E8\u05D9\u05DB\u05D4.";
+        } catch (error2) {
+          message.textContent = "\u05D4\u05E9\u05DE\u05D9\u05E8\u05D4 \u05E0\u05DB\u05E9\u05DC\u05D4: " + error2.message;
+        } finally {
+          saveButton.disabled = cardState.locked;
+          unlockButton.disabled = !cardState.locked;
+        }
+      });
+      const unlockButton = button("\u05E4\u05EA\u05D7 \u05DC\u05E2\u05E8\u05D9\u05DB\u05D4", () => {
+        unlockCard(cardState);
+        title.textContent = "\u05E1\u05D3\u05E8\u05DF \u05EA\u05E8\u05D5\u05E4\u05D5\u05EA \u2014 " + cardState.metadata.cardName;
+        saveButton.disabled = false;
+        unlockButton.disabled = true;
+        refresh();
+      });
+      saveButton.disabled = cardState.locked;
+      unlockButton.disabled = !cardState.locked;
+      const dictionaryPanel = document.createElement("section");
+      dictionaryPanel.id = "dictionary-panel";
+      dictionaryPanel.hidden = true;
+      const dictionaryHeading = document.createElement("h2");
+      dictionaryHeading.textContent = "\u05E2\u05E8\u05D9\u05DB\u05EA \u05DE\u05D9\u05DC\u05D5\u05DF \u05D4\u05EA\u05E8\u05D5\u05E4\u05D5\u05EA";
+      const dictionaryGrid = document.createElement("div");
+      const dictionaryMessage = document.createElement("div");
+      dictionaryMessage.className = "meta";
+      dictionaryMessage.setAttribute("role", "status");
+      const dictionaryToolbar = document.createElement("div");
+      dictionaryToolbar.className = "toolbar";
+      let editor = null;
+      const dictionaryButton = (label2, action) => {
+        const b = document.createElement("button");
+        b.type = "button";
+        b.textContent = label2;
+        b.onclick = action;
+        dictionaryToolbar.append(b);
+        return b;
+      };
+      dictionaryButton("\u05D0\u05E9\u05E8 \u05E9\u05D9\u05E0\u05D5\u05D9\u05D9\u05DD", () => {
+        if (!editor) return;
+        const result = dictionaryController.approve(editor.getDraft());
+        if (!result.ok) {
+          dictionaryMessage.textContent = "\u05D4\u05D0\u05D9\u05E9\u05D5\u05E8 \u05E0\u05DB\u05E9\u05DC: " + result.errors.map((e) => e.table + " / " + e.field + ": " + e.message).join("; ");
+          return;
+        }
+        editor.destroy();
+        editor = null;
+        dictionaryPanel.hidden = true;
+        refresh();
+        dictionaryExport.disabled = false;
+        message.textContent = "\u05E9\u05D9\u05E0\u05D5\u05D9\u05D9 \u05D4\u05DE\u05D9\u05DC\u05D5\u05DF \u05D0\u05D5\u05E9\u05E8\u05D5 \u05D1\u05D6\u05D9\u05DB\u05E8\u05D5\u05DF. \u05D9\u05E9 \u05DC\u05D9\u05D9\u05E6\u05D0 \u05D0\u05EA \u05D4\u05DE\u05D9\u05DC\u05D5\u05DF \u05DC\u05E7\u05D5\u05D1\u05E5 \u05E0\u05E4\u05E8\u05D3.";
+      });
+      dictionaryButton("\u05E1\u05D2\u05D5\u05E8 \u05DC\u05DC\u05D0 \u05D0\u05D9\u05E9\u05D5\u05E8", closeDictionary);
+      dictionaryPanel.append(dictionaryHeading, dictionaryToolbar, dictionaryMessage, dictionaryGrid);
+      root.append(dictionaryPanel);
+      button("\u05E2\u05E8\u05D9\u05DB\u05EA \u05DE\u05D9\u05DC\u05D5\u05DF", () => {
+        if (editor) {
+          dictionaryPanel.hidden = false;
+          return;
+        }
+        dictionaryMessage.textContent = "";
+        dictionaryPanel.hidden = false;
+        editor = mountDictionaryEditor(dictionaryGrid, dictionaryController.getDraft(), { Tabulator: TabulatorFull$1 });
+      });
+      const dictionaryExport = button("\u05D9\u05D9\u05E6\u05D5\u05D0 \u05DE\u05D9\u05DC\u05D5\u05DF", () => {
+        if (!dictionaryController.isDirty()) return;
+        downloadJson(JSON.stringify(dictionaryController.getDraft(), null, 2), "dictionary-updates.json");
+        message.textContent = "\u05D4\u05D5\u05E8\u05D3\u05EA \u05D4\u05DE\u05D9\u05DC\u05D5\u05DF \u05D4\u05D7\u05DC\u05D4. \u05E9\u05DE\u05D5\u05E8 \u05D0\u05EA \u05D4\u05E7\u05D5\u05D1\u05E5 \u05DC\u05E4\u05E0\u05D9 \u05E1\u05D2\u05D9\u05E8\u05EA \u05D4\u05DB\u05E8\u05D8\u05E1\u05EA.";
+      });
+      dictionaryExport.disabled = !dictionaryController.isDirty();
       button("\u05D0\u05D1\u05D7\u05D5\u05DF", () => renderShell(root, bundle));
-      message.textContent = "\u05D2\u05E8\u05E1\u05EA \u05DE\u05DE\u05E9\u05E7 \u05E8\u05D0\u05E9\u05D5\u05E0\u05D4 \u2014 \u05D4\u05E9\u05D5\u05D5\u05D0\u05D4 \u05D4\u05D9\u05E1\u05D8\u05D5\u05E8\u05D9\u05EA, \u05DE\u05E1\u05DA \u05E1\u05D9\u05D5\u05D5\u05D2 \u05DE\u05DC\u05D0, \u05E0\u05E2\u05D9\u05DC\u05D4 \u05D5\u05D4\u05D3\u05E4\u05E1\u05D4 \u05D8\u05E8\u05DD \u05DE\u05D5\u05DE\u05E9\u05D5.";
-      root.replaceChildren(title, sources, toolbar, message, grid);
-    } catch (error) {
+      refresh({ updateRows: false });
+    } catch (error2) {
       const p = document.createElement("p");
       p.className = "error";
-      p.textContent = "\u05E9\u05D2\u05D9\u05D0\u05D4 \u05D1\u05E2\u05D9\u05D1\u05D5\u05D3 \u05D4\u05DB\u05E8\u05D8\u05E1\u05EA: " + error.message;
+      p.textContent = "\u05E9\u05D2\u05D9\u05D0\u05D4 \u05D1\u05E2\u05D9\u05D1\u05D5\u05D3 \u05D4\u05DB\u05E8\u05D8\u05E1\u05EA: " + error2.message;
       root.replaceChildren(p);
     }
   }

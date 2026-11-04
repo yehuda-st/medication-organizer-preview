@@ -23305,11 +23305,6 @@ h1{font-size:19px;margin:2px 0 5px}
     copyTsv.textContent = "\u05D4\u05E2\u05EA\u05E7 \u05D8\u05D1\u05DC\u05D4 (TSV)";
     const paste = document.createElement("button");
     paste.textContent = "\u05D4\u05D3\u05D1\u05E7 \u05DE\u05D4\u05DC\u05D5\u05D7";
-    const pasteInput = document.createElement("textarea");
-    pasteInput.placeholder = "\u05D0\u05E4\u05E9\u05E8 \u05D2\u05DD \u05DC\u05D4\u05D3\u05D1\u05D9\u05E7 \u05DB\u05D0\u05DF \u05D8\u05E7\u05E1\u05D8 \u05DE\u05D5\u05E4\u05E8\u05D3 \u05D1\u05D8\u05D0\u05D1\u05D9\u05DD";
-    pasteInput.setAttribute("aria-label", "\u05EA\u05D5\u05DB\u05DF \u05DC\u05D4\u05D3\u05D1\u05E7\u05D4");
-    const applyPaste = document.createElement("button");
-    applyPaste.textContent = "\u05D4\u05D7\u05DC \u05D4\u05D3\u05D1\u05E7\u05D4 \u05D1\u05D8\u05D9\u05D5\u05D8\u05D4";
     const clearPopup = () => {
       if (popup) {
         popup.close();
@@ -23524,17 +23519,13 @@ h1{font-size:19px;margin:2px 0 5px}
     };
     copy.textContent = "\u05D4\u05E2\u05EA\u05E7 \u05D8\u05D1\u05DC\u05D4 (CSV)";
     paste.textContent = "\u05D4\u05D3\u05D1\u05E7 \u05DE\u05D4\u05DC\u05D5\u05D7 (CSV/TSV)";
-    pasteInput.placeholder = "\u05D4\u05D3\u05D1\u05E7 \u05DB\u05D0\u05DF CSV \u05D0\u05D5 TSV \u05DE\u05DC\u05D0 \u05DB\u05D5\u05DC\u05DC \u05DB\u05D5\u05EA\u05E8\u05D5\u05EA";
-    applyPaste.textContent = "\u05D1\u05D3\u05D5\u05E7 \u05D5\u05D4\u05D7\u05DC \u05D8\u05D1\u05DC\u05D4";
     copy.onclick = async () => {
       const csv2 = exportTableCsv(rowsFromDictionary(draft, current), current);
       try {
         await navigator.clipboard.writeText(csv2);
         message.textContent = "\u05DB\u05DC \u05D4\u05D8\u05D1\u05DC\u05D4 \u05D4\u05D5\u05E2\u05EA\u05E7\u05D4 \u05DB-CSV";
       } catch {
-        pasteInput.value = csv2;
-        pasteInput.select();
-        message.textContent = "\u05D4\u05E2\u05EA\u05E7 \u05D9\u05D3\u05E0\u05D9\u05EA \u05DE\u05E9\u05D3\u05D4 \u05D4\u05D8\u05E7\u05E1\u05D8";
+        message.textContent = "\u05D4\u05D4\u05E2\u05EA\u05E7\u05D4 \u05DC\u05DC\u05D5\u05D7 \u05E0\u05DB\u05E9\u05DC\u05D4. \u05D1\u05D3\u05D5\u05E7 \u05D4\u05E8\u05E9\u05D0\u05D5\u05EA \u05D2\u05D9\u05E9\u05D4 \u05DC\u05DC\u05D5\u05D7 \u05D1\u05D3\u05E4\u05D3\u05E4\u05DF.";
       }
     };
     copyTsv.onclick = async () => {
@@ -23543,9 +23534,7 @@ h1{font-size:19px;margin:2px 0 5px}
         await navigator.clipboard.writeText(tsv);
         message.textContent = "\u05DB\u05DC \u05D4\u05D8\u05D1\u05DC\u05D4 \u05D4\u05D5\u05E2\u05EA\u05E7\u05D4 \u05DB-TSV \u05DC\u05D0\u05E7\u05E1\u05DC";
       } catch {
-        pasteInput.value = tsv;
-        pasteInput.select();
-        message.textContent = "\u05D4\u05E2\u05EA\u05E7 \u05D9\u05D3\u05E0\u05D9\u05EA \u05DE\u05E9\u05D3\u05D4 \u05D4\u05D8\u05E7\u05E1\u05D8";
+        message.textContent = "\u05D4\u05D4\u05E2\u05EA\u05E7\u05D4 \u05DC\u05DC\u05D5\u05D7 \u05E0\u05DB\u05E9\u05DC\u05D4. \u05D1\u05D3\u05D5\u05E7 \u05D4\u05E8\u05E9\u05D0\u05D5\u05EA \u05D2\u05D9\u05E9\u05D4 \u05DC\u05DC\u05D5\u05D7 \u05D1\u05D3\u05E4\u05D3\u05E4\u05DF.";
       }
     };
     function pasteText(csv2) {
@@ -23563,15 +23552,12 @@ h1{font-size:19px;margin:2px 0 5px}
     }
     paste.onclick = async () => {
       try {
-        pasteInput.value = await navigator.clipboard.readText();
-        pasteText(pasteInput.value);
+        pasteText(await navigator.clipboard.readText());
       } catch {
-        pasteInput.focus();
-        message.textContent = "\u05D4\u05D3\u05D1\u05E7 CSV \u05D0\u05D5 TSV \u05D1\u05E9\u05D3\u05D4 \u05D4\u05D8\u05E7\u05E1\u05D8 \u05D5\u05DC\u05D7\u05E5 \u05D1\u05D3\u05D5\u05E7 \u05D5\u05D4\u05D7\u05DC";
+        message.textContent = "\u05DC\u05D0 \u05E0\u05D9\u05EA\u05DF \u05DC\u05E7\u05E8\u05D5\u05D0 \u05DE\u05D4\u05DC\u05D5\u05D7. \u05D0\u05E4\u05E9\u05E8 \u05D2\u05D9\u05E9\u05D4 \u05DC\u05DC\u05D5\u05D7 \u05D1\u05D3\u05E4\u05D3\u05E4\u05DF \u05D5\u05E0\u05E1\u05D4 \u05E9\u05D5\u05D1.";
       }
     };
-    applyPaste.onclick = () => pasteText(pasteInput.value);
-    controls.append(search, defaultIndicator, showAll, restoreDefault, copy, copyTsv, paste, pasteInput, applyPaste);
+    controls.append(search, defaultIndicator, showAll, restoreDefault, copy, copyTsv, paste);
     root.append(tabs, controls, message, grid);
     render();
     return {

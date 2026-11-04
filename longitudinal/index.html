@@ -23154,49 +23154,107 @@ h1{font-size:19px;margin:2px 0 5px}
     } else copy[table] = rows2.map((row) => ({ ...row }));
     return copy;
   }
-  function parseCells(tsv) {
-    return String(tsv).replace(/\r\n/g, "\n").replace(/\n$/, "").split("\n").map((line) => line.split("	"));
+  var csvEscape = (value) => {
+    const text3 = value == null ? "" : String(value);
+    return /[",\r\n]/.test(text3) ? '"' + text3.replace(/"/g, '""') + '"' : text3;
+  };
+  function exportTableCsv(rows2, table) {
+    const fields2 = TABLE_FIELDS[table];
+    if (!fields2) throw new Error("Unknown table");
+    return [fields2, ...rows2.map((row) => fields2.map((field) => row[field] ?? ""))].map((values) => values.map(csvEscape).join(",")).join("\r\n");
+  }
+  function parseCsv(text3) {
+    const source = String(text3).replace(/^\uFEFF/, "");
+    const rows2 = [];
+    let row = [], value = "", quoted = false, closed = false;
+    for (let i = 0; i < source.length; i++) {
+      const ch = source[i];
+      if (quoted) {
+        if (ch === '"' && source[i + 1] === '"') {
+          value += '"';
+          i++;
+        } else if (ch === '"') {
+          quoted = false;
+          closed = true;
+        } else value += ch;
+      } else if (ch === '"' && value === "" && !closed) quoted = true;
+      else if (ch === ",") {
+        row.push(value);
+        value = "";
+        closed = false;
+      } else if (ch === "\n" || ch === "\r") {
+        if (ch === "\r" && source[i + 1] === "\n") i++;
+        row.push(value);
+        rows2.push(row);
+        row = [];
+        value = "";
+        closed = false;
+      } else {
+        if (ch === '"' || closed) throw new Error("CSV contains invalid quoting");
+        value += ch;
+      }
+    }
+    if (quoted) throw new Error("CSV contains an unclosed quoted field");
+    if (row.length || value !== "" || closed || !/[\r\n]$/.test(source)) {
+      row.push(value);
+      rows2.push(row);
+    }
+    return rows2;
+  }
+  var keyFor = (table, row) => {
+    const fields2 = PROTECTED[table];
+    return JSON.stringify(fields2.map((field) => String(row[field] ?? "")));
+  };
+  function prepareTableCsvReplace(rows2, table, csv2) {
+    const fields2 = TABLE_FIELDS[table];
+    if (!fields2) throw new Error("Unknown table");
+    const matrix = parseCsv(csv2);
+    if (!matrix.length) throw new Error("CSV is empty");
+    const headers = matrix[0].map((value) => value.trim());
+    if (headers.length !== fields2.length || new Set(headers).size !== fields2.length || fields2.some((field) => !headers.includes(field))) {
+      throw new Error("CSV headers must match all table field names exactly (in any order)");
+    }
+    const existing = /* @__PURE__ */ new Map();
+    for (const row of rows2) {
+      const key2 = keyFor(table, row);
+      if (existing.has(key2)) throw new Error("Duplicate key in existing table: " + key2);
+      existing.set(key2, row);
+    }
+    const updated = /* @__PURE__ */ new Map();
+    for (const values of matrix.slice(1)) {
+      if (values.length !== headers.length) throw new Error("CSV row has incorrect column count");
+      const row = Object.fromEntries(headers.map((header, i) => [header, values[i]]));
+      const key2 = keyFor(table, row);
+      if (updated.has(key2)) throw new Error("Duplicate key in pasted CSV: " + key2);
+      if (!existing.has(key2)) throw new Error("CSV has an unknown or modified key: " + key2);
+      const previous = existing.get(key2);
+      const next = { ...previous };
+      for (const field of fields2) {
+        if (!isEditable(table, previous, field)) continue;
+        let value = row[field];
+        if (table === "displayOrder" && field.startsWith("order_")) {
+          if (value.trim() === "" && field === "order_family") value = null;
+          else if (value.trim() !== "" && Number.isFinite(Number(value))) value = Number(value);
+          else throw new Error("Invalid order value: " + value);
+        }
+        if (field === "review_status" && !["DEFAULT", "REVIEWED"].includes(value)) throw new Error("Invalid review_status: " + value);
+        next[field] = field === "clinicalGroup" ? String(value).trim() : value;
+      }
+      updated.set(key2, next);
+    }
+    if (updated.size !== existing.size) throw new Error("CSV is missing existing rows");
+    const result = rows2.map((row) => updated.get(keyFor(table, row)));
+    if (table === "displayOrder") {
+      const systems = new Map(result.filter((row) => row.level === "SYSTEM").map((row) => [row.system, row.order_system]));
+      for (const row of result) if (row.level === "FAMILY" && systems.has(row.system)) row.order_system = systems.get(row.system);
+    }
+    const changed = result.reduce((count, row, i) => count + fields2.filter((field) => String(row[field] ?? "") !== String(rows2[i][field] ?? "")).length, 0);
+    return { rows: result, changed };
   }
   function isEditable(table, row, field) {
     if (PROTECTED[table]?.includes(field)) return false;
     if (table === "displayOrder") return row.level === "SYSTEM" ? field === "order_system" || field === "clinicalGroup" : row.level === "FAMILY" ? field === "order_family" || field === "clinicalGroup" : false;
     return true;
-  }
-  function pasteVisibleCells(rows2, visibleIndices, table, startVisibleRow, startColumn, tsv) {
-    const fields2 = TABLE_FIELDS[table];
-    if (!fields2) throw new Error("Unknown table");
-    const matrix = parseCells(tsv), result = rows2.map((row) => ({ ...row }));
-    let applied = 0, skipped = 0;
-    for (let y = 0; y < matrix.length; y++) {
-      const index = visibleIndices[startVisibleRow + y];
-      if (index === void 0) break;
-      for (let x = 0; x < matrix[y].length; x++) {
-        const field = fields2[startColumn + x];
-        if (!field) break;
-        if (!isEditable(table, result[index], field)) {
-          skipped++;
-          continue;
-        }
-        let value = matrix[y][x];
-        if (table === "displayOrder" && field.startsWith("order_")) {
-          if (value.trim() === "" && field === "order_family") value = null;
-          else if (value.trim() !== "" && Number.isFinite(Number(value))) value = Number(value);
-        }
-        result[index][field] = field === "clinicalGroup" ? String(value).trim() : value;
-        applied++;
-      }
-    }
-    if (table === "displayOrder") {
-      for (const row of result.filter((row2) => row2.level === "SYSTEM")) {
-        const previous = rows2.find((old) => old.level === "SYSTEM" && old.system === row.system);
-        if (previous && previous.order_system !== row.order_system) {
-          for (const family of result) {
-            if (family.level === "FAMILY" && family.system === row.system) family.order_system = row.order_system;
-          }
-        }
-      }
-    }
-    return { rows: result, applied, skipped };
   }
   function mountDictionaryEditor(container, activeDictionary, { Tabulator: Tabulator2, onDraftChange = () => {
   } } = {}) {
@@ -23441,35 +23499,41 @@ h1{font-size:19px;margin:2px 0 5px}
       search.value = "";
       render();
     };
+    copy.textContent = "\u05D4\u05E2\u05EA\u05E7 \u05D8\u05D1\u05DC\u05D4 (CSV)";
+    paste.textContent = "\u05D4\u05D3\u05D1\u05E7 \u05D8\u05D1\u05DC\u05D4 (CSV)";
+    pasteInput.placeholder = "\u05D4\u05D3\u05D1\u05E7 \u05DB\u05D0\u05DF CSV \u05DE\u05DC\u05D0 \u05DB\u05D5\u05DC\u05DC \u05DB\u05D5\u05EA\u05E8\u05D5\u05EA";
+    applyPaste.textContent = "\u05D1\u05D3\u05D5\u05E7 \u05D5\u05D4\u05D7\u05DC CSV";
     copy.onclick = async () => {
-      const tsv = visible().map((row) => TABLE_FIELDS[current].map((f) => String(row[f] ?? "")).join("	")).join("\n");
+      const csv2 = exportTableCsv(rowsFromDictionary(draft, current), current);
       try {
-        await navigator.clipboard.writeText(tsv);
-        message.textContent = "\u05D4\u05E9\u05D5\u05E8\u05D5\u05EA \u05D4\u05D2\u05DC\u05D5\u05D9\u05D5\u05EA \u05D4\u05D5\u05E2\u05EA\u05E7\u05D5";
+        await navigator.clipboard.writeText(csv2);
+        message.textContent = "\u05DB\u05DC \u05D4\u05D8\u05D1\u05DC\u05D4 \u05D4\u05D5\u05E2\u05EA\u05E7\u05D4 \u05DB-CSV";
       } catch {
-        pasteInput.value = tsv;
+        pasteInput.value = csv2;
         pasteInput.select();
         message.textContent = "\u05D4\u05E2\u05EA\u05E7 \u05D9\u05D3\u05E0\u05D9\u05EA \u05DE\u05E9\u05D3\u05D4 \u05D4\u05D8\u05E7\u05E1\u05D8";
       }
     };
-    function pasteText(tsv) {
-      const all = rowsFromDictionary(draft, current);
-      const visibleIndices = table.getRows("active").map((row) => row.getData().__draftIndex);
-      const result = pasteVisibleCells(all, visibleIndices, current, Math.max(0, focus.row), focus.col, tsv);
-      draft = dictionaryFromRows(draft, current, result.rows);
-      onDraftChange(createDraft(draft));
-      for (const row of table.getRows()) {
-        const index = row.getData().__draftIndex;
-        if (Number.isInteger(index) && result.rows[index]) row.update({ ...result.rows[index], __draftIndex: index });
+    function pasteText(csv2) {
+      try {
+        const all = rowsFromDictionary(draft, current);
+        const result = prepareTableCsvReplace(all, current, csv2);
+        if (!window.confirm(`\u05E0\u05D1\u05D3\u05E7\u05D5 ${all.length} \u05E8\u05E9\u05D5\u05DE\u05D5\u05EA; ${result.changed} \u05E2\u05E8\u05DB\u05D9\u05DD \u05D9\u05E9\u05EA\u05E0\u05D5. \u05DC\u05D4\u05D7\u05D9\u05DC \u05D0\u05EA \u05D4\u05D4\u05D7\u05DC\u05E4\u05D4 \u05D1\u05D8\u05D9\u05D5\u05D8\u05D4?`)) return;
+        draft = dictionaryFromRows(draft, current, result.rows);
+        onDraftChange(createDraft(draft));
+        render();
+        message.textContent = `\u05E2\u05D5\u05D3\u05DB\u05E0\u05D5 ${result.changed} \u05E2\u05E8\u05DB\u05D9\u05DD \u05D1\u05D8\u05D9\u05D5\u05D8\u05D4 (${all.length} \u05E8\u05E9\u05D5\u05DE\u05D5\u05EA)`;
+      } catch (error2) {
+        message.textContent = "CSV \u05DC\u05D0 \u05D4\u05D5\u05D7\u05DC: " + error2.message;
       }
-      message.textContent = `\u05E2\u05D5\u05D3\u05DB\u05E0\u05D5 ${result.applied} \u05EA\u05D0\u05D9\u05DD; \u05D3\u05D5\u05DC\u05D2\u05D5 ${result.skipped} \u05EA\u05D0\u05D9 \u05DE\u05E4\u05EA\u05D7 \u05DE\u05D5\u05D2\u05E0\u05D9\u05DD`;
     }
     paste.onclick = async () => {
       try {
-        pasteText(await navigator.clipboard.readText());
+        pasteInput.value = await navigator.clipboard.readText();
+        pasteText(pasteInput.value);
       } catch {
         pasteInput.focus();
-        message.textContent = "\u05D4\u05D3\u05D1\u05E7 \u05D1\u05E9\u05D3\u05D4 \u05D4\u05D8\u05E7\u05E1\u05D8 \u05D5\u05DC\u05D7\u05E5 \u05D4\u05D7\u05DC \u05D4\u05D3\u05D1\u05E7\u05D4";
+        message.textContent = "\u05D4\u05D3\u05D1\u05E7 CSV \u05D1\u05E9\u05D3\u05D4 \u05D4\u05D8\u05E7\u05E1\u05D8 \u05D5\u05DC\u05D7\u05E5 \u05D1\u05D3\u05D5\u05E7 \u05D5\u05D4\u05D7\u05DC";
       }
     };
     applyPaste.onclick = () => pasteText(pasteInput.value);

@@ -23206,6 +23206,22 @@ h1{font-size:19px;margin:2px 0 5px}
     }
     return rows2;
   }
+  function parseTableClipboard(text3, table) {
+    const fields2 = TABLE_FIELDS[table];
+    if (!fields2) throw new Error("Unknown table");
+    const source = String(text3).replace(/^\uFEFF/, "");
+    const candidates = [];
+    for (const delimiter of [",", "	"]) {
+      try {
+        const matrix = delimiter === "," ? parseCsv(source) : source.replace(/\r\n/g, "\n").replace(/\r/g, "\n").replace(/\n$/, "").split("\n").map((line) => line.split("	"));
+        const headers = (matrix[0] || []).map((value) => value.trim());
+        if (headers.length === fields2.length && new Set(headers).size === fields2.length && fields2.every((field) => headers.includes(field))) candidates.push(matrix);
+      } catch {
+      }
+    }
+    if (candidates.length !== 1) throw new Error("Cannot identify CSV/TSV headers matching the selected table");
+    return candidates[0];
+  }
   var keyFor = (table, row) => {
     const fields2 = PROTECTED[table];
     return JSON.stringify(fields2.map((field) => String(row[field] ?? "")));
@@ -23213,7 +23229,7 @@ h1{font-size:19px;margin:2px 0 5px}
   function prepareTableCsvReplace(rows2, table, csv2) {
     const fields2 = TABLE_FIELDS[table];
     if (!fields2) throw new Error("Unknown table");
-    const matrix = parseCsv(csv2);
+    const matrix = parseTableClipboard(csv2, table);
     if (!matrix.length) throw new Error("CSV is empty");
     const headers = matrix[0].map((value) => value.trim());
     if (headers.length !== fields2.length || new Set(headers).size !== fields2.length || fields2.some((field) => !headers.includes(field))) {
@@ -23507,9 +23523,9 @@ h1{font-size:19px;margin:2px 0 5px}
       render();
     };
     copy.textContent = "\u05D4\u05E2\u05EA\u05E7 \u05D8\u05D1\u05DC\u05D4 (CSV)";
-    paste.textContent = "\u05D4\u05D3\u05D1\u05E7 \u05D8\u05D1\u05DC\u05D4 (CSV)";
-    pasteInput.placeholder = "\u05D4\u05D3\u05D1\u05E7 \u05DB\u05D0\u05DF CSV \u05DE\u05DC\u05D0 \u05DB\u05D5\u05DC\u05DC \u05DB\u05D5\u05EA\u05E8\u05D5\u05EA";
-    applyPaste.textContent = "\u05D1\u05D3\u05D5\u05E7 \u05D5\u05D4\u05D7\u05DC CSV";
+    paste.textContent = "\u05D4\u05D3\u05D1\u05E7 \u05DE\u05D4\u05DC\u05D5\u05D7 (CSV/TSV)";
+    pasteInput.placeholder = "\u05D4\u05D3\u05D1\u05E7 \u05DB\u05D0\u05DF CSV \u05D0\u05D5 TSV \u05DE\u05DC\u05D0 \u05DB\u05D5\u05DC\u05DC \u05DB\u05D5\u05EA\u05E8\u05D5\u05EA";
+    applyPaste.textContent = "\u05D1\u05D3\u05D5\u05E7 \u05D5\u05D4\u05D7\u05DC \u05D8\u05D1\u05DC\u05D4";
     copy.onclick = async () => {
       const csv2 = exportTableCsv(rowsFromDictionary(draft, current), current);
       try {
@@ -23542,7 +23558,7 @@ h1{font-size:19px;margin:2px 0 5px}
         render();
         message.textContent = `\u05E2\u05D5\u05D3\u05DB\u05E0\u05D5 ${result.changed} \u05E2\u05E8\u05DB\u05D9\u05DD \u05D1\u05D8\u05D9\u05D5\u05D8\u05D4 (${all.length} \u05E8\u05E9\u05D5\u05DE\u05D5\u05EA)`;
       } catch (error2) {
-        message.textContent = "CSV \u05DC\u05D0 \u05D4\u05D5\u05D7\u05DC: " + error2.message;
+        message.textContent = "\u05D4\u05D8\u05D1\u05DC\u05D4 \u05DC\u05D0 \u05D4\u05D5\u05D7\u05DC\u05D4: " + error2.message;
       }
     }
     paste.onclick = async () => {
@@ -23551,7 +23567,7 @@ h1{font-size:19px;margin:2px 0 5px}
         pasteText(pasteInput.value);
       } catch {
         pasteInput.focus();
-        message.textContent = "\u05D4\u05D3\u05D1\u05E7 CSV \u05D1\u05E9\u05D3\u05D4 \u05D4\u05D8\u05E7\u05E1\u05D8 \u05D5\u05DC\u05D7\u05E5 \u05D1\u05D3\u05D5\u05E7 \u05D5\u05D4\u05D7\u05DC";
+        message.textContent = "\u05D4\u05D3\u05D1\u05E7 CSV \u05D0\u05D5 TSV \u05D1\u05E9\u05D3\u05D4 \u05D4\u05D8\u05E7\u05E1\u05D8 \u05D5\u05DC\u05D7\u05E5 \u05D1\u05D3\u05D5\u05E7 \u05D5\u05D4\u05D7\u05DC";
       }
     };
     applyPaste.onclick = () => pasteText(pasteInput.value);

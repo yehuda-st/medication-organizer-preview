@@ -23435,9 +23435,6 @@ h1{font-size:19px;margin:2px 0 5px}
       cellClick: (e, cell) => {
         const active = table.getRows("active");
         focus = { row: active.indexOf(cell.getRow()), col: index };
-        if (!isEditable(current, cell.getRow().getData(), field)) return;
-        if (e.target.closest?.("input,textarea")) return;
-        cell.edit();
       }
     }));
     function render() {
@@ -23456,9 +23453,10 @@ h1{font-size:19px;margin:2px 0 5px}
         layout: "fitDataStretch",
         height: "500px",
         clipboard: true,
+        editTriggerEvent: "click",
         selectableRange: 1,
-        selectableRangeColumns: true,
-        selectableRangeRows: true,
+        selectableRangeColumns: false,
+        selectableRangeRows: false,
         clipboardCopyConfig: { rowHeaders: false, columnHeaders: false }
       });
       table.on("cellEdited", updateCell);

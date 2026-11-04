@@ -23163,6 +23163,11 @@ h1{font-size:19px;margin:2px 0 5px}
     if (!fields2) throw new Error("Unknown table");
     return [fields2, ...rows2.map((row) => fields2.map((field) => row[field] ?? ""))].map((values) => values.map(csvEscape).join(",")).join("\r\n");
   }
+  function exportTableTsv(rows2, table) {
+    const fields2 = TABLE_FIELDS[table];
+    if (!fields2) throw new Error("Unknown table");
+    return [fields2, ...rows2.map((row) => fields2.map((field) => String(row[field] ?? "").replace(/[\t\r\n]/g, " ")))].map((values) => values.join("	")).join("\r\n");
+  }
   function parseCsv(text3) {
     const source = String(text3).replace(/^\uFEFF/, "");
     const rows2 = [];
@@ -23280,6 +23285,8 @@ h1{font-size:19px;margin:2px 0 5px}
     search.placeholder = "\u05E1\u05D9\u05E0\u05D5\u05DF \u05E8\u05E9\u05D5\u05DE\u05D5\u05EA";
     const copy = document.createElement("button");
     copy.textContent = "\u05D4\u05E2\u05EA\u05E7 \u05E9\u05D5\u05E8\u05D5\u05EA \u05D2\u05DC\u05D5\u05D9\u05D5\u05EA";
+    const copyTsv = document.createElement("button");
+    copyTsv.textContent = "\u05D4\u05E2\u05EA\u05E7 \u05D8\u05D1\u05DC\u05D4 (TSV)";
     const paste = document.createElement("button");
     paste.textContent = "\u05D4\u05D3\u05D1\u05E7 \u05DE\u05D4\u05DC\u05D5\u05D7";
     const pasteInput = document.createElement("textarea");
@@ -23514,6 +23521,17 @@ h1{font-size:19px;margin:2px 0 5px}
         message.textContent = "\u05D4\u05E2\u05EA\u05E7 \u05D9\u05D3\u05E0\u05D9\u05EA \u05DE\u05E9\u05D3\u05D4 \u05D4\u05D8\u05E7\u05E1\u05D8";
       }
     };
+    copyTsv.onclick = async () => {
+      const tsv = exportTableTsv(rowsFromDictionary(draft, current), current);
+      try {
+        await navigator.clipboard.writeText(tsv);
+        message.textContent = "\u05DB\u05DC \u05D4\u05D8\u05D1\u05DC\u05D4 \u05D4\u05D5\u05E2\u05EA\u05E7\u05D4 \u05DB-TSV \u05DC\u05D0\u05E7\u05E1\u05DC";
+      } catch {
+        pasteInput.value = tsv;
+        pasteInput.select();
+        message.textContent = "\u05D4\u05E2\u05EA\u05E7 \u05D9\u05D3\u05E0\u05D9\u05EA \u05DE\u05E9\u05D3\u05D4 \u05D4\u05D8\u05E7\u05E1\u05D8";
+      }
+    };
     function pasteText(csv2) {
       try {
         const all = rowsFromDictionary(draft, current);
@@ -23537,7 +23555,7 @@ h1{font-size:19px;margin:2px 0 5px}
       }
     };
     applyPaste.onclick = () => pasteText(pasteInput.value);
-    controls.append(search, defaultIndicator, showAll, restoreDefault, copy, paste, pasteInput, applyPaste);
+    controls.append(search, defaultIndicator, showAll, restoreDefault, copy, copyTsv, paste, pasteInput, applyPaste);
     root.append(tabs, controls, message, grid);
     render();
     return {

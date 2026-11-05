@@ -23397,6 +23397,32 @@ h1{font-size:19px;margin:2px 0 5px}
       onDraftChange(createDraft(draft));
     };
     const visible = () => table.getRows("active").map((row) => row.getData());
+    let lastPointer = null;
+    grid.addEventListener("pointerdown", (event) => {
+      if (event.button !== 0 || !table) return;
+      const element = event.target.closest?.(".tabulator-cell");
+      if (!element || !grid.contains(element)) return;
+      const inEditor = event.target.closest?.("input,textarea");
+      if (inEditor && element.contains(inEditor)) {
+        event.stopPropagation();
+        lastPointer = null;
+        return;
+      }
+      const now = Date.now();
+      const same = lastPointer?.element === element && now - lastPointer.time < 350 && Math.abs(event.clientX - lastPointer.x) <= 6 && Math.abs(event.clientY - lastPointer.y) <= 6;
+      lastPointer = same ? null : { element, time: now, x: event.clientX, y: event.clientY };
+      if (!same) return;
+      const input2 = element.querySelector("input,textarea");
+      if (input2) {
+        event.preventDefault();
+        input2.focus();
+        input2.select();
+      }
+    }, true);
+    grid.addEventListener("mousedown", (event) => {
+      const editor = event.target.closest?.(".tabulator-cell input, .tabulator-cell textarea");
+      if (editor && grid.contains(editor)) event.stopPropagation();
+    }, true);
     const columns = () => TABLE_FIELDS[current].map((field, index) => ({
       titleFormatter: () => label[field] || field,
       title: label[field] || field,

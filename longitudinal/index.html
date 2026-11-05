@@ -24048,6 +24048,8 @@ h1{font-size:19px;margin:2px 0 5px}
         resizable: true,
         headerSort: false,
         titleFormatter: () => title2,
+        // Clipboard should retain repeated patient/hierarchy values hidden by the screen formatter.
+        ...hierarchyFields.has(field) ? { formatterClipboard: (cell) => String(cell.getValue() ?? "") } : {},
         headerMenu: () => [],
         frozen: field === "room" || field === "patientName",
         tooltip: (cell) => observationFields.has(field) ? field === "lastSeenDateTime" && !["STOP", "HISTORY"].includes(cell.getRow().getData().status) ? "" : observationTooltip(cell.getValue()) : field === "full_instruction" ? String(cell.getValue() ?? "") + (Number(cell.getRow().getData().copyCount) > 1 ? " \xD7" + cell.getRow().getData().copyCount : "") : String(cell.getValue() ?? ""),
@@ -24102,6 +24104,7 @@ h1{font-size:19px;margin:2px 0 5px}
         selectableRows: true,
         selectableRowsRangeMode: "click",
         clipboard: true,
+        clipboardCopyRowRange: "selected",
         clipboardCopyStyled: false,
         columnDefaults: { vertAlign: "middle" },
         columns: cols.map(makeColumn),

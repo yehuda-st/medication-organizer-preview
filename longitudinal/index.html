@@ -24238,8 +24238,11 @@ ${exportTableTsv(classificationRows, "classifications")}`;
         ...field === "attentionReason" ? {
           // Do not invoke Tabulator's cell editor: its internal focus/scroll handling
           // can reset the horizontal scroll position on wide RTL grids.
-          cellDblClick: (event, cell) => {
+          cellClick: (event, cell) => {
             if (cardState.locked) return;
+            table.deselectRow();
+            selectionAnchor = null;
+            updateSelectionUI();
             const row = cell.getRow().getData();
             const target = markTarget(row);
             if (!target) return;
@@ -24351,11 +24354,11 @@ ${exportTableTsv(classificationRows, "classifications")}`;
         if (event.button !== 0 || !event.shiftKey) return;
         if (event.target.closest('button,input,textarea,select,[contenteditable="true"]')) return;
         const hit = cellTarget(event);
-        if (hit && !markFields.has(hit.field)) event.preventDefault();
+        if (hit && !markFields.has(hit.field) && hit.field !== "attentionReason") event.preventDefault();
       }, true);
       grid.addEventListener("click", (event) => {
         const hit = cellTarget(event);
-        if (!hit || markFields.has(hit.field) || event.target.closest('button,input,textarea,select,[contenteditable="true"]')) return;
+        if (!hit || markFields.has(hit.field) || hit.field === "attentionReason" || event.target.closest('button,input,textarea,select,[contenteditable="true"]')) return;
         event.stopImmediatePropagation();
         event.preventDefault();
         selectFromCell(hit.row, hit.group, {

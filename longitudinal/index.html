@@ -24236,42 +24236,52 @@ ${exportTableTsv(classificationRows, "classifications")}`;
           return String(cell.getValue() ?? "");
         },
         ...field === "attentionReason" ? {
-          cellDblClick: (e, cell) => {
-            if (!cardState.locked && markTarget(cell.getRow().getData())) cell.edit(true);
-          },
-          editable: (cell) => !cardState.locked && !!markTarget(cell.getRow().getData()),
-          editor: (cell, onRendered, success, cancel) => {
+          // Do not invoke Tabulator's cell editor: its internal focus/scroll handling
+          // can reset the horizontal scroll position on wide RTL grids.
+          cellDblClick: (event, cell) => {
+            if (cardState.locked) return;
+            const row = cell.getRow().getData();
+            const target = markTarget(row);
+            if (!target) return;
+            const element = cell.getElement();
+            if (element.querySelector(".attention-reason-editor")) return;
+            const oldValue = String(target.attentionReason ?? "");
             const input2 = document.createElement("input");
             input2.type = "text";
-            input2.value = String(cell.getValue() ?? "");
+            input2.value = oldValue;
             input2.dir = "auto";
             input2.className = "attention-reason-editor";
-            const commit = () => success(input2.value);
-            input2.addEventListener("keydown", (event) => {
-              if (event.key === "Enter") {
-                event.preventDefault();
-                commit();
-              } else if (event.key === "Escape") {
-                event.preventDefault();
-                cancel();
+            element.textContent = "";
+            element.append(input2);
+            let finished = false;
+            const finish = (save) => {
+              if (finished) return;
+              finished = true;
+              const value = input2.value;
+              input2.remove();
+              element.textContent = save ? value : oldValue;
+              if (save && value !== oldValue) {
+                target.attentionReason = value;
+                row.attentionReason = value;
+                cardState.dirty = true;
+                refresh({ updateRows: false });
               }
-              event.stopPropagation();
+            };
+            input2.addEventListener("keydown", (e) => {
+              if (e.key === "Enter") {
+                e.preventDefault();
+                finish(true);
+              } else if (e.key === "Escape") {
+                e.preventDefault();
+                finish(false);
+              }
+              e.stopPropagation();
             });
-            input2.addEventListener("blur", commit);
-            onRendered(() => {
-              input2.focus({ preventScroll: true });
-              input2.setSelectionRange(input2.value.length, input2.value.length);
-            });
-            return input2;
-          },
-          cellEdited: (cell) => {
-            const target = markTarget(cell.getRow().getData());
-            if (!target) return;
-            const value = String(cell.getValue() ?? "");
-            if ((target.attentionReason || "") === value) return;
-            target.attentionReason = value;
-            cardState.dirty = true;
-            refresh({ updateRows: false });
+            input2.addEventListener("blur", () => finish(true));
+            input2.addEventListener("click", (e) => e.stopPropagation());
+            input2.addEventListener("dblclick", (e) => e.stopPropagation());
+            input2.focus({ preventScroll: true });
+            input2.setSelectionRange(input2.value.length, input2.value.length);
           }
         } : {},
         ...markFields.has(field) ? { cellClick: (e, cell) => toggleMark(cell.getRow().getData(), field) } : {},

@@ -24395,6 +24395,22 @@ ${exportTableTsv(classificationRows, "classifications")}`;
       toolbar.append(allLabel);
       const signButton = button("\u05D7\u05EA\u05D9\u05DE\u05D4", () => applyReview(table.getSelectedRows().map((r) => r.getData()), true));
       const unsignButton = button("\u05D1\u05D9\u05D8\u05D5\u05DC \u05D7\u05EA\u05D9\u05DE\u05D4", () => applyReview(table.getSelectedRows().map((r) => r.getData()), false));
+      const clearAttentionButton = button("\u05DE\u05D7\u05D9\u05E7\u05EA \u05E1\u05D9\u05DE\u05D5\u05DF \u05DC\u05E2\u05D9\u05D5\u05DF", () => {
+        if (cardState.locked) return;
+        const targets = [...new Set(table.getSelectedRows().map((r) => markTarget(r.getData())).filter(Boolean))];
+        if (!targets.length) return;
+        if (!confirm("\u05DC\u05DE\u05D7\u05D5\u05E7 \u05E1\u05D9\u05DE\u05D5\u05DF \u05DC\u05E2\u05D9\u05D5\u05DF, \u05EA\u05D0\u05E8\u05D9\u05DA \u05D5\u05E1\u05D9\u05D1\u05EA \u05E2\u05D9\u05D5\u05DF \u05E2\u05D1\u05D5\u05E8 " + targets.length + " \u05E9\u05D5\u05E8\u05D5\u05EA?")) return;
+        let changed = false;
+        for (const target of targets) {
+          if (target.attentionMarkedAt || target.attentionReason) changed = true;
+          target.attentionMarkedAt = null;
+          target.attentionReason = "";
+        }
+        if (changed) {
+          cardState.dirty = true;
+          refresh();
+        }
+      });
       const noteButton = button("\u05D4\u05E2\u05E8\u05D4", () => {
         const selected = table.getSelectedRows()[0]?.getData();
         if (!selected || cardState.locked) return;
@@ -24405,6 +24421,7 @@ ${exportTableTsv(classificationRows, "classifications")}`;
         noteButton.disabled = cardState.locked || table.getSelectedRows().length === 0;
         signButton.disabled = disabled;
         unsignButton.disabled = disabled;
+        clearAttentionButton.disabled = disabled;
       };
       table.on("rowSelectionChanged", updateNoteButton);
       noteButton.disabled = true;

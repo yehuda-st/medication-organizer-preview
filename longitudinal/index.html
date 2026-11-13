@@ -85,11 +85,14 @@ h1{font-size:17px;margin:0}
 .column-picker-close{font-size:22px;line-height:1;min-width:30px;min-height:30px;cursor:pointer;border:0;background:transparent}
 .column-picker-list{overflow-y:auto;min-height:0;padding:8px 14px 12px}
 .source-value bdi{direction:ltr;unicode-bidi:isolate;font-variant-numeric:tabular-nums}
+
+#medication-grid .tabulator-cell.cell-range-selected{background:#bfdbfe!important;outline:1px solid #2563eb;outline-offset:-1px;color:#111827!important}
+.toolbar button.active{background:#dbeafe;border-color:#2563eb;font-weight:600}
 </style>
 </head>
 <body>
   <main id="app" aria-live="polite"></main>
-  <script id="organizer-data" type="application/json">{"dictionary":{"classifications":[{"family":"Diuretics","generic_name_fixed":"FUROSEMIDE","generic_name_nice":"FUROSEMIDE","system":"Cardiovascular"},{"family":"Diuretics","generic_name_fixed":"SPIRONOLACTONE","generic_name_nice":"SPIRONOLACTONE","system":"Cardiovascular"},{"family":"Beta blockers","generic_name_fixed":"BISOPROLOL","generic_name_nice":"BISOPROLOL","system":"Cardiovascular"},{"family":"לא מסווג","generic_name_fixed":"AMLODIPINE","generic_name_nice":"Amlodipine","system":"לא מסווג"}],"displayOrder":[{"family":"","level":"SYSTEM","order_family":null,"order_system":10,"system":"Cardiovascular"},{"family":"Diuretics","level":"FAMILY","order_family":10,"order_system":null,"system":"Cardiovascular"},{"family":"Beta blockers","level":"FAMILY","order_family":20,"order_system":null,"system":"Cardiovascular"},{"family":"","level":"SYSTEM","order_family":null,"order_system":999999,"system":"לא מסווג"},{"family":"לא מסווג","level":"FAMILY","order_family":999999,"order_system":null,"system":"לא מסווג"}],"sourceMappings":[{"commercial_name":"FUROSEMIDE BRAND","full_generic_name":"FUROSEMIDE","generic_name_fixed":"FUROSEMIDE","review_status":"DEFAULT"},{"commercial_name":"SPIRONOLACTONE BRAND","full_generic_name":"SPIRONOLACTONE","generic_name_fixed":"SPIRONOLACTONE","review_status":"DEFAULT"},{"commercial_name":"AMLODIPINE BRAND","full_generic_name":"AMLODIPINE","generic_name_fixed":"AMLODIPINE","review_status":"DEFAULT"},{"commercial_name":"BISOPROLOL BRAND","full_generic_name":"BISOPROLOL","generic_name_fixed":"BISOPROLOL","review_status":"DEFAULT"}]},"issues":[],"medicationBatches":[{"medications":[{"full_generic_name":"FUROSEMIDE","generic_name_fixed":"FUROSEMIDE","resolution_status":"MATCH","דרך מתן":"oral","חלוקה":"D","יחידות":"mg","מנה":"1","משך":"","צורת מינון":"tablet","שכיחות":"1","שם גנרי":"FUROSEMIDE","שם מסחרי":"FUROSEMIDE BRAND","ת.ז.":"200000001","תדירות":"daily"},{"full_generic_name":"FUROSEMIDE","generic_name_fixed":"FUROSEMIDE","resolution_status":"MATCH","דרך מתן":"oral","חלוקה":"D","יחידות":"mg","מנה":"1","משך":"","צורת מינון":"tablet","שכיחות":"1","שם גנרי":"FUROSEMIDE","שם מסחרי":"FUROSEMIDE BRAND","ת.ז.":"200000001","תדירות":"daily"},{"full_generic_name":"FUROSEMIDE","generic_name_fixed":"FUROSEMIDE","resolution_status":"MATCH","דרך מתן":"oral","חלוקה":"D","יחידות":"mg","מנה":"1","משך":"","צורת מינון":"tablet","שכיחות":"1","שם גנרי":"FUROSEMIDE","שם מסחרי":"FUROSEMIDE BRAND","ת.ז.":"200000001","תדירות":"daily"},{"full_generic_name":"SPIRONOLACTONE","generic_name_fixed":"SPIRONOLACTONE","resolution_status":"MATCH","דרך מתן":"oral","חלוקה":"D","יחידות":"mg","מנה":"1","משך":"","צורת מינון":"tablet","שכיחות":"1","שם גנרי":"SPIRONOLACTONE","שם מסחרי":"SPIRONOLACTONE BRAND","ת.ז.":"200000001","תדירות":"daily"},{"full_generic_name":"AMLODIPINE","generic_name_fixed":"AMLODIPINE","resolution_status":"MATCH","דרך מתן":"oral","חלוקה":"D","יחידות":"mg","מנה":"1","משך":"","צורת מינון":"tablet","שכיחות":"1","שם גנרי":"AMLODIPINE","שם מסחרי":"AMLODIPINE BRAND","ת.ז.":"200000001","תדירות":"daily"},{"full_generic_name":"FUROSEMIDE","generic_name_fixed":"FUROSEMIDE","resolution_status":"MATCH","דרך מתן":"oral","חלוקה":"D","יחידות":"mg","מנה":"1","משך":"","צורת מינון":"tablet","שכיחות":"1","שם גנרי":"FUROSEMIDE","שם מסחרי":"FUROSEMIDE BRAND","ת.ז.":"200000002","תדירות":"daily"}],"sourceFiles":{"medications":{"modifiedAt":"2026-10-02 10:00:00","name":"medications-1.csv"}}},{"medications":[{"full_generic_name":"FUROSEMIDE","generic_name_fixed":"FUROSEMIDE","resolution_status":"MATCH","דרך מתן":"oral","חלוקה":"D","יחידות":"mg","מנה":"1","משך":"","צורת מינון":"tablet","שכיחות":"1","שם גנרי":"FUROSEMIDE","שם מסחרי":"FUROSEMIDE BRAND","ת.ז.":"200000001","תדירות":"daily"},{"full_generic_name":"FUROSEMIDE","generic_name_fixed":"FUROSEMIDE","resolution_status":"MATCH","דרך מתן":"oral","חלוקה":"D","יחידות":"mg","מנה":"1","משך":"","צורת מינון":"tablet","שכיחות":"1","שם גנרי":"FUROSEMIDE","שם מסחרי":"FUROSEMIDE BRAND","ת.ז.":"200000001","תדירות":"daily"},{"full_generic_name":"FUROSEMIDE","generic_name_fixed":"FUROSEMIDE","resolution_status":"MATCH","דרך מתן":"oral","חלוקה":"D","יחידות":"mg","מנה":"1","משך":"","צורת מינון":"tablet","שכיחות":"1","שם גנרי":"FUROSEMIDE","שם מסחרי":"FUROSEMIDE BRAND","ת.ז.":"200000001","תדירות":"daily"},{"full_generic_name":"BISOPROLOL","generic_name_fixed":"BISOPROLOL","resolution_status":"MATCH","דרך מתן":"oral","חלוקה":"D","יחידות":"mg","מנה":"1","משך":"","צורת מינון":"tablet","שכיחות":"1","שם גנרי":"BISOPROLOL","שם מסחרי":"BISOPROLOL BRAND","ת.ז.":"200000001","תדירות":"daily"},{"full_generic_name":"AMLODIPINE","generic_name_fixed":"AMLODIPINE","resolution_status":"MATCH","דרך מתן":"oral","חלוקה":"D","יחידות":"mg","מנה":"1","משך":"","צורת מינון":"tablet","שכיחות":"1","שם גנרי":"AMLODIPINE","שם מסחרי":"AMLODIPINE BRAND","ת.ז.":"200000001","תדירות":"daily"},{"full_generic_name":"FUROSEMIDE","generic_name_fixed":"FUROSEMIDE","resolution_status":"MATCH","דרך מתן":"oral","חלוקה":"D","יחידות":"mg","מנה":"1","משך":"","צורת מינון":"tablet","שכיחות":"1","שם גנרי":"FUROSEMIDE","שם מסחרי":"FUROSEMIDE BRAND","ת.ז.":"200000002","תדירות":"daily"},{"full_generic_name":"FUROSEMIDE","generic_name_fixed":"FUROSEMIDE","resolution_status":"MATCH","דרך מתן":"oral","חלוקה":"D","יחידות":"mg","מנה":"1","משך":"","צורת מינון":"tablet","שכיחות":"1","שם גנרי":"FUROSEMIDE","שם מסחרי":"FUROSEMIDE BRAND","ת.ז.":"200000002","תדירות":"daily"}],"sourceFiles":{"medications":{"modifiedAt":"2026-10-03 10:00:00","name":"medications-2.csv"}}}],"medications":[{"full_generic_name":"FUROSEMIDE","generic_name_fixed":"FUROSEMIDE","resolution_status":"MATCH","דרך מתן":"oral","חלוקה":"D","יחידות":"mg","מנה":"1","משך":"","צורת מינון":"tablet","שכיחות":"1","שם גנרי":"FUROSEMIDE","שם מסחרי":"FUROSEMIDE BRAND","ת.ז.":"200000001","תדירות":"daily"},{"full_generic_name":"FUROSEMIDE","generic_name_fixed":"FUROSEMIDE","resolution_status":"MATCH","דרך מתן":"oral","חלוקה":"D","יחידות":"mg","מנה":"1","משך":"","צורת מינון":"tablet","שכיחות":"1","שם גנרי":"FUROSEMIDE","שם מסחרי":"FUROSEMIDE BRAND","ת.ז.":"200000001","תדירות":"daily"},{"full_generic_name":"FUROSEMIDE","generic_name_fixed":"FUROSEMIDE","resolution_status":"MATCH","דרך מתן":"oral","חלוקה":"D","יחידות":"mg","מנה":"1","משך":"","צורת מינון":"tablet","שכיחות":"1","שם גנרי":"FUROSEMIDE","שם מסחרי":"FUROSEMIDE BRAND","ת.ז.":"200000001","תדירות":"daily"},{"full_generic_name":"BISOPROLOL","generic_name_fixed":"BISOPROLOL","resolution_status":"MATCH","דרך מתן":"oral","חלוקה":"D","יחידות":"mg","מנה":"1","משך":"","צורת מינון":"tablet","שכיחות":"1","שם גנרי":"BISOPROLOL","שם מסחרי":"BISOPROLOL BRAND","ת.ז.":"200000001","תדירות":"daily"},{"full_generic_name":"AMLODIPINE","generic_name_fixed":"AMLODIPINE","resolution_status":"MATCH","דרך מתן":"oral","חלוקה":"D","יחידות":"mg","מנה":"1","משך":"","צורת מינון":"tablet","שכיחות":"1","שם גנרי":"AMLODIPINE","שם מסחרי":"AMLODIPINE BRAND","ת.ז.":"200000001","תדירות":"daily"},{"full_generic_name":"FUROSEMIDE","generic_name_fixed":"FUROSEMIDE","resolution_status":"MATCH","דרך מתן":"oral","חלוקה":"D","יחידות":"mg","מנה":"1","משך":"","צורת מינון":"tablet","שכיחות":"1","שם גנרי":"FUROSEMIDE","שם מסחרי":"FUROSEMIDE BRAND","ת.ז.":"200000002","תדירות":"daily"},{"full_generic_name":"FUROSEMIDE","generic_name_fixed":"FUROSEMIDE","resolution_status":"MATCH","דרך מתן":"oral","חלוקה":"D","יחידות":"mg","מנה":"1","משך":"","צורת מינון":"tablet","שכיחות":"1","שם גנרי":"FUROSEMIDE","שם מסחרי":"FUROSEMIDE BRAND","ת.ז.":"200000002","תדירות":"daily"}],"mode":"new","patients":[{"patient_id":"200000001","patient_name":"דוגמה א","חדר/מיטה":"101","שם":"דוגמה א   200000001 ז, 75"},{"patient_id":"200000002","patient_name":"דוגמה א","חדר/מיטה":"102","שם":"דוגמה א   200000002 ז, 75"}],"profile":"integration","saveDirectories":{"dictionary":"D:\\a\\medication-organizer\\medication-organizer\\tests\\manual-integration\\longitudinal\\dictionary","snapshot":"D:\\a\\medication-organizer\\medication-organizer\\tests\\manual-integration\\longitudinal\\snapshot"},"snapshot":{"metadata":{"cardId":"1525e794-b045-46ab-853e-76fdd2e591bb","cardName":"כרטסת תרופות","createdAt":"2026-10-01T10:00:00.000Z","previousSnapshot":null,"previousSnapshotDate":"","previousSnapshotName":"","schemaVersion":"1.0","snapshotDate":"2026-10-01 10:00:00","sourceFiles":{"catalog":{"modifiedAt":"2026-11-12 10:47:53","name":"catalog.csv"},"dictionary":{"modifiedAt":"2026-11-12 10:47:53","name":"dictionary.json"},"medications":{"modifiedAt":"2026-10-01 10:00:00","name":"medications.csv"},"patients":{"modifiedAt":"2026-11-12 10:47:53","name":"patients.csv"}}},"notes":[],"patients":[{"instructions":[{"attentionMarkedAt":"2026-10-01T11:10:00.000Z","commercial_name":"FUROSEMIDE BRAND","copyCount":3,"firstSeenDateTime":"2026-10-01 10:00:00","firstSeenStatus":"ADMISSION","full_instruction":"oral FUROSEMIDE BRAND 1 mg daily","generic_name_fixed":"FUROSEMIDE","instructionKey":"[\"FUROSEMIDE\",\"1\",\"MG\",\"DAILY\",\"1\",\"D\",\"\",\"TABLET\",\"ORAL\",\"3\"]","lastSeenDateTime":"2026-10-01 10:00:00","reviewedAt":"2026-10-01T11:00:00.000Z","rowId":"65bfac91-c4cf-48d1-a0e1-a5c971e04cd3","status":"NEW","דרך מתן":"oral","חלוקה":"D","יום קבלת תרופה":"","יחידות":"mg","מנה":"1","משך":"","צורת מינון":"tablet","שכיחות":"1","תאריך מתן הבא":"","תדירות":"daily"},{"attentionMarkedAt":"2026-10-01T11:11:00.000Z","commercial_name":"SPIRONOLACTONE BRAND","copyCount":1,"firstSeenDateTime":"2026-10-01 10:00:00","firstSeenStatus":"ADMISSION","full_instruction":"oral SPIRONOLACTONE BRAND 1 mg daily","generic_name_fixed":"SPIRONOLACTONE","instructionKey":"[\"SPIRONOLACTONE\",\"1\",\"MG\",\"DAILY\",\"1\",\"D\",\"\",\"TABLET\",\"ORAL\",\"1\"]","lastSeenDateTime":"2026-10-01 10:00:00","reviewedAt":"2026-10-01T11:01:00.000Z","rowId":"d189b3ce-f759-4888-98e6-d11fa1e7a1a7","status":"NEW","דרך מתן":"oral","חלוקה":"D","יום קבלת תרופה":"","יחידות":"mg","מנה":"1","משך":"","צורת מינון":"tablet","שכיחות":"1","תאריך מתן הבא":"","תדירות":"daily"},{"attentionMarkedAt":"2026-10-01T11:12:00.000Z","commercial_name":"BISOPROLOL BRAND","copyCount":1,"firstSeenDateTime":"2026-10-01 10:00:00","firstSeenStatus":"ADMISSION","full_instruction":"oral BISOPROLOL BRAND 1 mg daily","generic_name_fixed":"BISOPROLOL","instructionKey":"[\"BISOPROLOL\",\"1\",\"MG\",\"DAILY\",\"1\",\"D\",\"\",\"TABLET\",\"ORAL\",\"1\"]","lastSeenDateTime":"2026-10-01 10:00:00","reviewedAt":"2026-10-01T11:02:00.000Z","rowId":"0d6c210b-dbab-49e1-9c1d-6b738e0fec18","status":"NEW","דרך מתן":"oral","חלוקה":"D","יום קבלת תרופה":"","יחידות":"mg","מנה":"1","משך":"","צורת מינון":"tablet","שכיחות":"1","תאריך מתן הבא":"","תדירות":"daily"},{"commercial_name":"AMLODIPINE BRAND","copyCount":1,"firstSeenDateTime":"2026-10-01 10:00:00","firstSeenStatus":"ADMISSION","full_instruction":"oral AMLODIPINE BRAND 1 mg daily","generic_name_fixed":"AMLODIPINE","instructionKey":"[\"AMLODIPINE\",\"1\",\"MG\",\"DAILY\",\"1\",\"D\",\"\",\"TABLET\",\"ORAL\",\"1\"]","lastSeenDateTime":"2026-10-01 10:00:00","rowId":"94e8faf6-8bd6-4843-ac77-084e829f9da1","status":"NEW","דרך מתן":"oral","חלוקה":"D","יום קבלת תרופה":"","יחידות":"mg","מנה":"1","משך":"","צורת מינון":"tablet","שכיחות":"1","תאריך מתן הבא":"","תדירות":"daily"},{"commercial_name":"ATORVASTATIN BRAND","copyCount":1,"firstSeenDateTime":"2026-10-01 10:00:00","firstSeenStatus":"ADMISSION","full_instruction":"oral ATORVASTATIN BRAND 1 mg daily","generic_name_fixed":"ATORVASTATIN","instructionKey":"[\"ATORVASTATIN\",\"1\",\"MG\",\"DAILY\",\"1\",\"D\",\"\",\"TABLET\",\"ORAL\",\"1\"]","lastSeenDateTime":"2026-10-01 10:00:00","rowId":"132443ec-fcda-4227-aa09-09a0f8fa9234","status":"NEW","דרך מתן":"oral","חלוקה":"D","יום קבלת תרופה":"","יחידות":"mg","מנה":"1","משך":"","צורת מינון":"tablet","שכיחות":"1","תאריך מתן הבא":"","תדירות":"daily"}],"patientId":"200000001","patientName":"דוגמה א","room":"101"}]},"sourceFiles":{"catalog":{"modifiedAt":"2026-11-12 10:47:53","name":"catalog.csv"},"dictionary":{"modifiedAt":"2026-11-12 10:47:53","name":"dictionary.json"},"medications":{"modifiedAt":"2026-10-03 10:00:00","name":"medications-2.csv"},"patients":{"modifiedAt":"2026-11-12 10:48:18","name":"patients.csv"},"snapshot":{"modifiedAt":"2026-11-12 10:48:17","name":"card-t1.json"}}}</script>
+  <script id="organizer-data" type="application/json">{"dictionary":{"classifications":[{"family":"Diuretics","generic_name_fixed":"FUROSEMIDE","generic_name_nice":"FUROSEMIDE","system":"Cardiovascular"},{"family":"Diuretics","generic_name_fixed":"SPIRONOLACTONE","generic_name_nice":"SPIRONOLACTONE","system":"Cardiovascular"},{"family":"Beta blockers","generic_name_fixed":"BISOPROLOL","generic_name_nice":"BISOPROLOL","system":"Cardiovascular"},{"family":"לא מסווג","generic_name_fixed":"AMLODIPINE","generic_name_nice":"Amlodipine","system":"לא מסווג"}],"displayOrder":[{"family":"","level":"SYSTEM","order_family":null,"order_system":10,"system":"Cardiovascular"},{"family":"Diuretics","level":"FAMILY","order_family":10,"order_system":null,"system":"Cardiovascular"},{"family":"Beta blockers","level":"FAMILY","order_family":20,"order_system":null,"system":"Cardiovascular"},{"family":"","level":"SYSTEM","order_family":null,"order_system":999999,"system":"לא מסווג"},{"family":"לא מסווג","level":"FAMILY","order_family":999999,"order_system":null,"system":"לא מסווג"}],"sourceMappings":[{"commercial_name":"FUROSEMIDE BRAND","full_generic_name":"FUROSEMIDE","generic_name_fixed":"FUROSEMIDE","review_status":"DEFAULT"},{"commercial_name":"SPIRONOLACTONE BRAND","full_generic_name":"SPIRONOLACTONE","generic_name_fixed":"SPIRONOLACTONE","review_status":"DEFAULT"},{"commercial_name":"AMLODIPINE BRAND","full_generic_name":"AMLODIPINE","generic_name_fixed":"AMLODIPINE","review_status":"DEFAULT"},{"commercial_name":"BISOPROLOL BRAND","full_generic_name":"BISOPROLOL","generic_name_fixed":"BISOPROLOL","review_status":"DEFAULT"}]},"issues":[],"medicationBatches":[{"medications":[{"full_generic_name":"FUROSEMIDE","generic_name_fixed":"FUROSEMIDE","resolution_status":"MATCH","דרך מתן":"oral","חלוקה":"D","יחידות":"mg","מנה":"1","משך":"","צורת מינון":"tablet","שכיחות":"1","שם גנרי":"FUROSEMIDE","שם מסחרי":"FUROSEMIDE BRAND","ת.ז.":"200000001","תדירות":"daily"},{"full_generic_name":"FUROSEMIDE","generic_name_fixed":"FUROSEMIDE","resolution_status":"MATCH","דרך מתן":"oral","חלוקה":"D","יחידות":"mg","מנה":"1","משך":"","צורת מינון":"tablet","שכיחות":"1","שם גנרי":"FUROSEMIDE","שם מסחרי":"FUROSEMIDE BRAND","ת.ז.":"200000001","תדירות":"daily"},{"full_generic_name":"FUROSEMIDE","generic_name_fixed":"FUROSEMIDE","resolution_status":"MATCH","דרך מתן":"oral","חלוקה":"D","יחידות":"mg","מנה":"1","משך":"","צורת מינון":"tablet","שכיחות":"1","שם גנרי":"FUROSEMIDE","שם מסחרי":"FUROSEMIDE BRAND","ת.ז.":"200000001","תדירות":"daily"},{"full_generic_name":"SPIRONOLACTONE","generic_name_fixed":"SPIRONOLACTONE","resolution_status":"MATCH","דרך מתן":"oral","חלוקה":"D","יחידות":"mg","מנה":"1","משך":"","צורת מינון":"tablet","שכיחות":"1","שם גנרי":"SPIRONOLACTONE","שם מסחרי":"SPIRONOLACTONE BRAND","ת.ז.":"200000001","תדירות":"daily"},{"full_generic_name":"AMLODIPINE","generic_name_fixed":"AMLODIPINE","resolution_status":"MATCH","דרך מתן":"oral","חלוקה":"D","יחידות":"mg","מנה":"1","משך":"","צורת מינון":"tablet","שכיחות":"1","שם גנרי":"AMLODIPINE","שם מסחרי":"AMLODIPINE BRAND","ת.ז.":"200000001","תדירות":"daily"},{"full_generic_name":"FUROSEMIDE","generic_name_fixed":"FUROSEMIDE","resolution_status":"MATCH","דרך מתן":"oral","חלוקה":"D","יחידות":"mg","מנה":"1","משך":"","צורת מינון":"tablet","שכיחות":"1","שם גנרי":"FUROSEMIDE","שם מסחרי":"FUROSEMIDE BRAND","ת.ז.":"200000002","תדירות":"daily"}],"sourceFiles":{"medications":{"modifiedAt":"2026-10-02 10:00:00","name":"medications-1.csv"}}},{"medications":[{"full_generic_name":"FUROSEMIDE","generic_name_fixed":"FUROSEMIDE","resolution_status":"MATCH","דרך מתן":"oral","חלוקה":"D","יחידות":"mg","מנה":"1","משך":"","צורת מינון":"tablet","שכיחות":"1","שם גנרי":"FUROSEMIDE","שם מסחרי":"FUROSEMIDE BRAND","ת.ז.":"200000001","תדירות":"daily"},{"full_generic_name":"FUROSEMIDE","generic_name_fixed":"FUROSEMIDE","resolution_status":"MATCH","דרך מתן":"oral","חלוקה":"D","יחידות":"mg","מנה":"1","משך":"","צורת מינון":"tablet","שכיחות":"1","שם גנרי":"FUROSEMIDE","שם מסחרי":"FUROSEMIDE BRAND","ת.ז.":"200000001","תדירות":"daily"},{"full_generic_name":"FUROSEMIDE","generic_name_fixed":"FUROSEMIDE","resolution_status":"MATCH","דרך מתן":"oral","חלוקה":"D","יחידות":"mg","מנה":"1","משך":"","צורת מינון":"tablet","שכיחות":"1","שם גנרי":"FUROSEMIDE","שם מסחרי":"FUROSEMIDE BRAND","ת.ז.":"200000001","תדירות":"daily"},{"full_generic_name":"BISOPROLOL","generic_name_fixed":"BISOPROLOL","resolution_status":"MATCH","דרך מתן":"oral","חלוקה":"D","יחידות":"mg","מנה":"1","משך":"","צורת מינון":"tablet","שכיחות":"1","שם גנרי":"BISOPROLOL","שם מסחרי":"BISOPROLOL BRAND","ת.ז.":"200000001","תדירות":"daily"},{"full_generic_name":"AMLODIPINE","generic_name_fixed":"AMLODIPINE","resolution_status":"MATCH","דרך מתן":"oral","חלוקה":"D","יחידות":"mg","מנה":"1","משך":"","צורת מינון":"tablet","שכיחות":"1","שם גנרי":"AMLODIPINE","שם מסחרי":"AMLODIPINE BRAND","ת.ז.":"200000001","תדירות":"daily"},{"full_generic_name":"FUROSEMIDE","generic_name_fixed":"FUROSEMIDE","resolution_status":"MATCH","דרך מתן":"oral","חלוקה":"D","יחידות":"mg","מנה":"1","משך":"","צורת מינון":"tablet","שכיחות":"1","שם גנרי":"FUROSEMIDE","שם מסחרי":"FUROSEMIDE BRAND","ת.ז.":"200000002","תדירות":"daily"},{"full_generic_name":"FUROSEMIDE","generic_name_fixed":"FUROSEMIDE","resolution_status":"MATCH","דרך מתן":"oral","חלוקה":"D","יחידות":"mg","מנה":"1","משך":"","צורת מינון":"tablet","שכיחות":"1","שם גנרי":"FUROSEMIDE","שם מסחרי":"FUROSEMIDE BRAND","ת.ז.":"200000002","תדירות":"daily"}],"sourceFiles":{"medications":{"modifiedAt":"2026-10-03 10:00:00","name":"medications-2.csv"}}}],"medications":[{"full_generic_name":"FUROSEMIDE","generic_name_fixed":"FUROSEMIDE","resolution_status":"MATCH","דרך מתן":"oral","חלוקה":"D","יחידות":"mg","מנה":"1","משך":"","צורת מינון":"tablet","שכיחות":"1","שם גנרי":"FUROSEMIDE","שם מסחרי":"FUROSEMIDE BRAND","ת.ז.":"200000001","תדירות":"daily"},{"full_generic_name":"FUROSEMIDE","generic_name_fixed":"FUROSEMIDE","resolution_status":"MATCH","דרך מתן":"oral","חלוקה":"D","יחידות":"mg","מנה":"1","משך":"","צורת מינון":"tablet","שכיחות":"1","שם גנרי":"FUROSEMIDE","שם מסחרי":"FUROSEMIDE BRAND","ת.ז.":"200000001","תדירות":"daily"},{"full_generic_name":"FUROSEMIDE","generic_name_fixed":"FUROSEMIDE","resolution_status":"MATCH","דרך מתן":"oral","חלוקה":"D","יחידות":"mg","מנה":"1","משך":"","צורת מינון":"tablet","שכיחות":"1","שם גנרי":"FUROSEMIDE","שם מסחרי":"FUROSEMIDE BRAND","ת.ז.":"200000001","תדירות":"daily"},{"full_generic_name":"BISOPROLOL","generic_name_fixed":"BISOPROLOL","resolution_status":"MATCH","דרך מתן":"oral","חלוקה":"D","יחידות":"mg","מנה":"1","משך":"","צורת מינון":"tablet","שכיחות":"1","שם גנרי":"BISOPROLOL","שם מסחרי":"BISOPROLOL BRAND","ת.ז.":"200000001","תדירות":"daily"},{"full_generic_name":"AMLODIPINE","generic_name_fixed":"AMLODIPINE","resolution_status":"MATCH","דרך מתן":"oral","חלוקה":"D","יחידות":"mg","מנה":"1","משך":"","צורת מינון":"tablet","שכיחות":"1","שם גנרי":"AMLODIPINE","שם מסחרי":"AMLODIPINE BRAND","ת.ז.":"200000001","תדירות":"daily"},{"full_generic_name":"FUROSEMIDE","generic_name_fixed":"FUROSEMIDE","resolution_status":"MATCH","דרך מתן":"oral","חלוקה":"D","יחידות":"mg","מנה":"1","משך":"","צורת מינון":"tablet","שכיחות":"1","שם גנרי":"FUROSEMIDE","שם מסחרי":"FUROSEMIDE BRAND","ת.ז.":"200000002","תדירות":"daily"},{"full_generic_name":"FUROSEMIDE","generic_name_fixed":"FUROSEMIDE","resolution_status":"MATCH","דרך מתן":"oral","חלוקה":"D","יחידות":"mg","מנה":"1","משך":"","צורת מינון":"tablet","שכיחות":"1","שם גנרי":"FUROSEMIDE","שם מסחרי":"FUROSEMIDE BRAND","ת.ז.":"200000002","תדירות":"daily"}],"mode":"new","patients":[{"patient_id":"200000001","patient_name":"דוגמה א","חדר/מיטה":"101","שם":"דוגמה א   200000001 ז, 75"},{"patient_id":"200000002","patient_name":"דוגמה א","חדר/מיטה":"102","שם":"דוגמה א   200000002 ז, 75"}],"profile":"integration","saveDirectories":{"dictionary":"D:\\a\\medication-organizer\\medication-organizer\\tests\\manual-integration\\longitudinal\\dictionary","snapshot":"D:\\a\\medication-organizer\\medication-organizer\\tests\\manual-integration\\longitudinal\\snapshot"},"snapshot":{"metadata":{"cardId":"1c3ac624-1ac7-4db4-ab6d-35d4c89b52b3","cardName":"כרטסת תרופות","createdAt":"2026-10-01T10:00:00.000Z","previousSnapshot":null,"previousSnapshotDate":"","previousSnapshotName":"","schemaVersion":"1.0","snapshotDate":"2026-10-01 10:00:00","sourceFiles":{"catalog":{"modifiedAt":"2026-11-13 04:40:30","name":"catalog.csv"},"dictionary":{"modifiedAt":"2026-11-13 04:40:30","name":"dictionary.json"},"medications":{"modifiedAt":"2026-10-01 10:00:00","name":"medications.csv"},"patients":{"modifiedAt":"2026-11-13 04:40:30","name":"patients.csv"}}},"notes":[],"patients":[{"instructions":[{"attentionMarkedAt":"2026-10-01T11:10:00.000Z","commercial_name":"FUROSEMIDE BRAND","copyCount":3,"firstSeenDateTime":"2026-10-01 10:00:00","firstSeenStatus":"ADMISSION","full_instruction":"oral FUROSEMIDE BRAND 1 mg daily","generic_name_fixed":"FUROSEMIDE","instructionKey":"[\"FUROSEMIDE\",\"1\",\"MG\",\"DAILY\",\"1\",\"D\",\"\",\"TABLET\",\"ORAL\",\"3\"]","lastSeenDateTime":"2026-10-01 10:00:00","reviewedAt":"2026-10-01T11:00:00.000Z","rowId":"202c8ca8-8763-4593-bc05-50b4285f2ed4","status":"NEW","דרך מתן":"oral","חלוקה":"D","יום קבלת תרופה":"","יחידות":"mg","מנה":"1","משך":"","צורת מינון":"tablet","שכיחות":"1","תאריך מתן הבא":"","תדירות":"daily"},{"attentionMarkedAt":"2026-10-01T11:11:00.000Z","commercial_name":"SPIRONOLACTONE BRAND","copyCount":1,"firstSeenDateTime":"2026-10-01 10:00:00","firstSeenStatus":"ADMISSION","full_instruction":"oral SPIRONOLACTONE BRAND 1 mg daily","generic_name_fixed":"SPIRONOLACTONE","instructionKey":"[\"SPIRONOLACTONE\",\"1\",\"MG\",\"DAILY\",\"1\",\"D\",\"\",\"TABLET\",\"ORAL\",\"1\"]","lastSeenDateTime":"2026-10-01 10:00:00","reviewedAt":"2026-10-01T11:01:00.000Z","rowId":"bd0e4961-b185-468e-912e-7523bd507bb5","status":"NEW","דרך מתן":"oral","חלוקה":"D","יום קבלת תרופה":"","יחידות":"mg","מנה":"1","משך":"","צורת מינון":"tablet","שכיחות":"1","תאריך מתן הבא":"","תדירות":"daily"},{"attentionMarkedAt":"2026-10-01T11:12:00.000Z","commercial_name":"BISOPROLOL BRAND","copyCount":1,"firstSeenDateTime":"2026-10-01 10:00:00","firstSeenStatus":"ADMISSION","full_instruction":"oral BISOPROLOL BRAND 1 mg daily","generic_name_fixed":"BISOPROLOL","instructionKey":"[\"BISOPROLOL\",\"1\",\"MG\",\"DAILY\",\"1\",\"D\",\"\",\"TABLET\",\"ORAL\",\"1\"]","lastSeenDateTime":"2026-10-01 10:00:00","reviewedAt":"2026-10-01T11:02:00.000Z","rowId":"960906cf-b943-46ba-b58c-9a66e2cf8322","status":"NEW","דרך מתן":"oral","חלוקה":"D","יום קבלת תרופה":"","יחידות":"mg","מנה":"1","משך":"","צורת מינון":"tablet","שכיחות":"1","תאריך מתן הבא":"","תדירות":"daily"},{"commercial_name":"AMLODIPINE BRAND","copyCount":1,"firstSeenDateTime":"2026-10-01 10:00:00","firstSeenStatus":"ADMISSION","full_instruction":"oral AMLODIPINE BRAND 1 mg daily","generic_name_fixed":"AMLODIPINE","instructionKey":"[\"AMLODIPINE\",\"1\",\"MG\",\"DAILY\",\"1\",\"D\",\"\",\"TABLET\",\"ORAL\",\"1\"]","lastSeenDateTime":"2026-10-01 10:00:00","rowId":"8c8e4d81-75a8-4334-bdac-b69a7092f95a","status":"NEW","דרך מתן":"oral","חלוקה":"D","יום קבלת תרופה":"","יחידות":"mg","מנה":"1","משך":"","צורת מינון":"tablet","שכיחות":"1","תאריך מתן הבא":"","תדירות":"daily"},{"commercial_name":"ATORVASTATIN BRAND","copyCount":1,"firstSeenDateTime":"2026-10-01 10:00:00","firstSeenStatus":"ADMISSION","full_instruction":"oral ATORVASTATIN BRAND 1 mg daily","generic_name_fixed":"ATORVASTATIN","instructionKey":"[\"ATORVASTATIN\",\"1\",\"MG\",\"DAILY\",\"1\",\"D\",\"\",\"TABLET\",\"ORAL\",\"1\"]","lastSeenDateTime":"2026-10-01 10:00:00","rowId":"f615c727-cda1-4f2c-99e2-f842aca6e23f","status":"NEW","דרך מתן":"oral","חלוקה":"D","יום קבלת תרופה":"","יחידות":"mg","מנה":"1","משך":"","צורת מינון":"tablet","שכיחות":"1","תאריך מתן הבא":"","תדירות":"daily"}],"patientId":"200000001","patientName":"דוגמה א","room":"101"}]},"sourceFiles":{"catalog":{"modifiedAt":"2026-11-13 04:40:30","name":"catalog.csv"},"dictionary":{"modifiedAt":"2026-11-13 04:40:30","name":"dictionary.json"},"medications":{"modifiedAt":"2026-10-03 10:00:00","name":"medications-2.csv"},"patients":{"modifiedAt":"2026-11-13 04:40:57","name":"patients.csv"},"snapshot":{"modifiedAt":"2026-11-13 04:40:56","name":"card-t1.json"}}}</script>
   <script>(() => {
   var __defProp = Object.defineProperty;
   var __defNormalProp = (obj, key2, value) => key2 in obj ? __defProp(obj, key2, { enumerable: true, configurable: true, writable: true, value }) : obj[key2] = value;
@@ -22581,6 +22584,7 @@ h1{font-size:17px;margin:0}
         familyOrder: Number(familyRows.get(JSON.stringify([system, family]))?.order_family ?? 999999)
       };
     };
+    const attentionLevel = (record) => [0, 1, 2, 3].includes(record.attentionLevel) ? record.attentionLevel : record.attentionMarkedAt ? 1 : 0;
     const instructionNotes = new Map(card.notes.filter((n) => n.scope === "INSTRUCTION").map((n) => [n.rowId, n]));
     const rows2 = card.instructions.map((i) => {
       const p = patients.get(i.patientId) || {}, c = classify(i.generic_name_fixed);
@@ -22592,6 +22596,7 @@ h1{font-size:17px;margin:0}
         ...c,
         comment: instructionNotes.get(i.rowId)?.text || "",
         attentionReason: i.attentionReason || "",
+        attentionStatus: attentionLevel(i),
         _gridId: "instruction:" + i.rowId
       };
     });
@@ -22618,6 +22623,7 @@ h1{font-size:17px;margin:0}
         attentionReason: note.attentionReason || "",
         reviewedAt: note.reviewedAt || null,
         attentionMarkedAt: note.attentionMarkedAt || null,
+        attentionStatus: attentionLevel(note),
         noteOrder: note.order ?? 0,
         status: "",
         systemOrder: -1,
@@ -22637,6 +22643,7 @@ h1{font-size:17px;margin:0}
         family: "",
         nice: "",
         comment: "",
+        attentionStatus: 0,
         status: ""
       });
     const statuses = { NEW: 0, CONTINUE: 1, STOP: 2, HISTORY: 3 };
@@ -23877,9 +23884,17 @@ ${exportTableTsv(classificationRows, "classifications")}`;
       let applyReview = function(rows2, sign) {
         const targets = [...new Set(rows2.map(markTarget).filter(Boolean))];
         if (!targets.length) return;
-        if (!confirm((sign ? "\u05DC\u05D0\u05E9\u05E8 \u05D7\u05EA\u05D9\u05DE\u05D4" : "\u05DC\u05D0\u05E9\u05E8 \u05D1\u05D9\u05D8\u05D5\u05DC \u05D7\u05EA\u05D9\u05DE\u05D4") + " \u05E2\u05D1\u05D5\u05E8 " + targets.length + " \u05E9\u05D5\u05E8\u05D5\u05EA?")) return;
         const timestamp = sign ? (/* @__PURE__ */ new Date()).toISOString() : null;
         for (const target of targets) target.reviewedAt = timestamp;
+        cardState.dirty = true;
+        refresh();
+      }, setAttentionLevel = function(target, level) {
+        if (!target || ![0, 1, 2, 3].includes(level)) return;
+        target.attentionLevel = level;
+        if (level === 0) {
+          target.attentionMarkedAt = null;
+          target.attentionReason = "";
+        } else target.attentionMarkedAt = (/* @__PURE__ */ new Date()).toISOString();
         cardState.dirty = true;
         refresh();
       }, toggleMark = function(row, field) {
@@ -23889,15 +23904,8 @@ ${exportTableTsv(classificationRows, "classifications")}`;
           applyReview([row], !target.reviewedAt);
           return;
         }
-        if (target.attentionMarkedAt) {
-          if (!confirm("\u05DC\u05D1\u05D8\u05DC \u05E1\u05D9\u05DE\u05D5\u05DF \u05DC\u05E2\u05D9\u05D5\u05DF \u05D5\u05DC\u05DE\u05D7\u05D5\u05E7 \u05D2\u05DD \u05D0\u05EA \u05E1\u05D9\u05D1\u05EA \u05D4\u05E2\u05D9\u05D5\u05DF?")) return;
-          target.attentionMarkedAt = null;
-          target.attentionReason = "";
-        } else {
-          target.attentionMarkedAt = (/* @__PURE__ */ new Date()).toISOString();
-        }
-        cardState.dirty = true;
-        refresh();
+        const level = attentionLevel(target);
+        setAttentionLevel(target, level === 3 ? 1 : level + 1);
       }, editComment = function(row) {
         if (row.rowType === "EMPTY") return chooseNoteScope(row.patientId);
         const note = row.rowType === "INSTRUCTION" ? noteFor(row.rowId) : cardState.notes.find((n) => n.noteId === row.noteId);
@@ -23914,17 +23922,39 @@ ${exportTableTsv(classificationRows, "classifications")}`;
         const dialog = document.createElement("dialog");
         dialog.dir = "rtl";
         const heading = document.createElement("h3");
-        heading.textContent = "\u05E1\u05D5\u05D2 \u05D4\u05E2\u05E8\u05D4 \u05D7\u05D3\u05E9\u05D4";
+        heading.textContent = "\u05D4\u05D5\u05E1\u05E3 \u05D4\u05E2\u05E8\u05D4";
         const choice = document.createElement("select");
-        choice.append(new Option("\u05D1\u05D7\u05E8 \u05E1\u05D5\u05D2 \u05D4\u05E2\u05E8\u05D4", ""), new Option("\u05D4\u05E2\u05E8\u05EA \u05DE\u05D8\u05D5\u05E4\u05DC", "PATIENT"), new Option("\u05D4\u05E2\u05E8\u05EA \u05E7\u05F4\u05E7", "CLINICAL_GROUP"));
+        choice.append(new Option("\u05D1\u05D7\u05E8 \u05E1\u05D5\u05D2 \u05D4\u05E2\u05E8\u05D4", ""), new Option("\u05D4\u05E2\u05E8\u05EA \u05DE\u05D8\u05D5\u05E4\u05DC", "PATIENT"));
+        const groups = new Set((currentDictionary().displayOrder || []).map((r) => String(r.clinicalGroup || "").trim()).filter(Boolean));
+        for (const row of currentRows()) if (row.patientId === patientId && row.clinicalGroup) groups.add(row.clinicalGroup);
+        for (const group of [...groups].sort((a, b) => a.localeCompare(b, "he")))
+          choice.append(new Option("\u05E7\u05D1\u05D5\u05E6\u05D4 \u05E7\u05DC\u05D9\u05E0\u05D9\u05EA: " + group, "CG:" + group));
         const cancel = document.createElement("button");
         cancel.textContent = "\u05D1\u05D9\u05D8\u05D5\u05DC";
         cancel.onclick = () => dialog.close();
         choice.onchange = () => {
           if (!choice.value) return;
-          const scope = choice.value;
+          const group = choice.value.startsWith("CG:") ? choice.value.slice(3) : null;
+          const note = {
+            noteId: globalThis.crypto?.randomUUID?.() || "n-" + Date.now() + "-" + Math.random().toString(36).slice(2),
+            patientId,
+            scope: group ? "CLINICAL_GROUP" : "PATIENT",
+            text: "",
+            order: Date.now()
+          };
+          if (group) note.clinicalGroup = group;
+          cardState.notes.push(note);
+          cardState.dirty = true;
           dialog.close();
-          openNoteEditor({ card: cardState, dictionary: currentDictionary(), patientId, scope, onChange: () => refresh() });
+          refresh();
+          queueMicrotask(() => {
+            const row = table.getRows("active").find((r) => r.getData().noteId === note.noteId);
+            const cell = row?.getCell("comment");
+            if (cell) {
+              cell.getElement().click();
+              cell.getElement().querySelector("input")?.focus({ preventScroll: true });
+            }
+          });
         };
         dialog.append(heading, choice, cancel);
         document.body.append(dialog);
@@ -23934,13 +23964,14 @@ ${exportTableTsv(classificationRows, "classifications")}`;
         const rows2 = currentRows();
         const filters = Object.entries(state.filters);
         const matches = (row, exclude) => filters.every(([field, set]) => field === exclude || set.has(filterKey(row[field])));
-        const generalHidden = filters.some(([field]) => !["room", "patientName", "patientId", "clinicalGroup", "comment"].includes(field));
+        const generalHidden = filters.some(([field]) => !["room", "patientName", "patientId", "clinicalGroup", "comment", "attentionStatus"].includes(field));
         const groupFilter = state.filters.clinicalGroup;
         const noteMatches = (row) => {
           if (generalHidden) return false;
           if (groupFilter && (row.scope !== "CLINICAL_GROUP" || !groupFilter.has(filterKey(row.clinicalGroup)))) return false;
           if (row.scope === "PATIENT" && groupFilter) return false;
           if (state.filters.comment && !state.filters.comment.has(filterKey(row.comment))) return false;
+          if (state.filters.attentionStatus && !state.filters.attentionStatus.has(filterKey(row.attentionStatus))) return false;
           return ["room", "patientName", "patientId"].every((field) => !state.filters[field] || state.filters[field].has(filterKey(row[field])));
         };
         const matched = rows2.filter((row) => row.rowType === "NOTE" ? noteMatches(row) : matches(row));
@@ -23969,6 +24000,7 @@ ${exportTableTsv(classificationRows, "classifications")}`;
         updateDictionarySaveAppearance();
       }, updateSelectionUI = function() {
         selectionBar.textContent = "\u05E0\u05D1\u05D7\u05E8\u05D5 " + table.getSelectedRows().length + " \u05E9\u05D5\u05E8\u05D5\u05EA";
+        copyRangeButton.disabled = clearRangeButton.disabled = !cellRangeMode || !selectedRange().length;
         ctrlButton.setAttribute("aria-pressed", String(touchCtrl));
         shiftButton.setAttribute("aria-pressed", String(touchShift));
         ctrlButton.classList.toggle("active", touchCtrl);
@@ -24280,7 +24312,7 @@ ${exportTableTsv(classificationRows, "classifications")}`;
       const noteFor = (id) => cardState.notes.find((n) => n.scope === "INSTRUCTION" && n.rowId === id);
       const state = { filters: {}, showAll: true };
       let table;
-      const currentRows = () => createViewRows(cardState, currentDictionary()).map((row) => ({ ...row, reviewStatus: !!row.reviewedAt, attentionStatus: !!row.attentionMarkedAt }));
+      const currentRows = () => createViewRows(cardState, currentDictionary()).map((row) => ({ ...row, reviewStatus: !!row.reviewedAt, attentionStatus: row.attentionStatus }));
       const columnFilter = (field, title2) => {
         const button2 = document.createElement("button");
         button2.type = "button";
@@ -24416,6 +24448,7 @@ ${exportTableTsv(classificationRows, "classifications")}`;
       const markFields = /* @__PURE__ */ new Set(["reviewStatus", "attentionStatus"]);
       const markDateFields = /* @__PURE__ */ new Set(["reviewedAt", "attentionMarkedAt"]);
       const markTarget = (row) => row.rowType === "INSTRUCTION" ? cardState.instructions.find((i) => i.rowId === row.rowId) : row.rowType === "NOTE" ? cardState.notes.find((n) => n.noteId === row.noteId) : null;
+      const attentionLevel = (target) => [0, 1, 2, 3].includes(target?.attentionLevel) ? target.attentionLevel : target?.attentionMarkedAt ? 1 : 0;
       const markerDate = (value) => value ? new Date(value).toLocaleString("he-IL", { day: "2-digit", month: "2-digit", year: "2-digit", hour: "2-digit", minute: "2-digit" }) : "";
       const makeColumn = ([field, title2, width, grow]) => ({
         title: title2,
@@ -24439,9 +24472,16 @@ ${exportTableTsv(classificationRows, "classifications")}`;
             if (row2.rowType === "EMPTY") return "";
             const marked = !!cell.getValue();
             const el = document.createElement("span");
-            el.textContent = field === "reviewStatus" ? "\u270D" : "!";
-            el.style.cssText = "display:block;text-align:center;cursor:pointer;opacity:" + (marked ? "1" : "0.22") + ";font-weight:bold";
-            el.title = marked ? new Date(cell.getValue()).toLocaleString("he-IL") : "\u05DC\u05D0 \u05DE\u05E1\u05D5\u05DE\u05DF";
+            if (field === "attentionStatus") {
+              const level = attentionLevel(markTarget(row2));
+              el.textContent = ["\u25CB", "\u25CF", "\u2605", "\u2757"][level];
+              el.style.cssText = "display:block;text-align:center;cursor:pointer;font-weight:900;font-size:20px;color:" + ["#9ca3af", "#15803d", "#ea580c", "#dc2626"][level] + ";opacity:" + (level ? "1" : "0.45");
+              el.title = "\u05E8\u05DE\u05D4 " + level + " \u2014 \u05DC\u05D7\u05D9\u05E6\u05D4 \u05E9\u05DE\u05D0\u05DC\u05D9\u05EA \u05DC\u05E9\u05D9\u05E0\u05D5\u05D9, \u05D9\u05DE\u05E0\u05D9\u05EA \u05DC\u05D0\u05D9\u05E4\u05D5\u05E1";
+            } else {
+              el.textContent = "\u270D";
+              el.style.cssText = "display:block;text-align:center;cursor:pointer;opacity:" + (marked ? "1" : "0.22") + ";font-weight:bold";
+              el.title = marked ? new Date(cell.getValue()).toLocaleString("he-IL") : "\u05DC\u05D0 \u05DE\u05E1\u05D5\u05DE\u05DF";
+            }
             return el;
           }
           if (markDateFields.has(field)) return markerDate(cell.getValue());
@@ -24468,19 +24508,16 @@ ${exportTableTsv(classificationRows, "classifications")}`;
           }
           return String(cell.getValue() ?? "");
         },
-        ...field === "attentionReason" ? {
-          // Do not invoke Tabulator's cell editor: its internal focus/scroll handling
-          // can reset the horizontal scroll position on wide RTL grids.
+        ...["attentionReason", "comment"].includes(field) ? {
           cellClick: (event, cell) => {
-            table.deselectRow();
-            selectionAnchor = null;
-            updateSelectionUI();
+            if (cellRangeMode) return;
             const row = cell.getRow().getData();
-            const target = markTarget(row);
-            if (!target) return;
+            if (field === "comment" && row.rowType === "EMPTY") return;
+            const target = field === "comment" ? row.rowType === "INSTRUCTION" ? noteFor(row.rowId) : cardState.notes.find((n) => n.noteId === row.noteId) : markTarget(row);
+            if (field === "attentionReason" && !target) return;
             const element = cell.getElement();
             if (element.querySelector(".attention-reason-editor")) return;
-            const oldValue = String(target.attentionReason ?? "");
+            const oldValue = String(field === "comment" ? target?.text ?? "" : target?.attentionReason ?? "");
             const input2 = document.createElement("input");
             input2.type = "text";
             input2.value = oldValue;
@@ -24496,26 +24533,39 @@ ${exportTableTsv(classificationRows, "classifications")}`;
               const value = input2.value;
               input2.remove();
               element.textContent = save ? value : oldValue;
-              if (save && value !== oldValue) {
+              if (!save || value === oldValue) return;
+              if (field === "attentionReason") {
                 target.attentionReason = value;
-                if (value.trim()) target.attentionMarkedAt = (/* @__PURE__ */ new Date()).toISOString();
-                row.attentionReason = value;
-                row.attentionMarkedAt = target.attentionMarkedAt || null;
-                row.attentionStatus = !!target.attentionMarkedAt;
-                cardState.dirty = true;
-                refresh();
+                if (value.trim()) {
+                  target.attentionMarkedAt = (/* @__PURE__ */ new Date()).toISOString();
+                  if (!attentionLevel(target)) target.attentionLevel = 1;
+                }
+              } else if (target) {
+                target.text = value;
+                target.reviewedAt = null;
+              } else if (value.trim() && row.rowType === "INSTRUCTION") {
+                cardState.notes.push({
+                  noteId: globalThis.crypto?.randomUUID?.() || "n-" + Date.now() + "-" + Math.random().toString(36).slice(2),
+                  patientId: row.patientId,
+                  rowId: row.rowId,
+                  scope: "INSTRUCTION",
+                  text: value
+                });
               }
+              cardState.dirty = true;
+              refresh();
             };
             input2.addEventListener("keydown", (e) => {
-              if (e.key === "Enter") {
+              if (["Enter", "ArrowDown", "ArrowUp"].includes(e.key)) {
                 e.preventDefault();
-                const activeRows = table.getRows("active");
-                const index = activeRows.findIndex((r) => r.getData()._gridId === row._gridId);
-                const nextId = index >= 0 ? activeRows[index + 1]?.getData()._gridId : null;
+                const rows2 = table.getRows("active");
+                const index = rows2.findIndex((r) => r.getData()._gridId === row._gridId);
+                const step = e.key === "ArrowUp" ? -1 : 1;
+                const nextId = rows2[index + step]?.getData()._gridId;
                 finish(true);
                 if (nextId != null) queueMicrotask(() => {
                   const next = table.getRows("active").find((r) => r.getData()._gridId === nextId);
-                  const nextCell = next?.getCell("attentionReason");
+                  const nextCell = next?.getCell(field);
                   if (!nextCell) return;
                   nextCell.getElement().click();
                   const editor2 = nextCell.getElement().querySelector(".attention-reason-editor");
@@ -24534,11 +24584,19 @@ ${exportTableTsv(classificationRows, "classifications")}`;
             input2.addEventListener("click", (e) => e.stopPropagation());
             input2.addEventListener("dblclick", (e) => e.stopPropagation());
             input2.focus({ preventScroll: true });
-            input2.setSelectionRange(input2.value.length, input2.value.length);
+            input2.select();
           }
         } : {},
-        ...markFields.has(field) ? { cellClick: (e, cell) => toggleMark(cell.getRow().getData(), field) } : {},
-        ...field === "comment" ? { cellDblClick: (e, cell) => editComment(cell.getRow().getData()) } : {}
+        ...markFields.has(field) ? {
+          cellClick: (e, cell) => {
+            if (!cellRangeMode) toggleMark(cell.getRow().getData(), field);
+          },
+          ...field === "attentionStatus" ? { cellContext: (e, cell) => {
+            e.preventDefault();
+            const target = markTarget(cell.getRow().getData());
+            if (target) setAttentionLevel(target, 0);
+          } } : {}
+        } : {}
       });
       const header = document.createElement("div");
       header.className = "app-header";
@@ -24573,6 +24631,67 @@ ${exportTableTsv(classificationRows, "classifications")}`;
       });
       const patientColumns = /* @__PURE__ */ new Set(["room", "patientName", "patientId"]);
       let selectionAnchor = null, touchCtrl = false, touchShift = false;
+      let cellRangeMode = false, cellRangeAnchor = null, cellRangeEnd = null, cellRangeDragging = false;
+      const selectedRange = () => {
+        if (!cellRangeAnchor || !cellRangeEnd) return [];
+        const rows2 = table.getRows("active");
+        const columns = table.getColumns().filter((c2) => c2.isVisible() && c2.getField());
+        const a = rows2.findIndex((r) => r.getData()._gridId === cellRangeAnchor.id);
+        const b = rows2.findIndex((r) => r.getData()._gridId === cellRangeEnd.id);
+        const c = columns.findIndex((x) => x.getField() === cellRangeAnchor.field);
+        const d = columns.findIndex((x) => x.getField() === cellRangeEnd.field);
+        if ([a, b, c, d].some((x) => x < 0)) return [];
+        return rows2.slice(Math.min(a, b), Math.max(a, b) + 1).map((row) => columns.slice(Math.min(c, d), Math.max(c, d) + 1).map((col) => ({ row: row.getData(), field: col.getField(), cell: row.getCell(col.getField()) })));
+      };
+      const paintRange = () => {
+        grid.querySelectorAll(".cell-range-selected").forEach((el) => el.classList.remove("cell-range-selected"));
+        for (const line of selectedRange()) for (const item of line) item.cell?.getElement().classList.add("cell-range-selected");
+      };
+      const rangeButton = button("\u05D1\u05D7\u05D9\u05E8\u05EA \u05EA\u05D0\u05D9\u05DD", () => {
+        cellRangeMode = !cellRangeMode;
+        cellRangeAnchor = null;
+        cellRangeEnd = null;
+        rangeButton.classList.toggle("active", cellRangeMode);
+        rangeButton.setAttribute("aria-pressed", String(cellRangeMode));
+        paintRange();
+      });
+      rangeButton.setAttribute("aria-pressed", "false");
+      const copyRangeButton = button("\u05D4\u05E2\u05EA\u05E7 \u05EA\u05D0\u05D9\u05DD", async () => {
+        const range2 = selectedRange();
+        if (!range2.length) return;
+        const tsv = range2.map((line) => line.map(({ row, field }) => String(row[field] ?? "").replace(/[\t\r\n]+/g, " ")).join("	")).join("\n");
+        try {
+          await navigator.clipboard.writeText(tsv);
+        } catch (error2) {
+          message.textContent = "\u05D4\u05D4\u05E2\u05EA\u05E7\u05D4 \u05E0\u05DB\u05E9\u05DC\u05D4: " + error2.message;
+        }
+      });
+      const clearRangeButton = button("\u05DE\u05D7\u05E7 \u05EA\u05D5\u05DB\u05DF \u05EA\u05D0\u05D9\u05DD", () => {
+        const range2 = selectedRange();
+        if (!range2.length) return;
+        const editable = /* @__PURE__ */ new Set(["comment", "attentionReason", "reviewStatus", "attentionStatus"]);
+        const items = range2.flat().filter(({ field, row }) => editable.has(field) && !!markTarget(row));
+        if (!items.length) return;
+        if (!confirm("\u05DC\u05DE\u05D7\u05D5\u05E7 \u05EA\u05D5\u05DB\u05DF \u05E9\u05DC " + items.length + " \u05EA\u05D0\u05D9\u05DD \u05E0\u05D9\u05EA\u05E0\u05D9\u05DD \u05DC\u05E2\u05E8\u05D9\u05DB\u05D4?")) return;
+        for (const { row, field } of items) {
+          const target = markTarget(row);
+          if (field === "comment") {
+            const note = row.rowType === "INSTRUCTION" ? noteFor(row.rowId) : target;
+            if (note) {
+              note.text = "";
+              note.reviewedAt = null;
+            }
+          } else if (field === "attentionReason") target.attentionReason = "";
+          else if (field === "reviewStatus") target.reviewedAt = null;
+          else if (field === "attentionStatus") {
+            target.attentionMarkedAt = null;
+            target.attentionReason = "";
+          }
+        }
+        cardState.dirty = true;
+        refresh();
+        queueMicrotask(paintRange);
+      });
       const selectionBar = document.createElement("span");
       selectionBar.className = "selection-status";
       selectionBar.setAttribute("aria-live", "polite");
@@ -24604,12 +24723,40 @@ ${exportTableTsv(classificationRows, "classifications")}`;
         return rows2.filter((r) => r.getData().patientId === row.getData().patientId);
       };
       grid.addEventListener("mousedown", (event) => {
+        if (cellRangeMode && event.button === 0) {
+          const hit2 = cellTarget(event);
+          if (!hit2) return;
+          event.preventDefault();
+          event.stopImmediatePropagation();
+          cellRangeAnchor = { id: hit2.row.getData()._gridId, field: hit2.field };
+          cellRangeEnd = { ...cellRangeAnchor };
+          cellRangeDragging = true;
+          paintRange();
+          updateSelectionUI();
+          return;
+        }
         if (event.button !== 0 || !event.shiftKey) return;
         if (event.target.closest('button,input,textarea,select,[contenteditable="true"]')) return;
         const hit = cellTarget(event);
         if (hit && !markFields.has(hit.field) && hit.field !== "attentionReason") event.preventDefault();
       }, true);
+      grid.addEventListener("mouseover", (event) => {
+        if (!cellRangeMode || !cellRangeDragging) return;
+        const hit = cellTarget(event);
+        if (!hit) return;
+        cellRangeEnd = { id: hit.row.getData()._gridId, field: hit.field };
+        paintRange();
+        updateSelectionUI();
+      }, true);
+      document.addEventListener("mouseup", () => {
+        cellRangeDragging = false;
+      });
       grid.addEventListener("click", (event) => {
+        if (cellRangeMode) {
+          event.preventDefault();
+          event.stopImmediatePropagation();
+          return;
+        }
         const hit = cellTarget(event);
         if (!hit || markFields.has(hit.field) || hit.field === "attentionReason" || event.target.closest('button,input,textarea,select,[contenteditable="true"]')) return;
         event.stopImmediatePropagation();
@@ -24620,6 +24767,21 @@ ${exportTableTsv(classificationRows, "classifications")}`;
         });
       }, true);
       grid.addEventListener("keydown", (event) => {
+        if (!event.target.closest('input,textarea,select,[contenteditable="true"]')) {
+          const hit = cellTarget(event);
+          if (hit?.field === "attentionStatus" && (/^[0-3]$/.test(event.key) || ["Delete", "Backspace"].includes(event.key))) {
+            event.preventDefault();
+            event.stopPropagation();
+            const target = markTarget(hit.row.getData());
+            if (target) setAttentionLevel(target, /^[0-3]$/.test(event.key) ? Number(event.key) : 0);
+            return;
+          }
+        }
+        if (cellRangeMode && (event.ctrlKey || event.metaKey) && event.key.toLowerCase() === "c" && selectedRange().length) {
+          event.preventDefault();
+          copyRangeButton.click();
+          return;
+        }
         if ((event.ctrlKey || event.metaKey) && event.key.toLowerCase() === "a" && !event.target.closest('input,textarea,select,[contenteditable="true"]')) {
           event.preventDefault();
           event.stopPropagation();
@@ -24695,7 +24857,8 @@ ${exportTableTsv(classificationRows, "classifications")}`;
         if (!confirm("\u05DC\u05DE\u05D7\u05D5\u05E7 \u05E1\u05D9\u05DE\u05D5\u05DF \u05DC\u05E2\u05D9\u05D5\u05DF, \u05EA\u05D0\u05E8\u05D9\u05DA \u05D5\u05E1\u05D9\u05D1\u05EA \u05E2\u05D9\u05D5\u05DF \u05E2\u05D1\u05D5\u05E8 " + targets.length + " \u05E9\u05D5\u05E8\u05D5\u05EA?")) return;
         let changed = false;
         for (const target of targets) {
-          if (target.attentionMarkedAt || target.attentionReason) changed = true;
+          if (attentionLevel(target) || target.attentionMarkedAt || target.attentionReason) changed = true;
+          target.attentionLevel = 0;
           target.attentionMarkedAt = null;
           target.attentionReason = "";
         }
@@ -24704,20 +24867,34 @@ ${exportTableTsv(classificationRows, "classifications")}`;
           refresh();
         }
       });
-      const noteButton = button("\u05D4\u05E2\u05E8\u05D4", () => {
+      const deleteRowsButton = button("\u05DE\u05D7\u05E7 \u05E9\u05D5\u05E8\u05D5\u05EA", () => {
+        const rows2 = table.getSelectedRows().map((r) => r.getData());
+        if (!rows2.length || !rows2.every((r) => r.rowType === "NOTE" || r.rowType === "INSTRUCTION" && ["STOP", "HISTORY"].includes(r.status))) return;
+        if (!confirm("\u05DC\u05DE\u05D7\u05D5\u05E7 \u05DC\u05E6\u05DE\u05D9\u05EA\u05D5\u05EA " + rows2.length + " \u05E9\u05D5\u05E8\u05D5\u05EA \u05DE\u05D4\u05DB\u05E8\u05D8\u05E1\u05EA?")) return;
+        const noteIds = new Set(rows2.filter((r) => r.rowType === "NOTE").map((r) => r.noteId));
+        const rowIds = new Set(rows2.filter((r) => r.rowType === "INSTRUCTION").map((r) => r.rowId));
+        cardState.instructions = cardState.instructions.filter((r) => !rowIds.has(r.rowId));
+        cardState.notes = cardState.notes.filter((n) => !noteIds.has(n.noteId) && !(n.scope === "INSTRUCTION" && rowIds.has(n.rowId)));
+        cardState.dirty = true;
+        table.deselectRow();
+        refresh();
+      });
+      const noteButton = button("\u05D4\u05D5\u05E1\u05E3 \u05D4\u05E2\u05E8\u05D4", () => {
         const selected = table.getSelectedRows()[0]?.getData();
-        if (!selected) return;
-        editComment(selected);
+        if (selected) chooseNoteScope(selected.patientId);
       });
       const updateNoteButton = () => {
         const disabled = !table.getSelectedRows().some((r) => markTarget(r.getData()));
-        noteButton.disabled = table.getSelectedRows().length === 0;
+        noteButton.disabled = table.getSelectedRows().length !== 1;
+        const selected = table.getSelectedRows().map((r) => r.getData());
+        deleteRowsButton.disabled = !selected.length || !selected.every((r) => r.rowType === "NOTE" || r.rowType === "INSTRUCTION" && ["STOP", "HISTORY"].includes(r.status));
         signButton.disabled = disabled;
         unsignButton.disabled = disabled;
         clearAttentionButton.disabled = disabled;
       };
       table.on("rowSelectionChanged", updateNoteButton);
       noteButton.disabled = true;
+      deleteRowsButton.disabled = true;
       signButton.disabled = true;
       unsignButton.disabled = true;
       const saveButton = button("\u05E9\u05DE\u05D5\u05E8", async () => {
